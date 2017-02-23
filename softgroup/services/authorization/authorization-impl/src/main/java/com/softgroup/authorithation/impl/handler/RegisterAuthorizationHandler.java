@@ -14,7 +14,7 @@ import com.softgroup.common.router.api.AbstractRequestHandler;
 public class RegisterAuthorizationHandler <T extends RegisterRequest, R extends RegisterResponse> extends AbstractRequestHandler<T,R> {
     @Override
     public String getName() {
-        return null;
+        return "registerHandler";
     }
 
     @Override

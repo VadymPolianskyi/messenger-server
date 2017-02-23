@@ -14,7 +14,7 @@ import com.softgroup.common.router.api.AbstractRequestHandler;
 public class LoginAuthorizationHandler <T extends LoginRequest, R extends LoginResponse> extends AbstractRequestHandler<T,R> {
     @Override
     public String getName() {
-        return null;
+        return "loginHandler";
     }
 
     @Override

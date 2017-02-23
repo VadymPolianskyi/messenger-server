@@ -14,7 +14,7 @@ import com.softgroup.common.router.api.AbstractRequestHandler;
 public class SMSAuthorizationHandler<T extends SMSRequest, R extends SMSResponse> extends AbstractRequestHandler<T,R> {
        @Override
     public String getName() {
-        return null;
+        return "smsHandler";
     }
 
     @Override

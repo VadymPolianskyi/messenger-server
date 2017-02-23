@@ -1,13 +1,10 @@
 package com.softgroup.authorithation.impl.router;
 
-import com.softgroup.authorithation.impl.handler.LoginAuthorizationHandler;
-import com.softgroup.authorization.api.message.LoginResponse;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
+import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.common.router.api.AbstractRouterHandler;
-import com.softgroup.common.router.api.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
@@ -16,35 +13,34 @@ import java.util.List;
 /**
  * Author: vadym
  * Date: 23.02.17
- * Time: 13:15
+ * Time: 23:02
  */
-@Component
-public class LoginAuthorizationRouterHandler<T extends LoginAuthorizationHandler > extends AbstractRouterHandler {
+public class AuthorizationRouter <T extends AbstractRequestHandler> extends AbstractRouterHandler {
 
     @Autowired
     List<T> handlers;
 
-    HashMap<String, Handler> mapOfHandlers = new HashMap<>();
+    HashMap<String, AbstractRequestHandler> mapOfHandlers = new HashMap<>();
 
     @PostConstruct
     public void init() {
-        for (Handler handler : handlers) {
+        for (T handler : handlers) {
             mapOfHandlers.put(handler.getName(), handler);
         }
     }
 
     @Override
     public String getRouteKey(Request<?> msg) {
-        return null;
+        return getName();
     }
 
     @Override
     public String getName() {
-        return null;
+        return "authorizationRouter";
     }
 
     @Override
-    public Response<? extends LoginResponse> handle(Request<?> msg) {
-        return null;
+    public Response<?> handle(Request<?> msg) {
+        return mapOfHandlers.get(msg.getHeader().getType()).handle(msg);
     }
 }

@@ -17,16 +17,16 @@ import java.util.List;
  * Time: 15:12
  */
 @Component
-public class FirstRouterHandler implements Handler {
+public class FirstRouterHandler<T extends AbstractRouterHandler> implements Handler {
 
     @Autowired
-    List<AbstractRouterHandler> routers;
+    List<T> routers;
 
-    HashMap<String, AbstractRouterHandler> mapOfRouters = new HashMap<>();
+    HashMap<String, T> mapOfRouters = new HashMap<>();
 
     @PostConstruct
     public void init() {
-        for (AbstractRouterHandler router : routers) {
+        for (T router : routers) {
             mapOfRouters.put(router.getName(), router);
         }
     }
