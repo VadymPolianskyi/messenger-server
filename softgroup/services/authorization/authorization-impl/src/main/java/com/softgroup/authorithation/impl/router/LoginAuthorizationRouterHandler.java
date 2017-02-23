@@ -5,6 +5,7 @@ import com.softgroup.authorization.api.message.LoginResponse;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.router.api.AbstractRouterHandler;
+import com.softgroup.common.router.api.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,11 +24,11 @@ public class LoginAuthorizationRouterHandler<T extends LoginAuthorizationHandler
     @Autowired
     List<T> handlers;
 
-    HashMap<String, LoginAuthorizationHandler> mapOfHandlers = new HashMap<>();
+    HashMap<String, Handler> mapOfHandlers = new HashMap<>();
 
     @PostConstruct
     public void init() {
-        for (LoginAuthorizationHandler handler : handlers) {
+        for (Handler handler : handlers) {
             mapOfHandlers.put(handler.getName(), handler);
         }
     }

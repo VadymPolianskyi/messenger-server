@@ -5,6 +5,7 @@ import com.softgroup.authorization.api.message.SMSResponse;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.router.api.AbstractRouterHandler;
+import com.softgroup.common.router.api.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,11 +24,11 @@ public class SMSAuthorizationRouterHandler<T extends SMSAuthorizationHandler> ex
     @Autowired
     List<T> handlers;
 
-    HashMap<String, SMSAuthorizationHandler> routers = new HashMap<>();
+    HashMap<String, Handler> routers = new HashMap<>();
 
     @PostConstruct
     private void init() {
-        for (SMSAuthorizationHandler handler : handlers) {
+        for (Handler handler : handlers) {
             routers.put(handler.getName(), handler);
         }
     }

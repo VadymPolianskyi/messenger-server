@@ -5,6 +5,7 @@ import com.softgroup.authorization.api.message.RegisterResponse;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.router.api.AbstractRouterHandler;
+import com.softgroup.common.router.api.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
@@ -22,11 +23,11 @@ public class RegisterAuthorizationRouterHandler <T extends RegisterAuthorization
     @Autowired
     List<T> handlers;
 
-    HashMap<String, RegisterAuthorizationHandler> routers = new HashMap<>();
+    HashMap<String, Handler> routers = new HashMap<>();
 
     @PostConstruct
     private void init() {
-        for (RegisterAuthorizationHandler handler : handlers) {
+        for (Handler handler : handlers) {
             routers.put(handler.getName(), handler);
         }
     }

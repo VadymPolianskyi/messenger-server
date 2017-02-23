@@ -34,7 +34,7 @@ public class FirstRouterHandler implements Handler {
 
     @Override
     public String getName() {
-        return null;
+        return "mainRouter";
     }
 
     @Override
