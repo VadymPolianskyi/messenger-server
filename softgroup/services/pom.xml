@@ -14,6 +14,8 @@
 	<modules>
 
 		<module>authorization</module>
+        <module>profile</module>
+		<module>messenger</module>
 	</modules>
 
 	<properties>
