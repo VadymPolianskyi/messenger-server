@@ -1,18 +1,20 @@
-package com.softgroup.authorithation.impl.handler;
+package com.softgroup.authorization.impl.handler;
 
 import com.softgroup.authorization.api.router.AuthorizationRequestHandler;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
+import org.springframework.stereotype.Component;
 
 /**
  * Author: vadym
  * Date: 23.02.17
- * Time: 13:16
+ * Time: 12:43
  */
-public class LoginAuthorizationHandler implements AuthorizationRequestHandler {
+@Component
+public class SMSAuthorizationHandler implements AuthorizationRequestHandler {
     @Override
     public String getName() {
-        return "loginHandler";
+        return "smsHandler";
     }
 
     @Override

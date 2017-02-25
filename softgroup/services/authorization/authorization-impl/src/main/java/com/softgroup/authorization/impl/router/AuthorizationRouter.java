@@ -1,4 +1,4 @@
-package com.softgroup.authorithation.impl.router;
+package com.softgroup.authorization.impl.router;
 
 import com.softgroup.authorization.api.router.AuthorizationRequestHandler;
 import com.softgroup.authorization.api.router.AuthorizationRouterHandler;
@@ -36,11 +36,11 @@ public class AuthorizationRouter implements AuthorizationRouterHandler {
 
     @Override
     public String getName() {
-        return "authorizationRouter";
+        return "authorization";
     }
 
     @Override
     public Response<?> handle(Request<?> msg) {
-        return mapOfHandlers.get(msg.getHeader().getType()).handle(msg);
+        return mapOfHandlers.get(msg.getHeader().getCommand()).handle(msg);
     }
 }
