@@ -6,7 +6,7 @@ package com.softgroup.profile.api.message.data;
  * Time: 9:24
  */
 public class Contact {
-
+    private int id;
     private String number;
     private String name;
 
@@ -25,4 +25,13 @@ public class Contact {
     public void setNumber(String number) {
         this.number = number;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }
