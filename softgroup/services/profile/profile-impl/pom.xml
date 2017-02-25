@@ -11,5 +11,13 @@
 
     <artifactId>profile-impl</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.softgroup</groupId>
+            <artifactId>profile-api</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+    </dependencies>
 
 </project>
