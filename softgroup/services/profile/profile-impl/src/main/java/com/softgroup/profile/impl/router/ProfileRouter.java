@@ -2,9 +2,11 @@ package com.softgroup.profile.impl.router;
 
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
+import com.softgroup.common.router.api.AbstractRouterHandler;
 import com.softgroup.profile.api.router.ProfileRequestHandler;
 import com.softgroup.profile.api.router.ProfileRouterHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
@@ -15,7 +17,8 @@ import java.util.List;
  * Date: 25.02.17
  * Time: 11:49
  */
-public class ProfileRouter implements ProfileRouterHandler{
+@Component
+public class ProfileRouter extends AbstractRouterHandler implements ProfileRouterHandler{
 
     @Autowired
     List<ProfileRequestHandler> handlers;

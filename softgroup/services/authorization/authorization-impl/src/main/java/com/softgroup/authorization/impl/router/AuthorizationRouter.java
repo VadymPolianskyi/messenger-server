@@ -4,7 +4,9 @@ import com.softgroup.authorization.api.router.AuthorizationRequestHandler;
 import com.softgroup.authorization.api.router.AuthorizationRouterHandler;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
+import com.softgroup.common.router.api.AbstractRouterHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
@@ -15,7 +17,8 @@ import java.util.List;
  * Date: 23.02.17
  * Time: 23:02
  */
-public class AuthorizationRouter implements AuthorizationRouterHandler {
+@Component
+public class AuthorizationRouter extends AbstractRouterHandler implements AuthorizationRouterHandler {
 
     @Autowired
     List<AuthorizationRequestHandler> handlers;
