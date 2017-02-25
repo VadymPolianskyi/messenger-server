@@ -5,7 +5,7 @@ import com.softgroup.common.protocol.Response;
 import com.softgroup.common.router.api.factory.HandlerFactory;
 import com.softgroup.common.router.api.factory.RequestHandlerFactory;
 
-public abstract class AbstractRouterHandler<T extends Handler> implements RouterHandler, CommonRouterHandler {
+public abstract class AbstractRouterHandler<T extends AbstractRequestHandler> implements RouterHandler, CommonRouterHandler {
 
 	HandlerFactory<T> factory = new RequestHandlerFactory<T>();
 
