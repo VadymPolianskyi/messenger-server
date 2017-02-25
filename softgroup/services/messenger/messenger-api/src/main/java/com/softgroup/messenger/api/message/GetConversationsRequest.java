@@ -1,13 +1,11 @@
-package com.softgroup.profile.api.message;
-
-import java.io.Serializable;
+package com.softgroup.messenger.api.message;
 
 /**
  * Author: vadym
  * Date: 25.02.17
- * Time: 9:09
+ * Time: 12:20
  */
-public abstract class ProfileHeader implements Serializable{
+public class GetConversationsRequest extends MessengerRequest {
     private String type;
 
     public String getType() {

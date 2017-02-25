@@ -7,7 +7,7 @@ import com.softgroup.profile.api.message.data.ProfileSettings;
  * Date: 25.02.17
  * Time: 10:20
  */
-public class SetProfileSettingsRequest extends Command {
+public class SetProfileSettingsRequest extends ProfileRequest {
     private ProfileSettings profileSettings;
 
     public ProfileSettings getProfileSettings() {

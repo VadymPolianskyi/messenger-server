@@ -7,7 +7,7 @@ import java.util.List;
  * Date: 25.02.17
  * Time: 10:21
  */
-public class GetLastTimeOnlineRequest extends Command {
+public class GetLastTimeOnlineRequest extends ProfileRequest {
     public List<String> getProfilesUUID() {
         return profilesUUID;
     }

@@ -2,6 +2,9 @@ package com.softgroup.profile.impl.handler;
 
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
+import com.softgroup.common.router.api.AbstractRequestHandler;
+import com.softgroup.profile.api.message.GetMyProfileRequest;
+import com.softgroup.profile.api.message.GetMyProfileResponse;
 import com.softgroup.profile.api.router.ProfileRequestHandler;
 import org.springframework.stereotype.Component;
 
@@ -11,12 +14,15 @@ import org.springframework.stereotype.Component;
  * Time: 11:45
  */
 @Component
-public class GetMyProfileHandler implements ProfileRequestHandler {
+public class GetMyProfileHandler
+        extends AbstractRequestHandler<GetMyProfileRequest,
+            GetMyProfileResponse> implements ProfileRequestHandler {
     public String getName() {
         return null;
     }
 
-    public Response<?> handle(Request<?> msg) {
+    @Override
+    public Response<GetMyProfileResponse> doHandle(Request<GetMyProfileRequest> request) {
         return null;
     }
 }

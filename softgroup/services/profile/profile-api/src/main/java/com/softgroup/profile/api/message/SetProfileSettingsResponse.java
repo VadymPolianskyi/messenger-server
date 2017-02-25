@@ -5,6 +5,6 @@ package com.softgroup.profile.api.message;
  * Date: 25.02.17
  * Time: 10:20
  */
-public class SetProfileSettingsResponse extends Command {
+public class SetProfileSettingsResponse extends ProfileResponse {
 
 }
