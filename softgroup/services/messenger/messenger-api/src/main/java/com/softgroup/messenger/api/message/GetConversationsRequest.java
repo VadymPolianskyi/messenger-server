@@ -6,6 +6,11 @@ package com.softgroup.messenger.api.message;
  * Time: 12:20
  */
 public class GetConversationsRequest extends MessengerRequest {
+
+    public GetConversationsRequest() {
+        getHeader().setCommand("getConversations");
+    }
+
     private String type;
 
     public String getType() {

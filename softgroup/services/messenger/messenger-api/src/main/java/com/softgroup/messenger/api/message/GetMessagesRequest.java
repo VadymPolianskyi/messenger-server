@@ -8,6 +8,11 @@ import com.softgroup.messenger.api.message.data.Cursor;
  * Time: 17:16
  */
 public class GetMessagesRequest extends MessengerRequest {
+
+    public GetMessagesRequest() {
+        getHeader().setCommand("getMessagesRequest");
+    }
+
     private String conversationID;
     private Cursor cursor;
 

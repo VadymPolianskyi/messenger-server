@@ -12,6 +12,9 @@ public class GetConversationByIdsRequest extends MessengerRequest {
         return conversationIDs;
     }
 
+    public GetConversationByIdsRequest() {
+        getHeader().setCommand("getConversationByIds");
+    }
     public void setConversationIDs(List<String> conversationIDs) {
         this.conversationIDs = conversationIDs;
     }
