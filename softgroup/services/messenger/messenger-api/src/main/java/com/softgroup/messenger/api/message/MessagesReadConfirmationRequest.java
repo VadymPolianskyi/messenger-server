@@ -8,6 +8,11 @@ import java.util.List;
  * Time: 17:33
  */
 public class MessagesReadConfirmationRequest extends MessengerRequest {
+
+    public MessagesReadConfirmationRequest() {
+        getHeader().setCommand("messagesReadConfirmation");
+    }
+
     private String conversationID;
     private List<String> messagesIDs;
 

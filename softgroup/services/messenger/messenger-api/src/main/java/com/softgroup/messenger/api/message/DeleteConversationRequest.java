@@ -7,6 +7,9 @@ package com.softgroup.messenger.api.message;
  */
 public class DeleteConversationRequest extends MessengerRequest {
     private String conversationID;
+    public DeleteConversationRequest() {
+        getHeader().setCommand("deleteConversation");
+    }
 
     public String getConversationID() {
         return conversationID;

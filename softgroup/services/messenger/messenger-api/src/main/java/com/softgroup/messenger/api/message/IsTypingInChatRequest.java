@@ -6,6 +6,11 @@ package com.softgroup.messenger.api.message;
  * Time: 19:20
  */
 public class IsTypingInChatRequest extends MessengerRequest {
+
+    public IsTypingInChatRequest() {
+        getHeader().setCommand("getMessagesRequest");
+    }
+
     private String conversationID;
 
     public String getConversationID() {

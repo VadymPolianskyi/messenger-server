@@ -8,6 +8,7 @@ package com.softgroup.messenger.api.message;
 public class SendMessageRequest extends MessengerRequest {
     private String message;
 
+
     public String getMessage() {
         return message;
     }

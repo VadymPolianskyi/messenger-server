@@ -8,6 +8,11 @@ import com.softgroup.messenger.api.message.data.Conversation;
  * Time: 19:16
  */
 public class UpdateConversationSettingsRequest extends MessengerRequest{
+
+    public UpdateConversationSettingsRequest() {
+        getHeader().setCommand("updateConversationSettings");
+    }
+
     private Conversation conversationSettings;
 
     public Conversation getConversationSettings() {

@@ -8,6 +8,10 @@ package com.softgroup.messenger.api.message;
 public class GetConversationDetailsRequest extends MessengerRequest {
     private String conversationID;
 
+    public GetConversationDetailsRequest() {
+        getHeader().setCommand("getConversationDetails");
+    }
+
     public String getConversationID() {
         return conversationID;
     }

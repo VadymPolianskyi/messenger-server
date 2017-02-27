@@ -10,6 +10,11 @@ import java.util.List;
  * Time: 19:13
  */
 public class CreateConversationRequest extends MessengerRequest{
+
+    public CreateConversationRequest() {
+        getHeader().setCommand("createConversation");
+    }
+
     private ChatType type;
     private List<String> membersIDs;
 
