@@ -15,6 +15,7 @@
         <module>common-router</module>
         <module>common-protocol</module>
         <module>common-database</module>
+        <module>common-modelmaper</module>
 
     </modules>
 
