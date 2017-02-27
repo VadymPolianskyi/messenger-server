@@ -1,4 +1,4 @@
-package com.softgroup.profile.api.message.data;
+package com.softgroup.db.entity.data;
 
 import java.util.List;
 

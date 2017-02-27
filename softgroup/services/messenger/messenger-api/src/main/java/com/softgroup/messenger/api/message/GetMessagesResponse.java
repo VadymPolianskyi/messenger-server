@@ -1,8 +1,7 @@
 package com.softgroup.messenger.api.message;
 
-import com.softgroup.messenger.api.message.data.Conversation;
-import com.softgroup.messenger.api.message.data.Cursor;
-import com.softgroup.messenger.api.message.data.Message;
+import com.softgroup.db.entity.data.Conversation;
+import com.softgroup.db.entity.data.Message;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ import java.util.List;
  */
 public class GetMessagesResponse extends MessengerResponse {
     private int totalUnread;
-    private List<Cursor> cursors;
+    private List<Message> cursors;
     private List<Message> messages;
 
     public List<Message> getMessages() {
@@ -32,11 +31,11 @@ public class GetMessagesResponse extends MessengerResponse {
         this.totalUnread = totalUnread;
     }
 
-    public List<Cursor> getCursors() {
+    public List<Message> getCursors() {
         return cursors;
     }
 
-    public void setCursors(List<Cursor> cursors) {
+    public void setCursors(List<Message> cursors) {
         this.cursors = cursors;
     }
 
