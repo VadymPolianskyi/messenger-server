@@ -1,5 +1,7 @@
 package com.softgroup.messenger.api.message;
 
+import com.softgroup.messenger.api.message.data.ChatType;
+
 import java.util.List;
 
 /**
@@ -13,7 +15,7 @@ public class CreateConversationRequest extends MessengerRequest{
         getHeader().setCommand("createConversation");
     }
 
-    private String type;
+    private ChatType type;
     private List<String> membersIDs;
 
     public List<String> getMembersIDs() {
@@ -24,12 +26,12 @@ public class CreateConversationRequest extends MessengerRequest{
         this.membersIDs = membersIDs;
     }
 
-    public String getType() {
+    public ChatType getType() {
 
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(ChatType type) {
         this.type = type;
     }
 }

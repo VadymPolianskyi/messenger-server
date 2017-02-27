@@ -1,6 +1,6 @@
 package com.softgroup.profile.api.message;
 
-import com.softgroup.db.entity.data.ProfileSettings;
+import com.softgroup.profile.api.message.data.ProfileSettings;
 
 import java.util.List;
 
