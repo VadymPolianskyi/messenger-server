@@ -1,6 +1,6 @@
 package com.softgroup.profile.api.message;
 
-import com.softgroup.profile.api.message.data.Profile;
+import com.softgroup.db.entity.data.Profile;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
  * Date: 25.02.17
  * Time: 10:13
  */
-public class SetMyProfileRequest extends Command {
+public class SetMyProfileRequest extends ProfileRequest {
     public List<Profile> getProfiles() {
         return profiles;
     }

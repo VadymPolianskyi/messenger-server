@@ -1,6 +1,7 @@
 package com.softgroup.profile.api.message;
 
-import com.softgroup.profile.api.message.data.Contact;
+
+import com.softgroup.db.entity.data.Contact;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  * Date: 25.02.17
  * Time: 9:35
  */
-public class ContactsSyncRequest extends Command {
+public class ContactsSyncRequest extends ProfileRequest {
     private List<Contact> addedContacts;
     private List<Contact> removedContacts;
 

@@ -1,6 +1,6 @@
 package com.softgroup.profile.api.message;
 
-import com.softgroup.profile.api.message.data.ProfileStatus;
+import com.softgroup.db.entity.data.ProfileStatus;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
  * Date: 25.02.17
  * Time: 10:24
  */
-public class GetLastTimeOnlineResponse extends Command {
+public class GetLastTimeOnlineResponse extends ProfileResponse {
     private List<ProfileStatus> profileStatuses;
 
     public List<ProfileStatus> getProfileStatuses() {

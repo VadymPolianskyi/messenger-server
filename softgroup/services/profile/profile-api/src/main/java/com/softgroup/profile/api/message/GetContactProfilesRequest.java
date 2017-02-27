@@ -5,6 +5,6 @@ package com.softgroup.profile.api.message;
  * Date: 25.02.17
  * Time: 9:39
  */
-public class GetContactProfilesRequest extends Command{
+public class GetContactProfilesRequest extends ProfileRequest {
 
 }
