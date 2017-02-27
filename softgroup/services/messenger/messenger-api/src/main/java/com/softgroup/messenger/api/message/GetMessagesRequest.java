@@ -1,7 +1,6 @@
 package com.softgroup.messenger.api.message;
 
-import com.softgroup.db.entity.data.Message;
-
+import com.softgroup.messenger.api.message.data.Cursor;
 
 /**
  * Author: vadym
@@ -15,13 +14,13 @@ public class GetMessagesRequest extends MessengerRequest {
     }
 
     private String conversationID;
-    private Message cursor;
+    private Cursor cursor;
 
-    public Message getCursor() {
+    public Cursor getCursor() {
         return cursor;
     }
 
-    public void setCursor(Message cursor) {
+    public void setCursor(Cursor cursor) {
         this.cursor = cursor;
     }
 
