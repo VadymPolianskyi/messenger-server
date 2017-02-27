@@ -1,6 +1,5 @@
 package com.softgroup.common.router.impl;
 
-import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.router.api.AbstractRouterHandler;
 import com.softgroup.common.router.api.Handler;
@@ -38,7 +37,7 @@ public class FirstRouterHandler<T extends AbstractRouterHandler> implements Hand
     }
 
     @Override
-    public Response<?> handle(Request<?> msg) {
+    public Response<?> handle(Response<T> msg) {
         return null;
     }
 }

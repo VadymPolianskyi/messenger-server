@@ -1,8 +1,11 @@
 package com.softgroup.authorization.impl.handler;
 
+import com.softgroup.authorization.api.message.SMSRequest;
+import com.softgroup.authorization.api.message.SMSResponse;
 import com.softgroup.authorization.api.router.AuthorizationRequestHandler;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
+import com.softgroup.common.router.api.AbstractRequestHandler;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,14 +14,14 @@ import org.springframework.stereotype.Component;
  * Time: 12:43
  */
 @Component
-public class SMSAuthorizationHandler implements AuthorizationRequestHandler {
+public class SMSAuthorizationHandler extends AbstractRequestHandler<SMSRequest, SMSResponse> implements AuthorizationRequestHandler {
     @Override
     public String getName() {
         return "smsHandler";
     }
 
     @Override
-    public Response<?> handle(Request<?> msg) {
+    public Response<SMSResponse> doHandle(Request<SMSRequest> request) {
         return null;
     }
 }

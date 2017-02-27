@@ -9,7 +9,7 @@ import java.util.List;
  * Date: 25.02.17
  * Time: 9:35
  */
-public class ContactsSyncRequest extends Command {
+public class ContactsSyncRequest extends ProfileRequest {
     private List<Contact> addedContacts;
     private List<Contact> removedContacts;
 

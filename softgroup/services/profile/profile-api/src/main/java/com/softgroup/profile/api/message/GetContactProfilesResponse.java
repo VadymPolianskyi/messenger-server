@@ -9,7 +9,7 @@ import java.util.List;
  * Date: 25.02.17
  * Time: 10:09
  */
-public class GetContactProfilesResponse extends Command {
+public class GetContactProfilesResponse extends ProfileResponse {
     private List<Profile> profiles;
 
     public List<Profile> getProfiles() {

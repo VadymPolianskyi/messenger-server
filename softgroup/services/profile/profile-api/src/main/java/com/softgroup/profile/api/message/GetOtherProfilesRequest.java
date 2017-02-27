@@ -7,7 +7,7 @@ import java.util.List;
  * Date: 25.02.17
  * Time: 10:15
  */
-public class GetOtherProfilesRequest extends Command {
+public class GetOtherProfilesRequest extends ProfileRequest {
     public List<Integer> userID;
 
     public List<Integer> getUserID() {
