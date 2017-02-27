@@ -1,6 +1,7 @@
 package com.softgroup.profile.api.message;
 
-import com.softgroup.profile.api.message.data.Contact;
+
+import com.softgroup.db.entity.data.Contact;
 
 import java.util.List;
 

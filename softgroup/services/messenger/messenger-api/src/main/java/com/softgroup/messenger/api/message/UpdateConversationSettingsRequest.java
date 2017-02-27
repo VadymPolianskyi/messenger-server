@@ -1,6 +1,7 @@
 package com.softgroup.messenger.api.message;
 
-import com.softgroup.messenger.api.message.data.Conversation;
+
+import com.softgroup.db.entity.data.Conversation;
 
 /**
  * Author: vadym
