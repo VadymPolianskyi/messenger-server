@@ -1,10 +1,12 @@
-package com.softgroup.authorithation.impl.router;
+package com.softgroup.authorization.impl.router;
 
 import com.softgroup.authorization.api.router.AuthorizationRequestHandler;
 import com.softgroup.authorization.api.router.AuthorizationRouterHandler;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
+import com.softgroup.common.router.api.AbstractRouterHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
@@ -15,7 +17,8 @@ import java.util.List;
  * Date: 23.02.17
  * Time: 23:02
  */
-public class AuthorizationRouter implements AuthorizationRouterHandler {
+@Component
+public class AuthorizationRouter extends AbstractRouterHandler implements AuthorizationRouterHandler {
 
     @Autowired
     List<AuthorizationRequestHandler> handlers;
@@ -36,11 +39,11 @@ public class AuthorizationRouter implements AuthorizationRouterHandler {
 
     @Override
     public String getName() {
-        return "authorizationRouter";
+        return "authorization";
     }
 
     @Override
     public Response<?> handle(Request<?> msg) {
-        return mapOfHandlers.get(msg.getHeader().getType()).handle(msg);
+        return mapOfHandlers.get(msg.getHeader().getCommand()).handle(msg);
     }
 }
