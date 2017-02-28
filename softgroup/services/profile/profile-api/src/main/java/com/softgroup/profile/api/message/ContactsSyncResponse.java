@@ -5,6 +5,6 @@ package com.softgroup.profile.api.message;
  * Date: 25.02.17
  * Time: 9:15
  */
-public class ContactsSyncResponse extends Command {
+public class ContactsSyncResponse extends ProfileResponse {
 
 }

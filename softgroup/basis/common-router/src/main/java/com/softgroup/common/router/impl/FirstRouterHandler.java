@@ -4,12 +4,9 @@ import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.router.api.AbstractRouterHandler;
 import com.softgroup.common.router.api.Handler;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.softgroup.common.router.api.factory.HandlerFactory;
+import com.softgroup.common.router.api.factory.RouterHandlerFactory;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * Author: vadym
@@ -19,26 +16,17 @@ import java.util.List;
 @Component
 public class FirstRouterHandler<T extends AbstractRouterHandler> implements Handler {
 
-    @Autowired
-    List<T> routers;
-
-    HashMap<String, T> mapOfRouters = new HashMap<>();
-
-    @PostConstruct
-    public void init() {
-        for (T router : routers) {
-            mapOfRouters.put(router.getName(), router);
-        }
-    }
-
 
     @Override
     public String getName() {
         return "mainRouter";
     }
 
+    HandlerFactory<T> factory = new RouterHandlerFactory<T>();
+
     @Override
     public Response<?> handle(Request<?> msg) {
-        return null;
+
+        return factory.getHandler(msg).handle(msg);
     }
 }
