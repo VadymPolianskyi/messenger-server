@@ -1,5 +1,8 @@
 package com.softgroup.db.entity.data;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -7,15 +10,15 @@ import java.util.List;
  * Date: 27.02.17
  * Time: 21:02
  */
+@Entity(name="conversation_settings")
 public class ConversationSettings {
-    private Conversation conversation;
-    private List<Profile> participants;
+    @Id
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
+    @Column(name = "id", unique = true)
+    private String id;
 
-    public List<Profile> getParticipants() {
-        return participants;
-    }
-
-    public void setParticipants(List<Profile> participants) {
-        this.participants = participants;
+    public String getId() {
+        return id;
     }
 }

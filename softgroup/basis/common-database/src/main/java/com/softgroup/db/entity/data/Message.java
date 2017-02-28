@@ -1,7 +1,8 @@
 package com.softgroup.db.entity.data;
 
-import javax.xml.crypto.Data;
-import java.time.LocalDate;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -9,19 +10,27 @@ import java.util.Date;
  * Date: 25.02.17
  * Time: 17:24
  */
+@Entity(name = "message")
 public class Message {
-    private int id;
+
+    @Id
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
+    @Column(name = "id", unique = true)
+    private String  id;
+
+    @ManyToOne(targetEntity = Profile.class)
     private Profile auhtor;
+
+    @ManyToOne(targetEntity = Conversation.class)
     private Conversation conversation;
+
+
     private Date localDate;
     private String messageBody;
 
-    public int getId() {
+    public String getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Profile getAuhtor() {
