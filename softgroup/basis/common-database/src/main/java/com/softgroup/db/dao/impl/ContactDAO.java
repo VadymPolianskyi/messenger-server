@@ -1,11 +1,12 @@
 package com.softgroup.db.dao.impl;
 
 import com.softgroup.db.dao.api.MessengerDAO;
-import com.softgroup.db.dao.api.SessionManager;
 import com.softgroup.db.entity.data.Contact;
+import com.softgroup.db.repository.ContactCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Author: vadym
@@ -15,48 +16,40 @@ import java.util.List;
 public class ContactDAO implements MessengerDAO<Contact, String> {
 
     @Autowired
-    private SessionManager sessionManager;
-
+    private ContactCrudRepository contactCrudRepository;
     @Override
     public void update(Contact contact) {
-        sessionManager.openCurrentSessionwithTransaction();
-        sessionManager.getCurrentSession().update(contact);
-        sessionManager.closeCurrentSessionwithTransaction();
+        contactCrudRepository.save(contact);
     }
 
     @Override
     public Contact findById(String id) {
-        sessionManager.openCurrentSession();
-        Contact contact = (Contact) sessionManager.getCurrentSession().get(Contact.class, id);
-        sessionManager.closeCurrentSession();
+        Contact contact = contactCrudRepository.findOne(UUID.fromString(id));
         return contact;
 
     }
 
     @Override
     public void delete(Contact contact) {
-        sessionManager.openCurrentSessionwithTransaction();
-        sessionManager.getCurrentSession().delete(contact);
-        sessionManager.closeCurrentSessionwithTransaction();
+        contactCrudRepository.delete(contact);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public List<Contact> findAll() {
-        sessionManager.openCurrentSession();
-//        List<Contact> contacts = (List<Contact>) sessionManager.getCurrentSession().createQuery("from CONTACT").list();
-        sessionManager.closeCurrentSession();
-//        return contacts;
-        return null;
+        List<Contact> contacts = contactCrudRepository.findAll();
+        return contacts;
     }
 
     @Override
     public void deleteAll() {
-        sessionManager.openCurrentSessionwithTransaction();
         List<Contact> contacts = findAll();
         for (Contact contact : contacts) {
             delete(contact);
         }
-        sessionManager.closeCurrentSessionwithTransaction();
+    }
+
+    @Override
+    public void insert(Contact entity) {
+        contactCrudRepository.save(entity);
     }
 }

@@ -19,4 +19,6 @@ public interface MessengerDAO <T, Id extends Serializable> {
     public List<T> findAll();
 
     public void deleteAll();
+
+    public void insert(T entity);
 }
