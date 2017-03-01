@@ -7,10 +7,6 @@ package com.softgroup.messenger.api.message;
  */
 public class IsTypingInChatRequest extends MessengerRequest {
 
-    public IsTypingInChatRequest() {
-        getHeader().setCommand("getMessagesRequest");
-    }
-
     private String conversationID;
 
     public String getConversationID() {

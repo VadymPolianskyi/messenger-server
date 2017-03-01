@@ -9,10 +9,6 @@ import java.util.List;
  */
 public class GetConversationsSettingsRequest extends MessengerRequest {
 
-    public GetConversationsSettingsRequest() {
-        getHeader().setCommand("getConversationsSettings");
-    }
-
     private List<String> conversationsIDs;
 
     public List<String> getConversationsIDs() {

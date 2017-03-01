@@ -8,7 +8,4 @@ import com.softgroup.common.protocol.Request;
  * Time: 19:22
  */
 public abstract class MessengerRequest extends Request {
-    public MessengerRequest() {
-        getHeader().setType("messenger");
-    }
 }
