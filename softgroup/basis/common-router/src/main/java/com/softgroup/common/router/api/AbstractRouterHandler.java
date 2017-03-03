@@ -1,15 +1,19 @@
 package com.softgroup.common.router.api;
 
-public abstract class AbstractRouterHandler<T extends Handler> implements RouterHandler, CommonRouterHandler {
+import com.softgroup.common.protocol.Request;
+import com.softgroup.common.protocol.Response;
+import com.softgroup.common.router.api.factory.HandlerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-//	@Override
-//	public String getRouteKey(Request<?> msg) {
-//		return null;
-//	}
-//
-//	@Override
-//	public Response<?> handle(Request<?> msg) {
-//		return null;
-//	}
+public abstract class AbstractRouterHandler<T extends AbstractRequestHandler> implements RouterHandler, CommonRouterHandler {
+
+	@Autowired
+	HandlerFactory<T> requestHandlerFactory;
+
+	@Override
+	public Response<?> handle(Request<?> msg) {
+        return requestHandlerFactory.getHandler(msg).handle(msg);
+	}
 
 }
