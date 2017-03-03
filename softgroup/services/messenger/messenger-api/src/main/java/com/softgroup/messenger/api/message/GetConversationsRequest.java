@@ -7,10 +7,6 @@ package com.softgroup.messenger.api.message;
  */
 public class GetConversationsRequest extends MessengerRequest {
 
-    public GetConversationsRequest() {
-        getHeader().setCommand("getConversations");
-    }
-
     private String type;
 
     public String getType() {

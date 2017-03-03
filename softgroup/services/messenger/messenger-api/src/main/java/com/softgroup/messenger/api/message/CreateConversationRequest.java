@@ -9,10 +9,6 @@ import java.util.List;
  */
 public class CreateConversationRequest extends MessengerRequest{
 
-    public CreateConversationRequest() {
-        getHeader().setCommand("createConversation");
-    }
-
     private String type;
     private List<String> membersIDs;
 

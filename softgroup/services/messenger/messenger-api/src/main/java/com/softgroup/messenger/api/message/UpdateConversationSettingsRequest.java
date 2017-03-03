@@ -10,10 +10,6 @@ import com.softgroup.db.entity.data.Conversation;
  */
 public class UpdateConversationSettingsRequest extends MessengerRequest{
 
-    public UpdateConversationSettingsRequest() {
-        getHeader().setCommand("updateConversationSettings");
-    }
-
     private Conversation conversationSettings;
 
     public Conversation getConversationSettings() {

@@ -7,10 +7,6 @@ package com.softgroup.messenger.api.message;
  */
 public class GetConversationSettingsRequest extends MessengerRequest {
 
-    public GetConversationSettingsRequest() {
-        getHeader().setCommand("getConversationSettings");
-    }
-
     private String conversationID;
 
     public String getConversationID() {

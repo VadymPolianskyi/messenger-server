@@ -10,10 +10,6 @@ import com.softgroup.db.entity.data.Message;
  */
 public class GetMessagesRequest extends MessengerRequest {
 
-    public GetMessagesRequest() {
-        getHeader().setCommand("getMessagesRequest");
-    }
-
     private String conversationID;
     private Message cursor;
 

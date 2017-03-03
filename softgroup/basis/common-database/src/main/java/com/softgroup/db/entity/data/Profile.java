@@ -1,5 +1,8 @@
 package com.softgroup.db.entity.data;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -7,22 +10,52 @@ import java.util.List;
  * Date: 25.02.17
  * Time: 9:17
  */
+@Entity(name = "profile")
 public class Profile {
-    private int id;
-    private String firstName;
-    private String lastName;
-    private String localeCode;
-    private String deviceId;
-    private ProfileSettings profileSettings;
-    private ProfileStatus profileStatus;
-    private List<Contact> contacts;
 
-    public int getId() {
-        return id;
+    public Profile() {
     }
 
-    public void setId(int id) {
-        this.id = id;
+//    public Profile(String firstName, String lastName, String localeCode, String deviceId) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.localeCode = localeCode;
+//        this.deviceId = deviceId;
+//    }
+
+    @Id
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
+    @Column(name = "id", unique = true)
+    private String id;
+
+    @Column(nullable = false)
+    private String firstName;
+
+    @Column(nullable = false)
+    private String lastName;
+
+    @Column(nullable = false)
+    private String localeCode;
+
+    @Column(nullable = false)
+    private String deviceId;
+
+    @OneToOne
+    private ProfileSettings settings;
+
+    @OneToOne
+    private ProfileStatus status;
+
+    @OneToMany(mappedBy="auhtor",targetEntity = Message.class)
+    private List<Message> messages;
+
+//    private List<Contact> contacts;
+//    private List<Conversation> conversations;
+
+
+    public String getId() {
+        return id;
     }
 
     public String getFirstName() {
@@ -58,26 +91,26 @@ public class Profile {
     }
 
     public ProfileSettings getProfileSettings() {
-        return profileSettings;
+        return settings;
     }
 
     public void setProfileSettings(ProfileSettings profileSettings) {
-        this.profileSettings = profileSettings;
+        this.settings = profileSettings;
     }
 
     public ProfileStatus getProfileStatus() {
-        return profileStatus;
+        return status;
     }
 
     public void setProfileStatus(ProfileStatus profileStatus) {
-        this.profileStatus = profileStatus;
+        this.status = profileStatus;
     }
 
-    public List<Contact> getContacts() {
-        return contacts;
-    }
+//    public List<Contact> getContacts() {
+//        return contacts;
+//    }
 
-    public void setContacts(List<Contact> contacts) {
-        this.contacts = contacts;
-    }
+//    public void setContacts(List<Contact> contacts) {
+//        this.contacts = contacts;
+//    }
 }

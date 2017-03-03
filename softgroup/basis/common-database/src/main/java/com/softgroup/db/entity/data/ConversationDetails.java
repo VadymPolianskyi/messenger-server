@@ -1,26 +1,34 @@
 package com.softgroup.db.entity.data;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Author: vadym
  * Date: 27.02.17
  * Time: 21:02
  */
+@Entity(name="user_conversation_details")
 public class ConversationDetails {
-    private Conversation conversation;
+    @Id
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
+    @Column(name = "id", unique = true)
+    private String id;
+
+
+
     private Date dateOfCreation;
     private String title;
-    private List<Message> listOfMessages;
+
+    @OneToOne
     private Message cursor;
 
-    public List<Message> getListOfMessages() {
-        return listOfMessages;
-    }
 
-    public void setListOfMessages(List<Message> listOfMessages) {
-        this.listOfMessages = listOfMessages;
+    public String getId() {
+        return id;
     }
 
 }
