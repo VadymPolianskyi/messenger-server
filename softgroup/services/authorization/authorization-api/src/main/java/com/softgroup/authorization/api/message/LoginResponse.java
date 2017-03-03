@@ -1,10 +1,12 @@
 package com.softgroup.authorization.api.message;
 
+import com.softgroup.common.protocol.ResponseData;
+
 /**
  * @author odin
  * @since 20.02.17.
  */
-public class LoginResponse extends AuthorizationResponse {
+public class LoginResponse implements ResponseData {
 
 	private String token;
 

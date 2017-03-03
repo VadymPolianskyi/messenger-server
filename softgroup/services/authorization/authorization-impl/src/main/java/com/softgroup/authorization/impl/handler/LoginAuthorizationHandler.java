@@ -12,11 +12,12 @@ import org.springframework.stereotype.Component;
  * Author: vadym
  * Date: 23.02.17
  * Time: 13:16
- */@Component
+ */
+@Component
 public class LoginAuthorizationHandler extends AbstractRequestHandler<LoginRequest, LoginResponse > implements AuthorizationRequestHandler {
     @Override
     public String getName() {
-        return "loginHandler";
+        return "login";
     }
 
     @Override
