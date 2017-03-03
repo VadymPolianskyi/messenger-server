@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 public class SMSAuthorizationHandler extends AbstractRequestHandler<SMSRequest, SMSResponse> implements AuthorizationRequestHandler {
     @Override
     public String getName() {
-        return "smsHandler";
+        return "sms";
     }
 
     @Override

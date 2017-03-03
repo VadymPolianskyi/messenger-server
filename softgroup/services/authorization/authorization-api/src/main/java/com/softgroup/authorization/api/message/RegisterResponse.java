@@ -1,21 +1,22 @@
 package com.softgroup.authorization.api.message;
 
-import java.util.Date;
+import com.softgroup.common.protocol.ResponseData;
 
 /**
  * @author odin
  * @since 20.02.17.
  */
-public class RegisterResponse extends AuthorizationResponse {
+public class RegisterResponse implements ResponseData {
 	private static final long serialVersionUID = -5146888202653750948L;
 	private String registrationRequestUuid;
+	private String registrationTimeoutSec;
+	private String authCode;
 
-	public void setRegistrationTimeoutSec(Date registrationTimeoutSec) {
+
+	public void setRegistrationTimeoutSec(String  registrationTimeoutSec) {
 		this.registrationTimeoutSec = registrationTimeoutSec;
 	}
 
-	private Date registrationTimeoutSec;
-	private String authCode;
 
 	public String getRegistrationRequestUuid() {
 		return registrationRequestUuid;
