@@ -6,7 +6,6 @@ import com.softgroup.common.router.api.factory.HandlerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
 public abstract class AbstractRouterHandler<T extends AbstractRequestHandler> implements RouterHandler, CommonRouterHandler {
 
 	@Autowired

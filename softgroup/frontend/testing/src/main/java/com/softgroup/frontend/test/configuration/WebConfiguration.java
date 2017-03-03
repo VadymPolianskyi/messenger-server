@@ -13,6 +13,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {
-        "com.softgroup"})
+        "com.softgroup.frontend"})
 public class WebConfiguration extends WebMvcConfigurerAdapter{
 }
