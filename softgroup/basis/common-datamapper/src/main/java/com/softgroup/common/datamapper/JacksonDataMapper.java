@@ -19,7 +19,6 @@ import java.util.Map;
  */
 @Component
 public class JacksonDataMapper implements DataMapper {
-	//@Import({value=DataMapperAppCfg.class})
 	private static final String CPJ = "Can't parse json";
 
 	private final ObjectMapper mapper;
