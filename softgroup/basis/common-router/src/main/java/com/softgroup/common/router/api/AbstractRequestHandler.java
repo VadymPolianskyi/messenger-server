@@ -7,24 +7,31 @@ import com.softgroup.common.protocol.RequestData;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.Map;
-
+@Component
 public abstract class AbstractRequestHandler<T extends RequestData, R extends ResponseData> implements RequestHandler {
 
     @Autowired
     JacksonDataMapper mapper;
+
     public abstract Response<R> doHandle(Request<T> request);
 
     @Override
     public Response<R> handle(Request<?> msg) {
 
-        Map<String, Object> map = mapper.convertToMap(msg);
-        T data = mapper.convert(map, (Class<T>) RequestData.class);
+        Map<String, Object> map = (Map<String, Object>) msg.getData();
+
+        Class<T> persistentClass = (Class<T>)
+                ((ParameterizedType)getClass().getGenericSuperclass())
+                        .getActualTypeArguments()[0];
+
+        T data = mapper.convert(map, persistentClass);
         Request<T> converted = new Request<T>();
         converted.setHeader(msg.getHeader());
         converted.setData(data);
-
         return doHandle(converted);
     }
 

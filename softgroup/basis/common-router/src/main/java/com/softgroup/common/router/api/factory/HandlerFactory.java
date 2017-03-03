@@ -19,6 +19,7 @@ public abstract class HandlerFactory<T extends Handler> {
     @Autowired
     List<T> handlerList;
 
+
     HashMap<String, T> handlerMap = new HashMap<>();
 
     @PostConstruct

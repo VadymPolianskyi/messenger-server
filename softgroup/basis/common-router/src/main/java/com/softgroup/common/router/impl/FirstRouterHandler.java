@@ -5,7 +5,7 @@ import com.softgroup.common.protocol.Response;
 import com.softgroup.common.router.api.AbstractRouterHandler;
 import com.softgroup.common.router.api.Handler;
 import com.softgroup.common.router.api.factory.HandlerFactory;
-import com.softgroup.common.router.api.factory.RouterHandlerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * Time: 15:12
  */
 @Component
-public class FirstRouterHandler<T extends AbstractRouterHandler> implements Handler {
+public class FirstRouterHandler implements Handler {
 
 
     @Override
@@ -22,11 +22,11 @@ public class FirstRouterHandler<T extends AbstractRouterHandler> implements Hand
         return "mainRouter";
     }
 
-    HandlerFactory<T> factory = new RouterHandlerFactory<T>();
+    @Autowired
+    HandlerFactory<AbstractRouterHandler> routerHandlerFactory;
 
     @Override
     public Response<?> handle(Request<?> msg) {
-
-        return factory.getHandler(msg).handle(msg);
+        return routerHandlerFactory.getHandler(msg).handle(msg);
     }
 }
