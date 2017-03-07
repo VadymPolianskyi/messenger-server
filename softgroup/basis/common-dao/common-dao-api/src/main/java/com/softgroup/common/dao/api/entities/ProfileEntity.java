@@ -24,6 +24,12 @@ public class ProfileEntity implements Serializable{
 	@Column(name = "phone_number")
     private String phoneNumber;
 
+	@Column(name = "device_id")
+	private String deviceId;
+
+	@Column(name = "locale_code")
+	private String localeCode;
+
 	@Column(name = "create_date_time")
     private Long createDateTime;
 
@@ -42,7 +48,7 @@ public class ProfileEntity implements Serializable{
 	@Column(name = "avatar_uri")
     private String avatarUri;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "profile")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "profileEntity")
 	private List<ProfileSettingsEntity> settingsEntities;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "profile")
@@ -69,6 +75,22 @@ public class ProfileEntity implements Serializable{
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public String getLocaleCode() {
+        return localeCode;
+    }
+
+    public void setLocaleCode(String localeCode) {
+        this.localeCode = localeCode;
     }
 
     public Long getCreateDateTime() {
@@ -160,6 +182,8 @@ public class ProfileEntity implements Serializable{
 
         if (!id.equals(that.id)) return false;
         if (phoneNumber != null ? !phoneNumber.equals(that.phoneNumber) : that.phoneNumber != null) return false;
+        if (localeCode != null ? !localeCode.equals(that.localeCode) : that.localeCode != null) return false;
+        if (deviceId != null ? !deviceId.equals(that.deviceId) : that.deviceId != null) return false;
         if (!createDateTime.equals(that.createDateTime)) return false;
         if (updateDateTime != null ? !updateDateTime.equals(that.updateDateTime) : that.updateDateTime != null)
             return false;
@@ -179,6 +203,8 @@ public class ProfileEntity implements Serializable{
     public int hashCode() {
         int result = id.hashCode();
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
+        result = 31 * result + (localeCode != null ? localeCode.hashCode() : 0);
+        result = 31 * result + (deviceId != null ? deviceId.hashCode() : 0);
         result = 31 * result + createDateTime.hashCode();
         result = 31 * result + (updateDateTime != null ? updateDateTime.hashCode() : 0);
         result = 31 * result + firstName.hashCode();

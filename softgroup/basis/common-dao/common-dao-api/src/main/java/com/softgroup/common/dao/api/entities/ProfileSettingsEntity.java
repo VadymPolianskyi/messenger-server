@@ -22,7 +22,7 @@ public class ProfileSettingsEntity implements Serializable {
     private String settingsData;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private ProfileEntity profile;
+    private ProfileEntity profileEntity;
 
     public String getId() {
         return id;
@@ -41,11 +41,11 @@ public class ProfileSettingsEntity implements Serializable {
     }
 
     public ProfileEntity getProfile() {
-        return profile;
+        return profileEntity;
     }
 
     public void setProfile(ProfileEntity profile) {
-        this.profile = profile;
+        this.profileEntity = profile;
     }
 
     @Override
@@ -57,14 +57,14 @@ public class ProfileSettingsEntity implements Serializable {
 
         if (!id.equals(that.id)) return false;
         if (settingsData != null ? !settingsData.equals(that.settingsData) : that.settingsData != null) return false;
-        return profile.equals(that.profile);
+        return profileEntity.equals(that.profileEntity);
     }
 
     @Override
     public int hashCode() {
         int result = id.hashCode();
         result = 31 * result + (settingsData != null ? settingsData.hashCode() : 0);
-        result = 31 * result + profile.hashCode();
+        result = 31 * result + profileEntity.hashCode();
         return result;
     }
 }
