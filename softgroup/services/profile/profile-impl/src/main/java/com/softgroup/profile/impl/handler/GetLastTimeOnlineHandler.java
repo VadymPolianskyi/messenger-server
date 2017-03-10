@@ -18,7 +18,7 @@ public class GetLastTimeOnlineHandler
         extends AbstractRequestHandler<GetLastTimeOnlineRequest,
             GetLastTimeOnlineResponse> implements ProfileRequestHandler {
     public String getName() {
-        return null;
+        return "get_last_time_online";
     }
 
 

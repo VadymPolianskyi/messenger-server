@@ -1,7 +1,8 @@
 package com.softgroup.profile.api.message;
 
 
-import com.softgroup.db.entity.data.Contact;
+import com.softgroup.common.dao.api.entities.ContactEntity;
+import com.softgroup.common.protocol.RequestData;
 
 import java.util.List;
 
@@ -10,34 +11,34 @@ import java.util.List;
  * Date: 25.02.17
  * Time: 9:35
  */
-public class ContactsSyncRequest extends ProfileRequest {
-    private List<Contact> addedContacts;
-    private List<Contact> removedContacts;
+public class ContactsSyncRequest implements RequestData {
+    private List<ContactEntity> addedContactEntities;
+    private List<ContactEntity> removedContactEntities;
 
-    public List<Contact> getAddedContacts() {
-        return addedContacts;
+    public List<ContactEntity> getAddedContactEntities() {
+        return addedContactEntities;
     }
 
-    public void setAddedContacts(List<Contact> addedContacts) {
-        this.addedContacts = addedContacts;
+    public void setAddedContactEntities(List<ContactEntity> addedContactEntities) {
+        this.addedContactEntities = addedContactEntities;
     }
 
-    public List<Contact> getRemovedContacts() {
-        return removedContacts;
+    public List<ContactEntity> getRemovedContactEntities() {
+        return removedContactEntities;
     }
 
-    public void setRemovedContacts(List<Contact> removedContacts) {
-        this.removedContacts = removedContacts;
+    public void setRemovedContactEntities(List<ContactEntity> removedContactEntities) {
+        this.removedContactEntities = removedContactEntities;
     }
 
 
 
-    public void addContact(Contact contact) {
-        addedContacts.add(contact);
+    public void addContact(ContactEntity contactEntity) {
+        addedContactEntities.add(contactEntity);
     }
 
     public void removeContact(int index) {
-        removedContacts.add(addedContacts.remove(index));
+        removedContactEntities.add(addedContactEntities.remove(index));
     }
 
 }

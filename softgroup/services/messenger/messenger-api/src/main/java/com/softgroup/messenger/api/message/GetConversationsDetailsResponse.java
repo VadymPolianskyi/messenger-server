@@ -1,6 +1,9 @@
 package com.softgroup.messenger.api.message;
 
-import com.softgroup.db.entity.data.Conversation;
+
+import com.softgroup.common.dao.api.entities.ConversationEntity;
+import com.softgroup.common.protocol.ResponseData;
+
 import java.util.List;
 
 /**
@@ -8,14 +11,14 @@ import java.util.List;
  * Date: 25.02.17
  * Time: 19:07
  */
-public class GetConversationsDetailsResponse extends MessengerResponse {
-    private List<Conversation> conversationsDetails;
+public class GetConversationsDetailsResponse implements ResponseData {
+    private List<ConversationEntity> conversationsDetails;
 
-    public List<Conversation> getConversationsDetails() {
+    public List<ConversationEntity> getConversationsDetails() {
         return conversationsDetails;
     }
 
-    public void setConversationsDetails(List<Conversation> conversationsDetails) {
+    public void setConversationsDetails(List<ConversationEntity> conversationsDetails) {
         this.conversationsDetails = conversationsDetails;
     }
 }

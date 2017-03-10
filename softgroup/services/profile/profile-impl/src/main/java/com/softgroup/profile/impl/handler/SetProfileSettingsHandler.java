@@ -18,7 +18,7 @@ public class SetProfileSettingsHandler
         extends AbstractRequestHandler<SetProfileSettingsRequest,
                 SetProfileSettingsResponse> implements ProfileRequestHandler {
     public String getName() {
-        return null;
+        return "set_profile_settings";
     }
 
     @Override
