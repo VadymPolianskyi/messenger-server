@@ -19,7 +19,7 @@ public class GetContactProfilesHandler
             GetContactProfilesResponse> implements ProfileRequestHandler {
 
     public String getName() {
-        return null;
+        return "get_contact_profiles";
     }
 
 

@@ -6,17 +6,19 @@ import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.messenger.api.message.MessagesReadConfirmationRequest;
 import com.softgroup.messenger.api.message.MessagesReadConfirmationResponse;
 import com.softgroup.messenger.api.router.MessengerRequestHandler;
+import org.springframework.stereotype.Component;
 
 /**
  * Author: vadym
  * Date: 25.02.17
  * Time: 19:47
  */
+@Component
 public class MessagesReadConfirmationHandler extends AbstractRequestHandler<MessagesReadConfirmationRequest,
         MessagesReadConfirmationResponse> implements MessengerRequestHandler {
     @Override
     public String getName() {
-        return "getConversationByIds";
+        return "get_conversation_by_ids";
     }
 
     @Override

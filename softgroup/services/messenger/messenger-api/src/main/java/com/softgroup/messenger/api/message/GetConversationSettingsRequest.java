@@ -1,11 +1,13 @@
 package com.softgroup.messenger.api.message;
 
+import com.softgroup.common.protocol.RequestData;
+
 /**
  * Author: vadym
  * Date: 25.02.17
  * Time: 19:10
  */
-public class GetConversationSettingsRequest extends MessengerRequest {
+public class GetConversationSettingsRequest implements RequestData {
 
     private String conversationID;
 

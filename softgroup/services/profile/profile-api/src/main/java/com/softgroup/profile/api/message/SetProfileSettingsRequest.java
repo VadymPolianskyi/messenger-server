@@ -1,20 +1,21 @@
 package com.softgroup.profile.api.message;
 
-import com.softgroup.db.entity.data.ProfileSettings;
+import com.softgroup.common.dao.api.entities.ProfileSettingsEntity;
+import com.softgroup.common.protocol.RequestData;
 
 /**
  * Author: vadym
  * Date: 25.02.17
  * Time: 10:20
  */
-public class SetProfileSettingsRequest extends ProfileRequest {
-    private ProfileSettings profileSettings;
+public class SetProfileSettingsRequest implements RequestData {
+    private ProfileSettingsEntity profileSettingsEntity;
 
-    public ProfileSettings getProfileSettings() {
-        return profileSettings;
+    public ProfileSettingsEntity getProfileSettingsEntity() {
+        return profileSettingsEntity;
     }
 
-    public void setProfileSettings(ProfileSettings profileSettings) {
-        this.profileSettings = profileSettings;
+    public void setProfileSettingsEntity(ProfileSettingsEntity profileSettingsEntity) {
+        this.profileSettingsEntity = profileSettingsEntity;
     }
 }

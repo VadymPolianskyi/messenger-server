@@ -7,7 +7,6 @@ import com.softgroup.common.protocol.RequestData;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.Map;
