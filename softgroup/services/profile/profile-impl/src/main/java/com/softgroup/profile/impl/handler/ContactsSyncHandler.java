@@ -18,7 +18,7 @@ public class ContactsSyncHandler
         extends AbstractRequestHandler<ContactsSyncRequest,
                 ContactsSyncResponse> implements ProfileRequestHandler {
     public String getName() {
-        return null;
+        return "contacts_sync";
     }
 
     @Override

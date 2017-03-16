@@ -1,6 +1,7 @@
 package com.softgroup.model.maper;
 
-import com.softgroup.db.entity.data.ProfileStatus;
+
+import com.softgroup.common.dao.api.entities.ProfileStatusEntity;
 
 /**
  * Author: vadym
@@ -10,7 +11,7 @@ import com.softgroup.db.entity.data.ProfileStatus;
 public class ProfileDTO {
     private String firstName;
     private String lastName;
-    private ProfileStatus profileStatus;
+    private ProfileStatusEntity profileStatusEntity;
 
     public String getFirstName() {
         return firstName;
@@ -28,11 +29,11 @@ public class ProfileDTO {
         this.lastName = lastName;
     }
 
-    public ProfileStatus getProfileStatus() {
-        return profileStatus;
+    public ProfileStatusEntity getProfileStatusEntity() {
+        return profileStatusEntity;
     }
 
-    public void setProfileStatus(ProfileStatus profileStatus) {
-        this.profileStatus = profileStatus;
+    public void setProfileStatusEntity(ProfileStatusEntity profileStatusEntity) {
+        this.profileStatusEntity = profileStatusEntity;
     }
 }

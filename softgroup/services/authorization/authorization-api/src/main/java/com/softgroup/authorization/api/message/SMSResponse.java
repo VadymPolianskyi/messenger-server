@@ -8,4 +8,13 @@ import com.softgroup.common.protocol.ResponseData;
  * Time: 12:22
  */
 public class SMSResponse implements ResponseData {
+    private String deviceToken;
+
+    public String getDeviceToken() {
+        return deviceToken;
+    }
+
+    public void setDeviceToken(String deviceToken) {
+        this.deviceToken = deviceToken;
+    }
 }

@@ -1,5 +1,7 @@
 package com.softgroup.messenger.api.message;
 
+import com.softgroup.common.protocol.RequestData;
+
 import java.util.List;
 
 /**
@@ -7,7 +9,7 @@ import java.util.List;
  * Date: 25.02.17
  * Time: 19:08
  */
-public class GetConversationsDetailsRequest extends MessengerRequest {
+public class GetConversationsDetailsRequest implements RequestData {
     public List<String> getConversationIDs() {
         return conversationIDs;
     }
