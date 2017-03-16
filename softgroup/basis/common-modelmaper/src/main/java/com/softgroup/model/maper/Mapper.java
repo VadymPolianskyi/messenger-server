@@ -1,6 +1,6 @@
 package com.softgroup.model.maper;
 
-import com.softgroup.db.entity.data.Profile;
+import com.softgroup.common.dao.api.entities.ProfileEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,7 +13,7 @@ public class Mapper {
 
     @Autowired
     ModelMapper modelMapper;
-    public ProfileDTO map(Profile profile) {
-        return modelMapper.map(profile, ProfileDTO.class);
+    public ProfileDTO map(ProfileEntity profileEntity) {
+        return modelMapper.map(profileEntity, ProfileDTO.class);
     }
 }

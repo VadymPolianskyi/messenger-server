@@ -1,22 +1,23 @@
 package com.softgroup.profile.api.message;
 
-import com.softgroup.db.entity.data.Profile;
-
-import java.util.List;
+import com.softgroup.common.dao.api.entities.ProfileEntity;
+import com.softgroup.common.protocol.RequestData;
 
 /**
  * Author: vadym
  * Date: 25.02.17
  * Time: 10:13
  */
-public class SetMyProfileRequest extends ProfileRequest {
-    public List<Profile> getProfiles() {
-        return profiles;
+public class SetMyProfileRequest implements RequestData {
+
+    private ProfileEntity profileEntity;
+
+    public ProfileEntity getProfileEntities() {
+        return profileEntity;
     }
 
-    public void setProfiles(List<Profile> profiles) {
-        this.profiles = profiles;
+    public void setProfileEntities(ProfileEntity profileEntity) {
+        this.profileEntity = profileEntity;
     }
 
-    private List<Profile> profiles;
 }

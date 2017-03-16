@@ -18,7 +18,7 @@ public class CreateConversationHandler
             CreateConversationResponse> implements MessengerRequestHandler {
     @Override
     public String getName() {
-        return "createConversation";
+        return "create_conversation";
     }
 
 

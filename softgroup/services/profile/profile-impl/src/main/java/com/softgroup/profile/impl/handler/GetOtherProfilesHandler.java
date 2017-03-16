@@ -18,7 +18,7 @@ public class GetOtherProfilesHandler
         extends AbstractRequestHandler<GetOtherProfilesRequest,
             GetOtherProfilesResponse> implements ProfileRequestHandler {
     public String getName() {
-        return null;
+        return "get_other_profiles";
     }
 
     @Override

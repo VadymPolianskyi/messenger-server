@@ -1,19 +1,22 @@
 package com.softgroup.messenger.api.message;
 
-import com.softgroup.db.entity.data.Conversation;
+
+import com.softgroup.common.dao.api.entities.ConversationEntity;
+import com.softgroup.common.protocol.ResponseData;
+
 /**
  * Author: vadym
  * Date: 25.02.17
  * Time: 19:09
  */
-public class GetConversationSettingsResponse extends MessengerResponse {
-    private Conversation conversationSettings;
+public class GetConversationSettingsResponse implements ResponseData {
+    private ConversationEntity conversationEntitySettings;
 
-    public Conversation getConversationSettings() {
-        return conversationSettings;
+    public ConversationEntity getConversationEntitySettings() {
+        return conversationEntitySettings;
     }
 
-    public void setConversationSettings(Conversation conversationSettings) {
-        this.conversationSettings = conversationSettings;
+    public void setConversationEntitySettings(ConversationEntity conversationEntitySettings) {
+        this.conversationEntitySettings = conversationEntitySettings;
     }
 }

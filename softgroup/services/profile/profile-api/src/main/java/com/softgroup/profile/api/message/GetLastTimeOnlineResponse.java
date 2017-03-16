@@ -1,6 +1,8 @@
 package com.softgroup.profile.api.message;
 
-import com.softgroup.db.entity.data.ProfileStatus;
+
+import com.softgroup.common.dao.api.entities.ProfileStatusEntity;
+import com.softgroup.common.protocol.ResponseData;
 
 import java.util.List;
 
@@ -9,14 +11,14 @@ import java.util.List;
  * Date: 25.02.17
  * Time: 10:24
  */
-public class GetLastTimeOnlineResponse extends ProfileResponse {
-    private List<ProfileStatus> profileStatuses;
+public class GetLastTimeOnlineResponse implements ResponseData {
+    private List<ProfileStatusEntity> profileStatuses;
 
-    public List<ProfileStatus> getProfileStatuses() {
+    public List<ProfileStatusEntity> getProfileStatuses() {
         return profileStatuses;
     }
 
-    public void setProfileStatuses(List<ProfileStatus> profileStatuses) {
+    public void setProfileStatuses(List<ProfileStatusEntity> profileStatuses) {
         this.profileStatuses = profileStatuses;
     }
 }
