@@ -2,7 +2,6 @@ package com.softgroup.common.dao.impl.repositories;
 
 import com.softgroup.common.dao.api.entities.ProfileEntity;
 import com.softgroup.common.dao.api.entities.ProfileSettingsEntity;
-import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
 
@@ -12,7 +11,7 @@ import java.util.List;
  * Date: 05.03.17
  * Time: 10:24
  */
-public interface ProfileSettingsRepository extends PagingAndSortingRepository<ProfileSettingsEntity, String> {
+public interface ProfileSettingsRepository extends BaseRepository<ProfileSettingsEntity> {
     List<ProfileSettingsEntity> findAll();
     List<ProfileSettingsEntity> findByProfileEntity(ProfileEntity profileEntity);
 }

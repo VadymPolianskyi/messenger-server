@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * Author: vadym
@@ -12,7 +13,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "contact")
-public class ContactEntity {
+public class ContactEntity implements Serializable {
+
+    private static final long serialVersionUID = 7480919024978527001L;
+
     @Id
     @Column(name = "id", unique = true)
     private String id;

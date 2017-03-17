@@ -1,7 +1,7 @@
 package com.softgroup.common.dao.impl.service;
 
+import com.softgroup.common.dao.api.entities.ConversationDetailsEntity;
 import com.softgroup.common.dao.impl.repositories.ConversationDetailsRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
  * Time: 16:41
  */
 @Component
-public class ConversationDetailsService {
-    @Autowired
-    ConversationDetailsRepository conversationDetailsRepository;
+public class ConversationDetailsService
+        extends BaseService<ConversationDetailsEntity, ConversationDetailsRepository>{
 }

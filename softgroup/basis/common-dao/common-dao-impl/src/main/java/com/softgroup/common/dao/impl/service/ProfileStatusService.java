@@ -1,5 +1,6 @@
 package com.softgroup.common.dao.impl.service;
 
+import com.softgroup.common.dao.api.entities.ProfileStatusEntity;
 import com.softgroup.common.dao.impl.repositories.ProfileStatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Component;
  * Time: 16:44
  */
 @Component
-public class ProfileStatusService {
-    @Autowired
-    ProfileStatusRepository profileStatusRepository;
+public class ProfileStatusService
+        extends BaseService<ProfileStatusEntity, ProfileStatusRepository>{
 }

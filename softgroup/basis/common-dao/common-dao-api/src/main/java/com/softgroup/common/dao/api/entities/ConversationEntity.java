@@ -1,6 +1,7 @@
 package com.softgroup.common.dao.api.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,7 +11,9 @@ import java.util.List;
  */
 @Entity
 @Table(name = "conversation")
-public class ConversationEntity {
+public class ConversationEntity implements Serializable {
+
+    private static final long serialVersionUID = -6612011557733766424L;
 
     @Id
     @Column(name = "id", unique = true)

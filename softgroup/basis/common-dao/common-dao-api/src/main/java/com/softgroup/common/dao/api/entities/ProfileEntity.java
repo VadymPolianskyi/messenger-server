@@ -3,6 +3,7 @@ package com.softgroup.common.dao.api.entities;
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 
@@ -47,6 +48,9 @@ public class ProfileEntity implements Serializable{
 
 	@Column(name = "avatar_uri")
     private String avatarUri;
+
+	@Column(name = "last_token_time")
+    private Date tokenTime;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "profileEntity")
 	private List<ProfileSettingsEntity> settingsEntities;
@@ -171,6 +175,14 @@ public class ProfileEntity implements Serializable{
 
     public void setConversationEntities(List<ConversationEntity> conversationEntities) {
         this.conversationEntities = conversationEntities;
+    }
+
+    public Date getTokenTime() {
+        return tokenTime;
+    }
+
+    public void setTokenTime(Date tokenTime) {
+        this.tokenTime = tokenTime;
     }
 
     @Override

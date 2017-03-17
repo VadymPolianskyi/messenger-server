@@ -1,6 +1,7 @@
 package com.softgroup.common.dao.api.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,7 +11,9 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "message")
-public class MessageEntity {
+public class MessageEntity implements Serializable {
+
+    private static final long serialVersionUID = -4749434979191853677L;
 
     @Id
     @Column(name = "id", unique = true)
