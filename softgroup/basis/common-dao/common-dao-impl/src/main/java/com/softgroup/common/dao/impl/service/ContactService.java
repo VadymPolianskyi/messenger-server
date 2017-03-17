@@ -1,7 +1,7 @@
 package com.softgroup.common.dao.impl.service;
 
+import com.softgroup.common.dao.api.entities.ContactEntity;
 import com.softgroup.common.dao.impl.repositories.ContactRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,7 +10,5 @@ import org.springframework.stereotype.Component;
  * Time: 16:40
  */
 @Component
-public class ContactService {
-    @Autowired
-    ContactRepository contactRepository;
+public class ContactService extends BaseService<ContactEntity, ContactRepository> {
 }
