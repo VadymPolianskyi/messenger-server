@@ -8,6 +8,7 @@ import com.softgroup.common.jwt.api.service.UniversalTokenService;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
@@ -16,6 +17,7 @@ import java.util.Date;
  * Date: 17.03.17
  * Time: 18:26
  */
+@Component
 public class TokenService implements UniversalTokenService {
     private final String KEY = "g94wri5j3j653jih3og";
     private final TokenType SESSION_TOKEN = TokenType.SESSION_TOKEN;

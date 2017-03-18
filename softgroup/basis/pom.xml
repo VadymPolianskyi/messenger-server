@@ -16,6 +16,8 @@
         <module>common-protocol</module>
         <module>common-modelmaper</module>
         <module>common-dao</module>
+        <module>common-jwt</module>
+        <module>common-cache</module>
 
     </modules>
 

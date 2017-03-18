@@ -1,5 +1,8 @@
 package com.softgroup.common.dao.api.entities;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -7,14 +10,26 @@ import java.io.Serializable;
  * Date: 15.03.17
  * Time: 19:51
  */
+@Entity
+@Table(name = "device")
 public class DeviceEntity  implements Serializable {
 
     private static final long serialVersionUID = 7834796409815852123L;
 
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @Column(name = "id", unique = true)
     private String id;
-    private ProfileEntity profileEntity;
+
+    @Column(name = "locale_code")
     private String locale_code;
+
+    @Column(name = "device_id")
     private String deviceId;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private ProfileEntity profileEntity;
 
     public String getId() {
         return id;

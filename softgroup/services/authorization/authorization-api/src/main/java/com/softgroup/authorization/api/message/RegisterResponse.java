@@ -9,14 +9,17 @@ import com.softgroup.common.protocol.ResponseData;
 public class RegisterResponse implements ResponseData {
 	private static final long serialVersionUID = -5146888202653750948L;
 	private String registrationRequestUuid;
-	private String registrationTimeoutSec;
+	private long registrationTimeoutSec;
 	private String authCode;
 
 
-	public void setRegistrationTimeoutSec(String  registrationTimeoutSec) {
+	public void setRegistrationTimeoutSec(long  registrationTimeoutSec) {
 		this.registrationTimeoutSec = registrationTimeoutSec;
 	}
 
+	public long getRegistrationTimeoutSec() {
+		return registrationTimeoutSec;
+	}
 
 	public String getRegistrationRequestUuid() {
 		return registrationRequestUuid;
