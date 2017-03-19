@@ -21,9 +21,6 @@ public class ProfileSettingsEntity implements Serializable {
     @Column(name = "settings_data")
     private String settingsData;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private ProfileEntity profileEntity;
-
     public String getId() {
         return id;
     }
@@ -38,33 +35,5 @@ public class ProfileSettingsEntity implements Serializable {
 
     public void setSettingsData(String settingsData) {
         this.settingsData = settingsData;
-    }
-
-    public ProfileEntity getProfile() {
-        return profileEntity;
-    }
-
-    public void setProfile(ProfileEntity profile) {
-        this.profileEntity = profile;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ProfileSettingsEntity)) return false;
-
-        ProfileSettingsEntity that = (ProfileSettingsEntity) o;
-
-        if (!id.equals(that.id)) return false;
-        if (settingsData != null ? !settingsData.equals(that.settingsData) : that.settingsData != null) return false;
-        return profileEntity.equals(that.profileEntity);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + (settingsData != null ? settingsData.hashCode() : 0);
-        result = 31 * result + profileEntity.hashCode();
-        return result;
     }
 }

@@ -18,7 +18,7 @@ public class MessagesReadConfirmationHandler extends AbstractRequestHandler<Mess
         MessagesReadConfirmationResponse> implements MessengerRequestHandler {
     @Override
     public String getName() {
-        return "get_conversation_by_ids";
+        return "message_read_comfirmation";
     }
 
     @Override

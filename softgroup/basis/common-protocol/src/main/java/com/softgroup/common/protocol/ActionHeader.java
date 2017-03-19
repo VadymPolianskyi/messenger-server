@@ -10,6 +10,15 @@ public class ActionHeader implements Serializable {
     private String command;
     private String type;
     private String version;
+    private String xToken;
+
+    public String getxToken() {
+        return xToken;
+    }
+
+    public void setxToken(String xToken) {
+        this.xToken = xToken;
+    }
 
     public String getUuid() {
         return uuid;

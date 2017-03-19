@@ -19,7 +19,7 @@ public class GetConversationsHandler
             GetConversationsResponse> implements MessengerRequestHandler {
     @Override
     public String getName() {
-        return "get_conversation_by_ids";
+        return "get_conversations";
     }
 
     @Override
