@@ -47,12 +47,13 @@ public class RegisterAuthorizationHandler extends AbstractRequestHandler<Registe
         String phoneNumber = requestData.getPhoneNumber();
         String localeCode = requestData.getLocaleCode();
         String deviceId = requestData.getDeviceId();
+        String name = requestData.getName();
         String registrationRequestUuid = keysGenerator.generateKey();
         String authCode = keysGenerator.generateKey();
 
         authorizationDetailsCacheService.put(
                 new AuthorizationDetails(registrationRequestUuid,
-                        authCode, phoneNumber, localeCode, deviceId));
+                        authCode, phoneNumber, localeCode, deviceId, name));
 
         registerResponse.setRegistrationRequestUuid(registrationRequestUuid);
         registerResponse.setAuthCode(authCode);

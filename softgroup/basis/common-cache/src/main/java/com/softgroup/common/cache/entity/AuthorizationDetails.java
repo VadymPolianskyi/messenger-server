@@ -8,18 +8,28 @@ package com.softgroup.common.cache.entity;
 public class AuthorizationDetails implements CasheData {
     private String registrationRequestUuid;
     private String authCode;
+    private String name;
     private String phoneNumber;
     private String localeCode;
     private String deviceId;
 
     public AuthorizationDetails(String registrationRequestUuid,
                                 String authCode, String phoneNumber,
-                                        String localeCode, String deviceId) {
+                                        String localeCode, String deviceId, String name) {
         this.registrationRequestUuid = registrationRequestUuid;
         this.authCode = authCode;
         this.phoneNumber = phoneNumber;
         this.localeCode = localeCode;
         this.deviceId = deviceId;
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPhoneNumber() {

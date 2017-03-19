@@ -100,8 +100,9 @@ public class SMSAuthorizationHandler extends
 
             AuthorizationDetails authorizationDetails =
                     authorizationDetailsCacheService.getFromCache(key);
-            profileEntity.setCreateDateTime(System.currentTimeMillis() / 1000L);
+            profileEntity.setName(authorizationDetails.getName());
             profileEntity.setPhoneNumber(authorizationDetails.getPhoneNumber());
+            profileEntity.setCreateDateTime(System.currentTimeMillis() / 1000L);
             profileEntity = profileService.insertProfile(profileEntity);
 
 
