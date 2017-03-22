@@ -1,6 +1,9 @@
 package com.softgroup.common.dao.impl.configuration;
 
+import liquibase.changelog.ChangeLogHistoryServiceFactory;
+import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.context.annotation.*;
+import org.springframework.core.io.Resource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -9,9 +12,12 @@ import org.springframework.orm.jpa.vendor.AbstractJpaVendorAdapter;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.util.Assert;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 
@@ -34,6 +40,7 @@ public class CommonDaoAppCfg {
 
 
     @Bean
+    @DependsOn("liquibase")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
@@ -54,6 +61,23 @@ public class CommonDaoAppCfg {
         dataSource.setPassword( "root" );
         return dataSource;
     }
+    @Bean
+    public SpringLiquibase liquibase() {
+        SpringLiquibase liquibase = new SpringLiquibase();
+        liquibase.setChangeLog("classpath:db.changelog-master.xml");
+        liquibase.setDataSource(dataSource());
+        liquibase.setDefaultSchema("Messenger");
+        liquibase.setContexts("test,dev,prod");
+//        liquibase.setIgnoreClasspathPrefix(true);
+//        ChangeLogHistoryServiceFactory.getInstance().reset();
+
+        liquibase.setDropFirst(false);
+        liquibase.setShouldRun(true);
+        Map params = new HashMap<>();
+        params.put("verbose", "true");
+        liquibase.setChangeLogParameters(params);
+        return liquibase;
+    }
 
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory emf){
@@ -68,8 +92,11 @@ public class CommonDaoAppCfg {
 
     private Properties additionalProperties() {
         Properties properties = new Properties();
-//        properties.setProperty("hibernate.hbm2ddl.auto", "update");
+        properties.setProperty("hibernate.hbm2ddl.auto", "");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+        properties.setProperty("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
+        properties.setProperty("hibernate.show_sql", "false");
+        properties.setProperty("hibernate.format_sql", "true");
         return properties;
     }
 }

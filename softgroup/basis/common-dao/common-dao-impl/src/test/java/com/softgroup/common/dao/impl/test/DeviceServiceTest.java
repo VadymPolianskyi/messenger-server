@@ -1,9 +1,9 @@
 package com.softgroup.common.dao.impl.test;
 
+import com.softgroup.common.dao.api.entities.DeviceEntity;
 import com.softgroup.common.dao.api.entities.ProfileEntity;
-import com.softgroup.common.dao.api.entities.ProfileSettingsEntity;
 import com.softgroup.common.dao.impl.configuration.CommonDaoAppCfg;
-import com.softgroup.common.dao.impl.repositories.ProfileSettingsRepository;
+import com.softgroup.common.dao.impl.service.DeviceService;
 import com.softgroup.common.dao.impl.service.ProfileService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,50 +12,41 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
- * Created by Odin on 04.03.2017.
+ * Created by vadym_polyanski on 22.03.17.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {CommonDaoAppCfg.class})
-public class ProfileServiceTest {
+public class DeviceServiceTest {
+
 
     @Autowired
     private ProfileService profileService;
 
+    @Autowired
+    private DeviceService deviceService;
+    private String id;
+
 
     @Test
-    public void creatingTest(){
+    public void creatingTest() {
         ProfileEntity profileEntity = new ProfileEntity();
-
-        ProfileEntity profileEntity1 = new ProfileEntity();
-
         profileEntity.setCreateDateTime(4765387542L);
         profileEntity.setName("dimas");
         profileEntity.setPhoneNumber("047653765");
-
         profileEntity = profileService.insertProfile(profileEntity);
-//        profileEntity1 = profileService.insertProfile(profileEntity1);
 
-
-
-
-
-//        profileEntity = profileService.insertProfile(profileEntity);
-        ProfileEntity profile = profileService.findProfileById("id56477");
-
+        DeviceEntity deviceEntity = new DeviceEntity();
+        deviceEntity.setUpdateDateTime(892482L);
+        deviceEntity.setDeviceId("48924ifo3902");
+        deviceEntity.setLocale_code("UA");
+        deviceEntity.setProfileId(profileEntity.getId());
+        deviceEntity = deviceService.insertDevice(deviceEntity);
+        this.id = deviceEntity.getId();
     }
 
 
     @Test
-    public void deleteProfileTest() {
-        ProfileEntity profileEntity = new ProfileEntity();
-
-
-        profileEntity.setCreateDateTime(43538L);
-        profileEntity.setName("vadym");
-        profileEntity.setPhoneNumber("0953538");
-
-        profileService.insertProfile(profileEntity);
-        profileService.deleteProfile(profileEntity);
-
+    public void updateTokenTime() {
+        deviceService.setTimeOfUpdatingOfToken(384294535L, id);
     }
 }

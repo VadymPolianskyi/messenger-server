@@ -28,8 +28,14 @@ public class DeviceEntity  implements Serializable {
     @Column(name = "device_id")
     private String deviceId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private ProfileEntity profileEntity;
+    @Column(name = "update_date_time")
+    private Long updateDateTime;
+
+    @Column(name = "profile_id")
+    private String profileId;
+
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    private ProfileEntity profileEntity;
 
     public String getId() {
         return id;
@@ -39,13 +45,20 @@ public class DeviceEntity  implements Serializable {
         this.id = id;
     }
 
-    public ProfileEntity getProfileEntity() {
-        return profileEntity;
+    public String getProfileId() {
+        return profileId;
     }
 
-    public void setProfileEntity(ProfileEntity profileEntity) {
-        this.profileEntity = profileEntity;
+    public void setProfileId(String profileId) {
+        this.profileId = profileId;
     }
+    //    public ProfileEntity getProfileEntity() {
+//        return profileEntity;
+//    }
+
+//    public void setProfileEntity(ProfileEntity profileEntity) {
+//        this.profileEntity = profileEntity;
+//    }
 
     public String getLocale_code() {
         return locale_code;
@@ -61,5 +74,13 @@ public class DeviceEntity  implements Serializable {
 
     public void setDeviceId(String deviceId) {
         this.deviceId = deviceId;
+    }
+
+    public Long getUpdateDateTime() {
+        return updateDateTime;
+    }
+
+    public void setUpdateDateTime(Long updateDateTime) {
+        this.updateDateTime = updateDateTime;
     }
 }
