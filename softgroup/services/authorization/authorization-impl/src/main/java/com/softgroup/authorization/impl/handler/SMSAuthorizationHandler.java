@@ -102,13 +102,15 @@ public class SMSAuthorizationHandler extends
                     authorizationDetailsCacheService.getFromCache(key);
             profileEntity.setName(authorizationDetails.getName());
             profileEntity.setPhoneNumber(authorizationDetails.getPhoneNumber());
-            profileEntity.setCreateDateTime(System.currentTimeMillis() / 1000L);
+            Long time = System.currentTimeMillis() / 1000L;
+            profileEntity.setCreateDateTime(time);
             profileEntity = profileService.insertProfile(profileEntity);
 
 
             deviceEntity.setLocale_code(authorizationDetails.getLocaleCode());
             deviceEntity.setDeviceId(authorizationDetails.getDeviceId());
-            deviceEntity.setProfileEntity(profileEntity);
+            deviceEntity.setUpdateDateTime(time);
+            deviceEntity.setProfileId(profileEntity.getId());
             deviceService.insertDevice(deviceEntity);
             smsResponse.setDeviceToken(tokenService.
                     generateDeviceToken(profileEntity.getId(), deviceEntity.getId()));
