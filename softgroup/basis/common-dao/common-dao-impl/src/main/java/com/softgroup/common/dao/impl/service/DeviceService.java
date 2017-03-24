@@ -16,5 +16,10 @@ public class DeviceService
     public DeviceEntity insertDevice(DeviceEntity deviceEntity) {
         return getRepository().save(deviceEntity);
     }
-
+    public DeviceEntity findDeviceEntityById(String id) {
+        return getRepository().findById(id);
+    }
+    public void setTimeOfUpdatingOfToken (Long time, String id) {
+        getRepository().setTimeOfUpdatingOfToken(time,id);
+    }
 }
