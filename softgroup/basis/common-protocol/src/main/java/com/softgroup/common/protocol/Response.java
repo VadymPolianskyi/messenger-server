@@ -2,7 +2,7 @@ package com.softgroup.common.protocol;
 
 import java.io.Serializable;
 
-public class Response<T extends Serializable> extends RoutedAction<T> implements ResponseData {
+public class Response<T extends Serializable> extends RoutingAction<T> implements ResponseData {
 	private static final long serialVersionUID = 8979170551734666755L;
 
 	private ResponseStatus status;

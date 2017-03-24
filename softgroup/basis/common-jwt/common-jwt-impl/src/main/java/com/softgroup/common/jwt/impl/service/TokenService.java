@@ -8,6 +8,8 @@ import com.softgroup.common.jwt.api.service.UniversalTokenService;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -25,6 +27,7 @@ public class TokenService implements UniversalTokenService {
     private final Long YEAR_UNIX_TMS = 31536000000L;
     private final Long TEN_MINUTES_UNIX_TMS = 600000L;
 
+    static Logger log = LoggerFactory.getLogger(TokenService.class);
 
     @Override
     public void validateDeviceToken(String token) throws DeviceTokenException {
@@ -33,6 +36,7 @@ public class TokenService implements UniversalTokenService {
 
     @Override
     public String generateDeviceToken(String profileID, String deviceID) throws DeviceTokenException {
+
         return  Jwts.builder()
                 .claim("profileID", profileID)
                 .claim("deviceID", deviceID)

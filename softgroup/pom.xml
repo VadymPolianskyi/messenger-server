@@ -19,6 +19,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<spring.core.version>4.2.5.RELEASE</spring.core.version>
+		<slf4jVersion>1.6.1</slf4jVersion>
 	</properties>
 
 	<dependencyManagement>
@@ -100,6 +101,12 @@
 		<!-- COMMON -->
 
 		<!-- usefullies -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4jVersion}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
