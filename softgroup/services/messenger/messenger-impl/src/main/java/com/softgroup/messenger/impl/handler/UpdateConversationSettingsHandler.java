@@ -19,7 +19,7 @@ public class UpdateConversationSettingsHandler
             UpdateConversationSettingsResponse> implements MessengerRequestHandler {
     @Override
     public String getName() {
-        return "get_conversation_by_ids";
+        return "update_conversation_settings";
     }
 
     @Override

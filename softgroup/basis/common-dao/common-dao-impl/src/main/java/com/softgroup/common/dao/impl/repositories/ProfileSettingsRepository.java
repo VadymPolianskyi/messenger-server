@@ -1,6 +1,5 @@
 package com.softgroup.common.dao.impl.repositories;
 
-import com.softgroup.common.dao.api.entities.ProfileEntity;
 import com.softgroup.common.dao.api.entities.ProfileSettingsEntity;
 
 import java.util.List;
@@ -13,5 +12,4 @@ import java.util.List;
  */
 public interface ProfileSettingsRepository extends BaseRepository<ProfileSettingsEntity> {
     List<ProfileSettingsEntity> findAll();
-    List<ProfileSettingsEntity> findByProfileEntity(ProfileEntity profileEntity);
 }

@@ -1,10 +1,6 @@
 package com.softgroup.common.dao.impl.repositories;
 
-import com.softgroup.common.dao.api.entities.ConversationEntity;
 import com.softgroup.common.dao.api.entities.MessageEntity;
-
-import java.util.Date;
-import java.util.List;
 
 /**
  * Author: vadym
@@ -13,7 +9,5 @@ import java.util.List;
  */
 public interface MessageRepository extends BaseRepository<MessageEntity> {
 
-    List<MessageEntity> findByConversationEntity(ConversationEntity conversationEntity);
 
-    List<MessageEntity> findByLocalDate(Date date);
 }

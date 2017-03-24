@@ -19,7 +19,7 @@ public class IsTypingInChatHandler
             IsTypingInChatResponse> implements MessengerRequestHandler {
     @Override
     public String getName() {
-        return "get_conversation_by_ids";
+        return "is_typing_in_chat";
     }
 
     @Override

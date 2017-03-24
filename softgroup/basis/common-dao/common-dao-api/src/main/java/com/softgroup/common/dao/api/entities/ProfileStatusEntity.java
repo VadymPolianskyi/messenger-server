@@ -21,9 +21,6 @@ public class ProfileStatusEntity implements Serializable{
     @Column(name = "status")
     private String status;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    private ProfileEntity profile;
-
     public String getId() {
         return id;
     }
@@ -38,33 +35,5 @@ public class ProfileStatusEntity implements Serializable{
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public ProfileEntity getProfile() {
-        return profile;
-    }
-
-    public void setProfile(ProfileEntity profile) {
-        this.profile = profile;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ProfileStatusEntity)) return false;
-
-        ProfileStatusEntity that = (ProfileStatusEntity) o;
-
-        if (!id.equals(that.id)) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
-        return profile.equals(that.profile);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + profile.hashCode();
-        return result;
     }
 }

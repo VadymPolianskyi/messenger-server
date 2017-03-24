@@ -1,7 +1,7 @@
 package com.softgroup.authorization.impl.router;
 
+import com.softgroup.authorization.api.router.AuthorizationRequestHandler;
 import com.softgroup.authorization.api.router.AuthorizationRouterHandler;
-import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.common.router.api.AbstractRouterHandler;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class AuthorizationRouter
-        extends AbstractRouterHandler<AbstractRequestHandler>
+        extends AbstractRouterHandler<AuthorizationRequestHandler>
             implements AuthorizationRouterHandler {
 
     @Override

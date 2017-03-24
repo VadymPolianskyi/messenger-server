@@ -1,7 +1,7 @@
 package com.softgroup.profile.impl.router;
 
-import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.common.router.api.AbstractRouterHandler;
+import com.softgroup.profile.api.router.ProfileRequestHandler;
 import com.softgroup.profile.api.router.ProfileRouterHandler;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * Time: 11:49
  */
 @Component
-public class ProfileRouter extends AbstractRouterHandler<AbstractRequestHandler> implements ProfileRouterHandler{
+public class ProfileRouter extends AbstractRouterHandler<ProfileRequestHandler> implements ProfileRouterHandler{
 
     public String getName() {
         return "profile";
