@@ -15,29 +15,19 @@ import javax.servlet.http.HttpSession;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Author: vadym
- * Date: 01.03.17
- * Time: 9:49
+ * Created by vadym_polyanski on 24.03.17.
  */
 @RestController
 @RequestMapping(path = "/messenger")
-public class MessengerController {
-
+public class MessengerPrivateController {
     @Autowired
     HttpSession session;
 
     @Autowired
-    Handler firstRouterHandler;
-
-    @Autowired
     DataMapper jacksonDataMapper;
 
-    @RequestMapping(path = "/public",
-            method = RequestMethod.POST)
-    public Response publicMessenger(@RequestBody final String requestStr) {
-        CommonRequest request = jacksonDataMapper.mapData(requestStr.getBytes(StandardCharsets.UTF_8),CommonRequest.class);
-        return firstRouterHandler.handle(request);
-    }
+    @Autowired
+    Handler firstRouterHandler;
 
     @RequestMapping(path = "/private",
             method = RequestMethod.POST)
