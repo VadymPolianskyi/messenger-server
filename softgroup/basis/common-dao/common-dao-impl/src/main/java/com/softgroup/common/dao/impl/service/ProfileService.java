@@ -13,58 +13,49 @@ import java.util.List;
  * Time: 16:40
  */
 @Component
-public class ProfileService {
-    @Autowired
-    ProfileRepository profileRepository;
+public class ProfileService extends BaseService<ProfileEntity, ProfileRepository> {
 
     @Autowired
     ProfileSettingsService profileSettingsService;
 
     public ProfileEntity insertProfile(ProfileEntity profileEntity) {
-        return profileRepository.save(profileEntity);
+        return getRepository().save(profileEntity);
     }
 
-    public void changeAvatarUri(String uri, String id) {
-        profileRepository.changeProfileAvatarUri(uri, id);
-    }
 
     public void deleteProfile(ProfileEntity profileEntity) {
-        profileRepository.delete(profileEntity);
+        getRepository().delete(profileEntity);
     }
 
     public void deleteProfile(String id) {
-        ProfileEntity profileEntity = profileRepository.findById(id);
+        ProfileEntity profileEntity = getRepository().findById(id);
 
         if (profileEntity.getSettingsEntities() !=null) {
             profileSettingsService.deleteSettings(profileEntity.getSettingsEntities());
         }
 
 
-        profileRepository.delete(id);
+        getRepository().delete(id);
     }
 
     public List<ProfileEntity> findByFirstNameAndPhoneNumber(String firstName, String phoneNumber){
-        return profileRepository.findByFirstNameAndPhoneNumber(firstName, phoneNumber);
+        return getRepository().findByFirstNameAndPhoneNumber(firstName, phoneNumber);
     }
 
     public ProfileEntity findByLocaleCode(String localeCode) {
-        return profileRepository.findByLocaleCode(localeCode);
+        return getRepository().findByLocaleCode(localeCode);
     }
 
     public ProfileEntity findByDeviceId(String deviceId) {
-        return profileRepository.findByDeviceId(deviceId);
+        return getRepository().findByDeviceId(deviceId);
     }
 
     public ProfileEntity findByPhoneNumber(String phoneNumber) {
-        return profileRepository.findByPhoneNumber(phoneNumber);
-    }
-
-    public void changeProfileName(String firstName, String lastName, String id) {
-        profileRepository.updateProfileName(firstName,lastName,id);
+        return getRepository().findByPhoneNumber(phoneNumber);
     }
 
     public ProfileEntity findProfileById(String id) {
-        return  profileRepository.findById(id);
+        return  getRepository().findById(id);
     }
 
 }
