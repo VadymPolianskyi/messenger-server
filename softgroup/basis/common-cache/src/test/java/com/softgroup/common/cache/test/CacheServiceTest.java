@@ -1,3 +1,5 @@
+package com.softgroup.common.cache.test;
+
 import com.softgroup.common.cache.entity.AuthorizationDetails;
 import com.softgroup.common.cache.service.AuthorizationDetailsCacheService;
 import org.junit.Before;
