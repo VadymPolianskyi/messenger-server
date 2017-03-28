@@ -18,6 +18,9 @@ public class RouterHandlerFactory<T extends AbstractRouterHandler> extends Handl
 
     protected String getRouteKey(Request<?> msg) {
         log.info("RouterFactory is working");
+        if (msg == null) {
+            return null;
+        }
         return msg.getHeader().getType();
     }
 }

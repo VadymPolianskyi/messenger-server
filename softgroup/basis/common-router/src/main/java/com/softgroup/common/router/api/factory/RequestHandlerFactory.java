@@ -18,6 +18,9 @@ public class RequestHandlerFactory <T extends AbstractRequestHandler> extends Ha
 
     protected String getRouteKey(Request<?> msg) {
         log.info("HandlerFactory is working");
+        if (msg == null) {
+            return null;
+        }
         return msg.getHeader().getCommand();
     }
 }

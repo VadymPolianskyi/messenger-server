@@ -16,6 +16,7 @@ import java.util.List;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
+import static org.hamcrest.core.IsNull.nullValue;
 
 /**
  * Author: vadym
@@ -27,43 +28,39 @@ public class RequestHandlerFactoryTest {
     @InjectMocks
     RequestHandlerFactory requestHandlerFactory;
 
-    private AbstractRequestHandler handlerFirst;
-    private AbstractRequestHandler handlerSecond;
+    private AbstractRequestHandler handlerFirst = Mockito.mock(AbstractRequestHandler.class);
+    private AbstractRequestHandler handlerSecond = Mockito.mock(AbstractRequestHandler.class);
     private Request firstRequest;
     private Request secondRequest;
+    private ActionHeader firstHeader;
+    private ActionHeader secondHeader;
 
     @Spy
-    private List<AbstractRequestHandler> handlerList = new ArrayList<>();
+    private List<AbstractRequestHandler> handlers = new ArrayList<>();
 
     @Before
     public void init() {
-        handlerFirst = Mockito.mock(AbstractRequestHandler.class);
-        handlerSecond = Mockito.mock(AbstractRequestHandler.class);
+        firstRequest = new Request();
+        firstRequest.setHeader(new ActionHeader());
+        firstRequest.getHeader().setCommand("handlerFirst");
+
+        secondRequest = new Request();
+        secondRequest.setHeader(new ActionHeader());
+        secondRequest.getHeader().setCommand("handlerSecond");
 
         when(handlerFirst.getName()).thenReturn("handlerFirst");
         when(handlerSecond.getName()).thenReturn("handlerSecond");
-        ActionHeader firstHeader = Mockito.mock(ActionHeader.class);
-        ActionHeader secondHeader = Mockito.mock(ActionHeader.class);
 
-        handlerList.add(handlerFirst);
-        handlerList.add(handlerSecond);
-
-        firstRequest = Mockito.mock(Request.class);
-        secondRequest = Mockito.mock(Request.class);
-
-        when(firstRequest.getHeader()).thenReturn(firstHeader);
-        when(secondRequest.getHeader()).thenReturn(secondHeader);
-
-        when(firstHeader.getCommand()).thenReturn("handlerFirst");
-        when(firstHeader.getCommand()).thenReturn("handlerSecond");
+        handlers.add(handlerFirst);
+        handlers.add(handlerSecond);
 
         requestHandlerFactory.init();
     }
 
     @Test
     public void testGetHandler() {
-//        assertThat(requestHandlerFactory.getHandler(null), nullValue());
-//        assertThat(requestHandlerFactory.getHandler(firstRequest), is(handlerFirst));
+        assertThat(requestHandlerFactory.getHandler(null), nullValue());
+        assertThat(requestHandlerFactory.getHandler(firstRequest), is(handlerFirst));
         assertThat(requestHandlerFactory.getHandler(secondRequest), is(handlerSecond));
     }
 

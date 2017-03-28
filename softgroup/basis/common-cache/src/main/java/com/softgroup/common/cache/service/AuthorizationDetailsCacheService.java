@@ -30,18 +30,25 @@ public class AuthorizationDetailsCacheService extends BaseCacheService<Authoriza
                 });
     }
 
-    private static AuthorizationDetails get(String key) {
+    public static AuthorizationDetails get(String key) {
         return get(key);
     }
 
     @Override
     public void put(AuthorizationDetails authorizationDetails) {
+        if (authorizationDetails == null) {
+            return;
+        }
         cache.put(authorizationDetails.getRegistrationRequestUuid(),
                authorizationDetails);
     }
 
     @Override
     public AuthorizationDetails getFromCache(String key) throws ExecutionException {
+        if (key == null) {
+            return null;
+        }
+
         return cache.get(key);
     }
 }
