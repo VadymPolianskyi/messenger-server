@@ -27,6 +27,7 @@
             <column name="avatar_uri" type="varchar(150)"/>
             <column name="status" type="varchar(250)"/>
         </createTable>
+
         <createTable tableName="device">
             <column name="id" type="varchar(250)">
                 <constraints primaryKey="true" nullable="false"/>
@@ -42,6 +43,113 @@
             </column>
             <column name="profile_id" type="varchar(250)">
                 <constraints nullable="false" foreignKeyName="fk_device_profile" references="profile(id)"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="conversation">
+            <column name="id" type="varchar(250)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_message_id" type="varchar(250)">
+            </column>
+            <column name="date_creation" type="long">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="conversation_settings">
+            <column name="id" type="varchar(250)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="admin_id" type="varchar(250)">
+                <constraints nullable="false" foreignKeyName="fk_profile_conversation" references="profile(id)"/>
+            </column>
+            <column name="name" type="varchar(150)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="logo" type="varchar(250)"/>
+            <column name="conversation_id" type="varchar(250)">
+                <constraints nullable="false" foreignKeyName="fk_conversation_settings" references="conversation(id)"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="conversation_member">
+            <column name="id" type="varchar(250)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="profile_id" type="varchar(250)">
+                <constraints nullable="false" foreignKeyName="fk_conversation_member_profile" references="profile(id)"/>
+            </column>
+            <column name="conversation_id" type="varchar(250)">
+                <constraints nullable="false" foreignKeyName="fk_conversation_member_conversation" references="conversation(id)"/>
+            </column>
+            <column name="join_date" type="long">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="integer">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="message">
+            <column name="id" type="varchar(250)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="sender_id" type="varchar(250)">
+                <constraints nullable="false" foreignKeyName="fk_message_profile" references="profile(id)"/>
+            </column>
+            <column name="conversation_id" type="varchar(250)">
+                <constraints nullable="false" foreignKeyName="fk_message_conversation" references="conversation(id)"/>
+            </column>
+            <column name="payload" type="varchar(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_date" type="long">
+                <constraints nullable="false"/>
+            </column>
+            <column name="server_rec_date" type="varchar(250)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <createTable tableName="message_status">
+            <column name="id" type="varchar(250)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="message_id" type="varchar(250)">
+                <constraints nullable="false" foreignKeyName="fk_message_status" references="message(id)"/>
+            </column>
+            <column name="sender_id" type="varchar(250)">
+                <constraints nullable="false" foreignKeyName="fk_message_sender" references="profile(id)"/>
+            </column>
+            <column name="conversation_id" type="varchar(250)">
+                <constraints nullable="false" foreignKeyName="fk_message_status_conversation" references="conversation(id)"/>
+            </column>
+            <column name="profile_id" type="varchar(250)">
+                <constraints foreignKeyName="fk_message_status_profile" references="profile(id)"/>
+            </column>
+            <column name="status" type="integer"/>
+            <column name="conf_date" type="long"/>
+        </createTable>
+
+        <createTable tableName="contact">
+            <column name="id" type="varchar(250)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="profile_id" type="varchar(250)">
+                <constraints nullable="false" foreignKeyName="fk_contact_profile" references="profile(id)"/>
+            </column>
+            <column name="name" type="varchar(250)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="varchar(14)">
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>

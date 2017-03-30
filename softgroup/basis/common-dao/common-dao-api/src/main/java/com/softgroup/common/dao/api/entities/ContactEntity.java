@@ -24,9 +24,8 @@ public class ContactEntity implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "data")
-    private String data;
-
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
     public String getId() {
         return id;
@@ -44,31 +43,31 @@ public class ContactEntity implements Serializable {
         this.name = name;
     }
 
-    public String getData() {
-        return data;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ContactEntity)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         ContactEntity that = (ContactEntity) o;
 
-        if (!id.equals(that.id)) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        return data != null ? data.equals(that.data) : that.data == null;
+        return phoneNumber != null ? phoneNumber.equals(that.phoneNumber) : that.phoneNumber == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (data != null ? data.hashCode() : 0);
+        result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
         return result;
     }
 }
