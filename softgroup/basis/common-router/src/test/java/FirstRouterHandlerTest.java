@@ -25,8 +25,10 @@ public class FirstRouterHandlerTest {
     @InjectMocks
     private FirstRouterHandler firstRouterHandler;
 
-    private RouterHandlerFactory routerHandlerFactory = Mockito.mock(RouterHandlerFactory.class);
-    private AbstractRouterHandler router = Mockito.mock(AbstractRouterHandler.class);
+    @Mock
+    private RouterHandlerFactory routerHandlerFactory;
+    @Mock
+    private AbstractRouterHandler router;
     private Request request;
     private Response response;
 

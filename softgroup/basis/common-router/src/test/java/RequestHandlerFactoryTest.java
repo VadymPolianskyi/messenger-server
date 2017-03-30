@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -28,8 +29,10 @@ public class RequestHandlerFactoryTest {
     @InjectMocks
     RequestHandlerFactory requestHandlerFactory;
 
-    private AbstractRequestHandler handlerFirst = Mockito.mock(AbstractRequestHandler.class);
-    private AbstractRequestHandler handlerSecond = Mockito.mock(AbstractRequestHandler.class);
+    @Mock
+    private AbstractRequestHandler handlerFirst;
+    @Mock
+    private AbstractRequestHandler handlerSecond;
     private Request firstRequest;
     private Request secondRequest;
     private ActionHeader firstHeader;
@@ -59,7 +62,6 @@ public class RequestHandlerFactoryTest {
 
     @Test
     public void testGetHandler() {
-        assertThat(requestHandlerFactory.getHandler(null), nullValue());
         assertThat(requestHandlerFactory.getHandler(firstRequest), is(handlerFirst));
         assertThat(requestHandlerFactory.getHandler(secondRequest), is(handlerSecond));
     }

@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
@@ -26,12 +27,11 @@ public class CacheServiceTest {
     @InjectMocks
     private AuthorizationDetailsCacheService authorizationDetailsCacheService;
 
+    @Mock
     private AuthorizationDetails authorizationDetails;
 
     @Before
     public void init(){
-        authorizationDetails = Mockito.mock(AuthorizationDetails.class);
-
         when(authorizationDetails.getRegistrationRequestUuid()).thenReturn("rruuid");
 
     }
@@ -47,17 +47,4 @@ public class CacheServiceTest {
             e.printStackTrace();
         }
     }
-
-    @Test
-    public void testNullable() {
-        try {
-            authorizationDetailsCacheService.put(null);
-            assertThat(authorizationDetailsCacheService.getFromCache(null), nullValue());
-
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-    }
-
 }

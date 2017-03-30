@@ -6,11 +6,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.context.annotation.Primary;
 
+import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
-
+import static org.hamcrest.core.IsNull.notNullValue;
 /**
  * Created by vadym_polyanski on 28.03.17.
  */
@@ -23,16 +25,9 @@ public class TokenServiceTest {
     private String deviceToken;
     private String sessionToken;
 
-    @Before
-    public void init() {
-        deviceToken = tokenService.generateDeviceToken("profileId", "deviceId");
-        sessionToken = tokenService.generateSessionToken("profileId", "deviceId");
-    }
-
     @Test
     public void testDeviceToken() throws InterruptedException {
-        assertThat(deviceToken, not(sessionToken));
-
+        testCreatingToken();
         assertThat(tokenService.getDeviceID(deviceToken), is("deviceId"));
         assertThat(tokenService.getProfileID(deviceToken), is("profileId"));
 
@@ -43,13 +38,23 @@ public class TokenServiceTest {
 
     @Test
     public void testSessionToken() throws InterruptedException {
+        testCreatingToken();
         assertThat(tokenService.getDeviceID(sessionToken), is("deviceId"));
         assertThat(tokenService.getProfileID(sessionToken), is("profileId"));
 
         Thread.sleep(1000);
         assertThat(tokenService.generateSessionToken("profileId", "deviceId"),
                 not(sessionToken));
+    }
 
+    @Primary
+    @Test
+    public void testCreatingToken() {
+        sessionToken = tokenService.generateSessionToken("profileId", "deviceId");
+        deviceToken = tokenService.generateDeviceToken("profileId", "deviceId");
 
+        assertThat(deviceToken, notNullValue());
+        assertThat(sessionToken, notNullValue());
+        assertThat(deviceToken, not(sessionToken));
     }
 }
