@@ -27,14 +27,8 @@ public class CacheServiceTest {
     @InjectMocks
     private AuthorizationDetailsCacheService authorizationDetailsCacheService;
 
-    @Mock
-    private AuthorizationDetails authorizationDetails;
-
-    @Before
-    public void init(){
-        when(authorizationDetails.getRegistrationRequestUuid()).thenReturn("rruuid");
-
-    }
+    private AuthorizationDetails authorizationDetails = new AuthorizationDetails(
+            "rruuid", "", "", "", "", "");
 
 
     @Test
