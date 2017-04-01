@@ -14,15 +14,9 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "conversation_details")
-public class ConversationMemberEntity implements Serializable {
+public class ConversationMemberEntity extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = -4252569167518812471L;
-
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "id", unique = true)
-    private String id;
 
     @Column(name = "profile_id")
     private String profileId;
@@ -36,14 +30,6 @@ public class ConversationMemberEntity implements Serializable {
     //    deleted(0)/not deleted(1)
     @Column(name = "status")
     private ConversationMemberStatus status;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getProfileId() {
         return profileId;
@@ -84,21 +70,19 @@ public class ConversationMemberEntity implements Serializable {
 
         ConversationMemberEntity that = (ConversationMemberEntity) o;
 
-        if (status != that.status) return false;
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (profileId != null ? !profileId.equals(that.profileId) : that.profileId != null) return false;
         if (conversationId != null ? !conversationId.equals(that.conversationId) : that.conversationId != null)
             return false;
-        return joinDate != null ? joinDate.equals(that.joinDate) : that.joinDate == null;
+        if (joinDate != null ? !joinDate.equals(that.joinDate) : that.joinDate != null) return false;
+        return status == that.status;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (profileId != null ? profileId.hashCode() : 0);
+        int result = profileId != null ? profileId.hashCode() : 0;
         result = 31 * result + (conversationId != null ? conversationId.hashCode() : 0);
         result = 31 * result + (joinDate != null ? joinDate.hashCode() : 0);
-        result = 31 * result + status.hashCode();
+        result = 31 * result + (status != null ? status.hashCode() : 0);
         return result;
     }
 }

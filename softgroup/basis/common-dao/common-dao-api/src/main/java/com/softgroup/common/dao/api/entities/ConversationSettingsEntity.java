@@ -12,15 +12,9 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "conversation_settings")
-public class ConversationSettingsEntity implements Serializable {
+public class ConversationSettingsEntity extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 8416163839319051032L;
-
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "id", unique = true)
-    private String id;
 
     @Column(name = "admin_id")
     private String adminId;
@@ -33,14 +27,6 @@ public class ConversationSettingsEntity implements Serializable {
 
     @Column(name = "conversation_id")
     private String conversationId;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getAdminId() {
         return adminId;
@@ -81,7 +67,6 @@ public class ConversationSettingsEntity implements Serializable {
 
         ConversationSettingsEntity that = (ConversationSettingsEntity) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (adminId != null ? !adminId.equals(that.adminId) : that.adminId != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (logo != null ? !logo.equals(that.logo) : that.logo != null) return false;
@@ -90,8 +75,7 @@ public class ConversationSettingsEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (adminId != null ? adminId.hashCode() : 0);
+        int result = adminId != null ? adminId.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (logo != null ? logo.hashCode() : 0);
         result = 31 * result + (conversationId != null ? conversationId.hashCode() : 0);

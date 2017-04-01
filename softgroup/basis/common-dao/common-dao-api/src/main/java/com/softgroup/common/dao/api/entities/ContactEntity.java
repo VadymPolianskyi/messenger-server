@@ -13,27 +13,15 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "contact")
-public class ContactEntity implements Serializable {
+public class ContactEntity extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 7480919024978527001L;
-
-    @Id
-    @Column(name = "id", unique = true)
-    private String id;
 
     @Column(name = "name")
     private String name;
 
     @Column(name = "phone_number")
     private String phoneNumber;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -58,15 +46,13 @@ public class ContactEntity implements Serializable {
 
         ContactEntity that = (ContactEntity) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         return phoneNumber != null ? phoneNumber.equals(that.phoneNumber) : that.phoneNumber == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
+        int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
         return result;
     }

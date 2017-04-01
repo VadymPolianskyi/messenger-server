@@ -12,15 +12,9 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "device")
-public class DeviceEntity  implements Serializable {
+public class DeviceEntity extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 7834796409815852123L;
-
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "id", unique = true)
-    private String id;
 
     @Column(name = "locale_code")
     private String locale_code;
@@ -34,14 +28,6 @@ public class DeviceEntity  implements Serializable {
     @Column(name = "profile_id")
     private String profileId;
 
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getProfileId() {
         return profileId;
@@ -82,7 +68,6 @@ public class DeviceEntity  implements Serializable {
 
         DeviceEntity that = (DeviceEntity) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (locale_code != null ? !locale_code.equals(that.locale_code) : that.locale_code != null) return false;
         if (deviceId != null ? !deviceId.equals(that.deviceId) : that.deviceId != null) return false;
         if (updateDateTime != null ? !updateDateTime.equals(that.updateDateTime) : that.updateDateTime != null)
@@ -92,8 +77,7 @@ public class DeviceEntity  implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (locale_code != null ? locale_code.hashCode() : 0);
+        int result = locale_code != null ? locale_code.hashCode() : 0;
         result = 31 * result + (deviceId != null ? deviceId.hashCode() : 0);
         result = 31 * result + (updateDateTime != null ? updateDateTime.hashCode() : 0);
         result = 31 * result + (profileId != null ? profileId.hashCode() : 0);

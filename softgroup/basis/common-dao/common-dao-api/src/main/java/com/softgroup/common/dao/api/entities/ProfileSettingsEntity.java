@@ -10,24 +10,12 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "profile_settings")
-public class ProfileSettingsEntity implements Serializable {
+public class ProfileSettingsEntity extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 2645460488213358603L;
 
-    @Id
-    @Column(name = "id")
-    private String id;
-
     @Column(name = "settings_data")
     private String settingsData;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getSettingsData() {
         return settingsData;

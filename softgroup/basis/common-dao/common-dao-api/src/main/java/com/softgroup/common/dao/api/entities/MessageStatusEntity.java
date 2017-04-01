@@ -13,15 +13,9 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "message_status")
-public class MessageStatusEntity implements Serializable{
+public class MessageStatusEntity extends BaseEntity implements Serializable{
 
     private static final long serialVersionUID = -8995783426823605222L;
-
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "id", unique = true)
-    private String  id;
 
     @Column(name = "message_id")
     private String messageId;
@@ -40,14 +34,6 @@ public class MessageStatusEntity implements Serializable{
 
     @Column(name = "read_date")
     private Long readDate;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getMessageId() {
         return messageId;
@@ -104,9 +90,8 @@ public class MessageStatusEntity implements Serializable{
 
         MessageStatusEntity that = (MessageStatusEntity) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (messageId != null ? !messageId.equals(that.messageId) : that.messageId != null) return false;
-        if (status != null ? !status.equals(that.status) : that.status != null) return false;
+        if (status != that.status) return false;
         if (profileId != null ? !profileId.equals(that.profileId) : that.profileId != null) return false;
         if (conversationId != null ? !conversationId.equals(that.conversationId) : that.conversationId != null)
             return false;
@@ -116,8 +101,7 @@ public class MessageStatusEntity implements Serializable{
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (messageId != null ? messageId.hashCode() : 0);
+        int result = messageId != null ? messageId.hashCode() : 0;
         result = 31 * result + (status != null ? status.hashCode() : 0);
         result = 31 * result + (profileId != null ? profileId.hashCode() : 0);
         result = 31 * result + (conversationId != null ? conversationId.hashCode() : 0);

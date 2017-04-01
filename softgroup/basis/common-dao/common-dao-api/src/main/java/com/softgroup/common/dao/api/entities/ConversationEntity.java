@@ -13,15 +13,9 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "conversation")
-public class ConversationEntity implements Serializable {
+public class ConversationEntity extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = -6612011557733766424L;
-
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "id", unique = true)
-    private String id;
 
     @Column(name = "type")
     private ConversationType type;
@@ -31,14 +25,6 @@ public class ConversationEntity implements Serializable {
 
     @Column(name = "creation_date")
     private Long creationDate;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public ConversationType getType() {
         return type;
@@ -71,8 +57,7 @@ public class ConversationEntity implements Serializable {
 
         ConversationEntity that = (ConversationEntity) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (type != null ? !type.equals(that.type) : that.type != null) return false;
+        if (type != that.type) return false;
         if (lastMessageId != null ? !lastMessageId.equals(that.lastMessageId) : that.lastMessageId != null)
             return false;
         return creationDate != null ? creationDate.equals(that.creationDate) : that.creationDate == null;
@@ -80,8 +65,7 @@ public class ConversationEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (type != null ? type.hashCode() : 0);
+        int result = type != null ? type.hashCode() : 0;
         result = 31 * result + (lastMessageId != null ? lastMessageId.hashCode() : 0);
         result = 31 * result + (creationDate != null ? creationDate.hashCode() : 0);
         return result;

@@ -17,12 +17,6 @@ public class ProfileEntity extends BaseEntity implements Serializable{
 
     private static final long serialVersionUID = 2645460488213358603L;
 
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "id", unique = true)
-    private String id;
-
     @Column(name = "name")
     private String name;
 
@@ -40,14 +34,6 @@ public class ProfileEntity extends BaseEntity implements Serializable{
 
     @Column(name = "status")
     private String status;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -100,11 +86,10 @@ public class ProfileEntity extends BaseEntity implements Serializable{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ProfileEntity)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         ProfileEntity that = (ProfileEntity) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (phoneNumber != null ? !phoneNumber.equals(that.phoneNumber) : that.phoneNumber != null) return false;
         if (createDateTime != null ? !createDateTime.equals(that.createDateTime) : that.createDateTime != null)
@@ -117,8 +102,7 @@ public class ProfileEntity extends BaseEntity implements Serializable{
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
+        int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
         result = 31 * result + (createDateTime != null ? createDateTime.hashCode() : 0);
         result = 31 * result + (updateDateTime != null ? updateDateTime.hashCode() : 0);

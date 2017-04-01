@@ -13,15 +13,9 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "message")
-public class MessageEntity implements Serializable {
+public class MessageEntity extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = -4749434979191853677L;
-
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "id", unique = true)
-    private String  id;
 
     @Column(name = "sender_id")
     private String senderId;
@@ -40,14 +34,6 @@ public class MessageEntity implements Serializable {
 
     @Column(name = "server_receive_date")
     private Long serverReceiveDate;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getSenderId() {
         return senderId;
@@ -104,20 +90,18 @@ public class MessageEntity implements Serializable {
 
         MessageEntity that = (MessageEntity) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (senderId != null ? !senderId.equals(that.senderId) : that.senderId != null) return false;
         if (conversationId != null ? !conversationId.equals(that.conversationId) : that.conversationId != null)
             return false;
         if (payload != null ? !payload.equals(that.payload) : that.payload != null) return false;
-        if (type != null ? !type.equals(that.type) : that.type != null) return false;
+        if (type != that.type) return false;
         if (createDate != null ? !createDate.equals(that.createDate) : that.createDate != null) return false;
         return serverReceiveDate != null ? serverReceiveDate.equals(that.serverReceiveDate) : that.serverReceiveDate == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (senderId != null ? senderId.hashCode() : 0);
+        int result = senderId != null ? senderId.hashCode() : 0;
         result = 31 * result + (conversationId != null ? conversationId.hashCode() : 0);
         result = 31 * result + (payload != null ? payload.hashCode() : 0);
         result = 31 * result + (type != null ? type.hashCode() : 0);
