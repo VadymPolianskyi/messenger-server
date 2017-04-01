@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "profile")
-public class ProfileEntity implements Serializable{
+public class ProfileEntity extends BaseEntity implements Serializable{
 
     private static final long serialVersionUID = 2645460488213358603L;
 

@@ -11,7 +11,7 @@
 
     <changeSet id="1" author="vadym.polyanski" runOnChange="false">
         <createTable tableName="profile">
-            <column name="id" type="varchar(250)">
+            <column name="id" type="varchar(36)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(50)">
@@ -29,7 +29,7 @@
         </createTable>
 
         <createTable tableName="device">
-            <column name="id" type="varchar(250)">
+            <column name="id" type="varchar(36)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="locale_code" type="varchar(5)">
@@ -47,7 +47,7 @@
         </createTable>
 
         <createTable tableName="conversation">
-            <column name="id" type="varchar(250)">
+            <column name="id" type="varchar(36)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="type" type="integer">
@@ -55,13 +55,13 @@
             </column>
             <column name="last_message_id" type="varchar(250)">
             </column>
-            <column name="date_creation" type="long">
+            <column name="creation_date" type="long">
                 <constraints nullable="false"/>
             </column>
         </createTable>
 
         <createTable tableName="conversation_settings">
-            <column name="id" type="varchar(250)">
+            <column name="id" type="varchar(36)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="admin_id" type="varchar(250)">
@@ -77,7 +77,7 @@
         </createTable>
 
         <createTable tableName="conversation_member">
-            <column name="id" type="varchar(250)">
+            <column name="id" type="varchar(36)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="profile_id" type="varchar(250)">
@@ -95,7 +95,7 @@
         </createTable>
 
         <createTable tableName="message">
-            <column name="id" type="varchar(250)">
+            <column name="id" type="varchar(36)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="sender_id" type="varchar(250)">
@@ -113,13 +113,13 @@
             <column name="create_date" type="long">
                 <constraints nullable="false"/>
             </column>
-            <column name="server_rec_date" type="varchar(250)">
+            <column name="server_receive_date" type="varchar(250)">
                 <constraints nullable="false" />
             </column>
         </createTable>
 
         <createTable tableName="message_status">
-            <column name="id" type="varchar(250)">
+            <column name="id" type="varchar(36)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="message_id" type="varchar(250)">
@@ -135,11 +135,11 @@
                 <constraints foreignKeyName="fk_message_status_profile" references="profile(id)"/>
             </column>
             <column name="status" type="integer"/>
-            <column name="conf_date" type="long"/>
+            <column name="read_date" type="long"/>
         </createTable>
 
         <createTable tableName="contact">
-            <column name="id" type="varchar(250)">
+            <column name="id" type="varchar(36)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="profile_id" type="varchar(250)">

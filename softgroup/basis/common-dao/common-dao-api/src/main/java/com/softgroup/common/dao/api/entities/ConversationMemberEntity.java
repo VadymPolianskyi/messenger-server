@@ -1,5 +1,6 @@
 package com.softgroup.common.dao.api.entities;
 
+import com.softgroup.common.dao.api.entities.types.ConversationMemberStatus;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -34,7 +35,7 @@ public class ConversationMemberEntity implements Serializable {
 
     //    deleted(0)/not deleted(1)
     @Column(name = "status")
-    private Integer status;
+    private ConversationMemberStatus status;
 
     public String getId() {
         return id;
@@ -68,11 +69,11 @@ public class ConversationMemberEntity implements Serializable {
         this.joinDate = joinDate;
     }
 
-    public Integer getStatus() {
+    public ConversationMemberStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(ConversationMemberStatus status) {
         this.status = status;
     }
 
@@ -97,7 +98,7 @@ public class ConversationMemberEntity implements Serializable {
         result = 31 * result + (profileId != null ? profileId.hashCode() : 0);
         result = 31 * result + (conversationId != null ? conversationId.hashCode() : 0);
         result = 31 * result + (joinDate != null ? joinDate.hashCode() : 0);
-        result = 31 * result + status;
+        result = 31 * result + status.hashCode();
         return result;
     }
 }

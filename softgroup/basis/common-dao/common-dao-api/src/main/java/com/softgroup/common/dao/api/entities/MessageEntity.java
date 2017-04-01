@@ -1,5 +1,6 @@
 package com.softgroup.common.dao.api.entities;
 
+import com.softgroup.common.dao.api.entities.types.MessageType;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -32,13 +33,13 @@ public class MessageEntity implements Serializable {
     private String payload;
 
     @Column(name = "type")
-    private Integer type;
+    private MessageType type;
 
     @Column(name = "create_date")
     private Long createDate;
 
-    @Column(name = "server_rec_date")
-    private Long serverRecDate;
+    @Column(name = "server_receive_date")
+    private Long serverReceiveDate;
 
     public String getId() {
         return id;
@@ -72,11 +73,11 @@ public class MessageEntity implements Serializable {
         this.payload = payload;
     }
 
-    public Integer getType() {
+    public MessageType getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(MessageType type) {
         this.type = type;
     }
 
@@ -89,11 +90,11 @@ public class MessageEntity implements Serializable {
     }
 
     public Long getServerRecDate() {
-        return serverRecDate;
+        return serverReceiveDate;
     }
 
-    public void setServerRecDate(Long serverRecDate) {
-        this.serverRecDate = serverRecDate;
+    public void setServerRecDate(Long serverReceiveDate) {
+        this.serverReceiveDate = serverReceiveDate;
     }
 
     @Override
@@ -110,7 +111,7 @@ public class MessageEntity implements Serializable {
         if (payload != null ? !payload.equals(that.payload) : that.payload != null) return false;
         if (type != null ? !type.equals(that.type) : that.type != null) return false;
         if (createDate != null ? !createDate.equals(that.createDate) : that.createDate != null) return false;
-        return serverRecDate != null ? serverRecDate.equals(that.serverRecDate) : that.serverRecDate == null;
+        return serverReceiveDate != null ? serverReceiveDate.equals(that.serverReceiveDate) : that.serverReceiveDate == null;
     }
 
     @Override
@@ -121,7 +122,7 @@ public class MessageEntity implements Serializable {
         result = 31 * result + (payload != null ? payload.hashCode() : 0);
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);
-        result = 31 * result + (serverRecDate != null ? serverRecDate.hashCode() : 0);
+        result = 31 * result + (serverReceiveDate != null ? serverReceiveDate.hashCode() : 0);
         return result;
     }
 }

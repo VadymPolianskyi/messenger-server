@@ -1,5 +1,6 @@
 package com.softgroup.common.dao.api.entities;
 
+import com.softgroup.common.dao.api.entities.types.ConversationType;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -23,13 +24,13 @@ public class ConversationEntity implements Serializable {
     private String id;
 
     @Column(name = "type")
-    private Integer type;
+    private ConversationType type;
 
     @Column(name = "last_message_id")
     private String lastMessageId;
 
-    @Column(name = "date_creation")
-    private Long dateCreation;
+    @Column(name = "creation_date")
+    private Long creationDate;
 
     public String getId() {
         return id;
@@ -39,11 +40,11 @@ public class ConversationEntity implements Serializable {
         this.id = id;
     }
 
-    public Integer getType() {
+    public ConversationType getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(ConversationType type) {
         this.type = type;
     }
 
@@ -55,12 +56,12 @@ public class ConversationEntity implements Serializable {
         this.lastMessageId = lastMessageId;
     }
 
-    public Long getDateCreation() {
-        return dateCreation;
+    public Long getCreationDate() {
+        return creationDate;
     }
 
-    public void setDateCreation(Long dateCreation) {
-        this.dateCreation = dateCreation;
+    public void setCreationDate(Long creationDate) {
+        this.creationDate = creationDate;
     }
 
     @Override
@@ -74,7 +75,7 @@ public class ConversationEntity implements Serializable {
         if (type != null ? !type.equals(that.type) : that.type != null) return false;
         if (lastMessageId != null ? !lastMessageId.equals(that.lastMessageId) : that.lastMessageId != null)
             return false;
-        return dateCreation != null ? dateCreation.equals(that.dateCreation) : that.dateCreation == null;
+        return creationDate != null ? creationDate.equals(that.creationDate) : that.creationDate == null;
     }
 
     @Override
@@ -82,7 +83,7 @@ public class ConversationEntity implements Serializable {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (lastMessageId != null ? lastMessageId.hashCode() : 0);
-        result = 31 * result + (dateCreation != null ? dateCreation.hashCode() : 0);
+        result = 31 * result + (creationDate != null ? creationDate.hashCode() : 0);
         return result;
     }
 }

@@ -1,5 +1,6 @@
 package com.softgroup.common.dao.api.entities;
 
+import com.softgroup.common.dao.api.entities.types.MessageStatus;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -26,7 +27,7 @@ public class MessageStatusEntity implements Serializable{
     private String messageId;
 
     @Column(name = "status")
-    private String status;
+    private MessageStatus status;
 
     @Column(name = "profile_id")
     private String profileId;
@@ -37,8 +38,8 @@ public class MessageStatusEntity implements Serializable{
     @Column(name = "sender_id")
     private String senderId;
 
-    @Column(name = "conf_date")
-    private Long confDate;
+    @Column(name = "read_date")
+    private Long readDate;
 
     public String getId() {
         return id;
@@ -56,11 +57,11 @@ public class MessageStatusEntity implements Serializable{
         this.messageId = messageId;
     }
 
-    public String getStatus() {
+    public MessageStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(MessageStatus status) {
         this.status = status;
     }
 
@@ -88,12 +89,12 @@ public class MessageStatusEntity implements Serializable{
         this.senderId = senderId;
     }
 
-    public Long getConfDate() {
-        return confDate;
+    public Long getReadDate() {
+        return readDate;
     }
 
-    public void setConfDate(Long confDate) {
-        this.confDate = confDate;
+    public void setReadDate(Long readDate) {
+        this.readDate = readDate;
     }
 
     @Override
@@ -110,7 +111,7 @@ public class MessageStatusEntity implements Serializable{
         if (conversationId != null ? !conversationId.equals(that.conversationId) : that.conversationId != null)
             return false;
         if (senderId != null ? !senderId.equals(that.senderId) : that.senderId != null) return false;
-        return confDate != null ? confDate.equals(that.confDate) : that.confDate == null;
+        return readDate != null ? readDate.equals(that.readDate) : that.readDate == null;
     }
 
     @Override
@@ -121,7 +122,7 @@ public class MessageStatusEntity implements Serializable{
         result = 31 * result + (profileId != null ? profileId.hashCode() : 0);
         result = 31 * result + (conversationId != null ? conversationId.hashCode() : 0);
         result = 31 * result + (senderId != null ? senderId.hashCode() : 0);
-        result = 31 * result + (confDate != null ? confDate.hashCode() : 0);
+        result = 31 * result + (readDate != null ? readDate.hashCode() : 0);
         return result;
     }
 }
