@@ -1,4 +1,4 @@
-package com.softgroup.frontend.test.controller;
+package com.softgroup.frontend.controller;
 
 import com.softgroup.common.datamapper.DataMapper;
 import com.softgroup.common.protocol.CommonRequest;
@@ -15,25 +15,24 @@ import javax.servlet.http.HttpSession;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Created by vadym_polyanski on 24.03.17.
+ * Author: vadym
+ * Date: 01.03.17
+ * Time: 9:49
  */
 @RestController
 @RequestMapping(path = "/messenger")
-public class MessengerPrivateController {
-    @Autowired
-    HttpSession session;
-
-    @Autowired
-    DataMapper jacksonDataMapper;
+public class MessengerPublicController {
 
     @Autowired
     Handler firstRouterHandler;
 
-    @RequestMapping(path = "/private",
+    @Autowired
+    DataMapper jacksonDataMapper;
+
+    @RequestMapping(path = "/public",
             method = RequestMethod.POST)
-    public Response privateMessenger(@RequestBody final String requestStr) {
-        CommonRequest request = jacksonDataMapper.mapData(requestStr.getBytes(StandardCharsets.UTF_8),CommonRequest.class);
-        request.setRoutingData((RoutingData) session.getAttribute("routing_data"));
-        return firstRouterHandler.handle(request);
+    public Response publicMessenger(@RequestBody final CommonRequest requestStr) {
+        return firstRouterHandler.handle(requestStr);
     }
+
 }
