@@ -30,15 +30,4 @@ public class ContactsSyncRequest implements RequestData {
     public void setRemovedContactEntities(List<ContactEntity> removedContactEntities) {
         this.removedContactEntities = removedContactEntities;
     }
-
-
-
-    public void addContact(ContactEntity contactEntity) {
-        addedContactEntities.add(contactEntity);
-    }
-
-    public void removeContact(int index) {
-        removedContactEntities.add(addedContactEntities.remove(index));
-    }
-
 }
