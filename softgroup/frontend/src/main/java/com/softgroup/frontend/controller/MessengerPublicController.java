@@ -31,8 +31,8 @@ public class MessengerPublicController {
 
     @RequestMapping(path = "/public",
             method = RequestMethod.POST)
-    public Response publicMessenger(@RequestBody final CommonRequest requestStr) {
-        return firstRouterHandler.handle(requestStr);
+    public Response publicMessenger(@RequestBody final CommonRequest request) {
+        return firstRouterHandler.handle(request);
     }
 
 }
