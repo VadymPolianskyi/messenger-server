@@ -31,14 +31,10 @@ public class CacheServiceTest {
             "rruuid", "", "", "", "", "");
 
 
-    @Test
-    public void testCache(){
-        try {
+    @Test(expected = ExecutionException.class)
+    public void testCache() throws ExecutionException {
             authorizationDetailsCacheService.put(authorizationDetails);
 
             assertThat(authorizationDetailsCacheService.getFromCache("rruuid"), is(authorizationDetails));
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
     }
 }
