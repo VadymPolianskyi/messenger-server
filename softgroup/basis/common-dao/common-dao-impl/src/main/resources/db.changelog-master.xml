@@ -113,7 +113,7 @@
             <column name="create_date" type="long">
                 <constraints nullable="false"/>
             </column>
-            <column name="server_receive_date" type="varchar(250)">
+            <column name="server_receive_date" type="long">
                 <constraints nullable="false" />
             </column>
         </createTable>
