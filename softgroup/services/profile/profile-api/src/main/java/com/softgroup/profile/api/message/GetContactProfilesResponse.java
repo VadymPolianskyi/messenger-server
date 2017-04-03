@@ -1,6 +1,7 @@
 package com.softgroup.profile.api.message;
 
 
+import com.softgroup.common.dao.api.entities.ContactEntity;
 import com.softgroup.common.dao.api.entities.ProfileEntity;
 import com.softgroup.common.protocol.ResponseData;
 
@@ -12,13 +13,13 @@ import java.util.List;
  * Time: 10:09
  */
 public class GetContactProfilesResponse implements ResponseData {
-    private List<ProfileEntity> profileEntities;
+    private List<ContactEntity> contactEntities;
 
-    public List<ProfileEntity> getProfileEntities() {
-        return profileEntities;
+    public List<ContactEntity> getContactEntities() {
+        return contactEntities;
     }
 
-    public void setProfileEntities(List<ProfileEntity> profileEntities) {
-        this.profileEntities = profileEntities;
+    public void setContactEntities(List<ContactEntity> contactEntities) {
+        this.contactEntities = contactEntities;
     }
 }

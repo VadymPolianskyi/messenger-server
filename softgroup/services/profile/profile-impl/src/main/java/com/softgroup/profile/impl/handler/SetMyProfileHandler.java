@@ -1,5 +1,6 @@
 package com.softgroup.profile.impl.handler;
 
+import com.softgroup.common.dao.api.entities.ProfileEntity;
 import com.softgroup.common.dao.impl.service.ProfileService;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
@@ -33,18 +34,21 @@ public class SetMyProfileHandler
         SetMyProfileRequest requestData = request.getData();
         SetMyProfileResponse setMyProfileResponse = new SetMyProfileResponse();
 
-        profileService.insertProfile(requestData.getProfileEntities());
-
-
+        ProfileEntity profileEntity = requestData.getProfileEntities();
         Response<SetMyProfileResponse> response = new Response<SetMyProfileResponse>();
         response.setHeader(request.getHeader());
         response.setData(setMyProfileResponse);
-
         ResponseStatus status = new ResponseStatus();
-        status.setCode(200);
-        status.setMessage("OK");
 
+        try {
+            profileService.insertProfile(profileEntity);
+            status.setCode(200);
+            status.setMessage("OK");
+        } catch (Exception e) {
+            status.setCode(500);
+            status.setMessage("ERROR");
+        }
         response.setStatus(status);
-        return null;
+        return response;
     }
 }

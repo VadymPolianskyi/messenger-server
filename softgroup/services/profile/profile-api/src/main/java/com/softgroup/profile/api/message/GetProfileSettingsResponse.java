@@ -11,13 +11,13 @@ import java.util.List;
  * Time: 10:18
  */
 public class GetProfileSettingsResponse implements ResponseData {
-    public List<ProfileSettingsEntity> getSettings() {
+    public ProfileSettingsEntity getSettings() {
         return settings;
     }
 
-    public void setSettings(List<ProfileSettingsEntity> settings) {
+    public void setSettings(ProfileSettingsEntity settings) {
         this.settings = settings;
     }
 
-    private List<ProfileSettingsEntity> settings;
+    private ProfileSettingsEntity settings;
 }
