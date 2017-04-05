@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 
 import static org.hamcrest.core.IsNull.nullValue;
@@ -25,36 +26,43 @@ public class TokenServiceTest {
     private String deviceToken;
     private String sessionToken;
 
+    @Before
+    public void init() {
+        sessionToken = tokenService.generateSessionToken("profileId", "deviceId");
+        deviceToken = tokenService.generateDeviceToken("profileId", "deviceId");
+    }
+
     @Test
     public void testDeviceToken() throws InterruptedException {
-        testCreatingToken();
         assertThat(tokenService.getDeviceID(deviceToken), is("deviceId"));
         assertThat(tokenService.getProfileID(deviceToken), is("profileId"));
-
-        Thread.sleep(1000);
-        assertThat(tokenService.generateDeviceToken("profileId", "deviceId"),
-                not(deviceToken));
     }
 
     @Test
     public void testSessionToken() throws InterruptedException {
-        testCreatingToken();
         assertThat(tokenService.getDeviceID(sessionToken), is("deviceId"));
         assertThat(tokenService.getProfileID(sessionToken), is("profileId"));
-
-        Thread.sleep(1000);
-        assertThat(tokenService.generateSessionToken("profileId", "deviceId"),
-                not(sessionToken));
     }
 
     @Primary
     @Test
-    public void testCreatingToken() {
-        sessionToken = tokenService.generateSessionToken("profileId", "deviceId");
-        deviceToken = tokenService.generateDeviceToken("profileId", "deviceId");
-
+    public void testNullable() {
         assertThat(deviceToken, notNullValue());
         assertThat(sessionToken, notNullValue());
+    }
+
+    @Test
+    public void validateSessionToken() {
+        tokenService.validateSessionToken(sessionToken);
+    }
+
+    @Test
+    public void validateDeviceToken() {
+        tokenService.validateDeviceToken(deviceToken);
+    }
+
+    @Test
+    public void compareTokens() {
         assertThat(deviceToken, not(sessionToken));
     }
 }

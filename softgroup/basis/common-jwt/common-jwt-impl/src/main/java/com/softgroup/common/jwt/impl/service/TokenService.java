@@ -31,7 +31,15 @@ public class TokenService implements UniversalTokenService {
 
     @Override
     public void validateDeviceToken(String token) throws DeviceTokenException {
-        validateToken(DEVICE_TOKEN, token);
+        try{
+            Jwts.parser()
+                    .require("type", DEVICE_TOKEN.toString())
+                    .setSigningKey(KEY)
+                    .parseClaimsJws(token);
+        } catch (JwtException jwtException){
+            throw new DeviceTokenException(jwtException.getMessage());
+        }
+//        validateToken(, token);
     }
 
     @Override
@@ -49,7 +57,15 @@ public class TokenService implements UniversalTokenService {
 
     @Override
     public void validateSessionToken(String token) throws SessionTokenException {
-       validateToken(SESSION_TOKEN, token);
+        try{
+            Jwts.parser()
+                    .require("type", SESSION_TOKEN.toString())
+                    .setSigningKey(KEY)
+                    .parseClaimsJws(token);
+        } catch (JwtException jwtException){
+            throw new DeviceTokenException(jwtException.getMessage());
+        }
+//       validateToken(, token);
     }
 
     @Override
@@ -112,13 +128,6 @@ public class TokenService implements UniversalTokenService {
     }
 
     private void validateToken(TokenType tokenType, String token) {
-        try{
-            Jwts.parser()
-                    .require("tokenType", tokenType)
-                    .setSigningKey(KEY)
-                    .parseClaimsJws(token);
-        } catch (JwtException jwtException){
-            throw new DeviceTokenException(jwtException.getMessage());
-        }
+
     }
 }
