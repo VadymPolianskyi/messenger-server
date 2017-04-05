@@ -1,6 +1,6 @@
 package com.softgroup.common.dao.impl.service;
 
-import com.softgroup.common.dao.api.entities.ConversationDetailsEntity;
+import com.softgroup.common.dao.api.entities.ConversationMemberEntity;
 import com.softgroup.common.dao.impl.repositories.ConversationDetailsRepository;
 import org.springframework.stereotype.Component;
 
@@ -11,5 +11,5 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ConversationDetailsService
-        extends BaseService<ConversationDetailsEntity, ConversationDetailsRepository>{
+        extends BaseService<ConversationMemberEntity, ConversationDetailsRepository>{
 }

@@ -13,28 +13,15 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "contact")
-public class ContactEntity implements Serializable {
+public class ContactEntity extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 7480919024978527001L;
-
-    @Id
-    @Column(name = "id", unique = true)
-    private String id;
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "data")
-    private String data;
-
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
     public String getName() {
         return name;
@@ -44,31 +31,29 @@ public class ContactEntity implements Serializable {
         this.name = name;
     }
 
-    public String getData() {
-        return data;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ContactEntity)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         ContactEntity that = (ContactEntity) o;
 
-        if (!id.equals(that.id)) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        return data != null ? data.equals(that.data) : that.data == null;
+        return phoneNumber != null ? phoneNumber.equals(that.phoneNumber) : that.phoneNumber == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (data != null ? data.hashCode() : 0);
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
         return result;
     }
 }
