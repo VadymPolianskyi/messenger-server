@@ -12,15 +12,9 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "device")
-public class DeviceEntity  implements Serializable {
+public class DeviceEntity extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 7834796409815852123L;
-
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = "id", unique = true)
-    private String id;
 
     @Column(name = "locale_code")
     private String locale_code;
@@ -34,16 +28,6 @@ public class DeviceEntity  implements Serializable {
     @Column(name = "profile_id")
     private String profileId;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    private ProfileEntity profileEntity;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getProfileId() {
         return profileId;
@@ -52,13 +36,6 @@ public class DeviceEntity  implements Serializable {
     public void setProfileId(String profileId) {
         this.profileId = profileId;
     }
-    //    public ProfileEntity getProfileEntity() {
-//        return profileEntity;
-//    }
-
-//    public void setProfileEntity(ProfileEntity profileEntity) {
-//        this.profileEntity = profileEntity;
-//    }
 
     public String getLocale_code() {
         return locale_code;
@@ -82,5 +59,28 @@ public class DeviceEntity  implements Serializable {
 
     public void setUpdateDateTime(Long updateDateTime) {
         this.updateDateTime = updateDateTime;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DeviceEntity that = (DeviceEntity) o;
+
+        if (locale_code != null ? !locale_code.equals(that.locale_code) : that.locale_code != null) return false;
+        if (deviceId != null ? !deviceId.equals(that.deviceId) : that.deviceId != null) return false;
+        if (updateDateTime != null ? !updateDateTime.equals(that.updateDateTime) : that.updateDateTime != null)
+            return false;
+        return profileId != null ? profileId.equals(that.profileId) : that.profileId == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = locale_code != null ? locale_code.hashCode() : 0;
+        result = 31 * result + (deviceId != null ? deviceId.hashCode() : 0);
+        result = 31 * result + (updateDateTime != null ? updateDateTime.hashCode() : 0);
+        result = 31 * result + (profileId != null ? profileId.hashCode() : 0);
+        return result;
     }
 }
