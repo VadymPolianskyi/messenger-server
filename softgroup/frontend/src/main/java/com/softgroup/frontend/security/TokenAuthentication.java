@@ -1,4 +1,4 @@
-package com.softgroup.frontend.test.security;
+package com.softgroup.frontend.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
