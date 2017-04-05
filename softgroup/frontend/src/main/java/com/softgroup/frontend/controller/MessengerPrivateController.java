@@ -1,4 +1,4 @@
-package com.softgroup.frontend.test.controller;
+package com.softgroup.frontend.controller;
 
 import com.softgroup.common.datamapper.DataMapper;
 import com.softgroup.common.protocol.CommonRequest;
@@ -31,8 +31,7 @@ public class MessengerPrivateController {
 
     @RequestMapping(path = "/private",
             method = RequestMethod.POST)
-    public Response privateMessenger(@RequestBody final String requestStr) {
-        CommonRequest request = jacksonDataMapper.mapData(requestStr.getBytes(StandardCharsets.UTF_8),CommonRequest.class);
+    public Response privateMessenger(@RequestBody final CommonRequest request) {
         request.setRoutingData((RoutingData) session.getAttribute("routing_data"));
         return firstRouterHandler.handle(request);
     }

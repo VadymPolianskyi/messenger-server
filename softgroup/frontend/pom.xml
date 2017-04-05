@@ -21,6 +21,8 @@
 			<spring.core.version>4.3.6.RELEASE</spring.core.version>
 			<spring.web.version>4.3.6.RELEASE</spring.web.version>
 			<jackson.version>2.5.3</jackson.version>
+			<maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+			<maven-war-plugin.version>2.6</maven-war-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -95,5 +97,33 @@
 
 	</dependencies>
 
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<compilerArguments>
+						<endorseddirs>${endorsed.dir}</endorseddirs>
+					</compilerArguments>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${maven-war-plugin.version}</version>
+				<configuration>
+					<attachClasses>true</attachClasses>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
 
 </project>
