@@ -7,7 +7,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 
@@ -17,7 +16,6 @@ import java.util.List;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
-import static org.hamcrest.core.IsNull.nullValue;
 
 /**
  * Author: vadym
@@ -33,29 +31,32 @@ public class RequestHandlerFactoryTest {
     private AbstractRequestHandler handlerFirst;
     @Mock
     private AbstractRequestHandler handlerSecond;
+    @Mock
     private Request firstRequest;
+    @Mock
     private Request secondRequest;
+    @Mock
     private ActionHeader firstHeader;
+    @Mock
     private ActionHeader secondHeader;
 
     @Spy
-    private List<AbstractRequestHandler> handlers = new ArrayList<>();
+    private List<AbstractRequestHandler> handlerList = new ArrayList<>();
 
     @Before
     public void init() {
-        firstRequest = new Request();
-        firstRequest.setHeader(new ActionHeader());
-        firstRequest.getHeader().setCommand("handlerFirst");
-
-        secondRequest = new Request();
-        secondRequest.setHeader(new ActionHeader());
-        secondRequest.getHeader().setCommand("handlerSecond");
-
         when(handlerFirst.getName()).thenReturn("handlerFirst");
         when(handlerSecond.getName()).thenReturn("handlerSecond");
 
-        handlers.add(handlerFirst);
-        handlers.add(handlerSecond);
+        handlerList.add(handlerFirst);
+        handlerList.add(handlerSecond);
+
+
+        when(firstRequest.getHeader()).thenReturn(firstHeader);
+        when(secondRequest.getHeader()).thenReturn(secondHeader);
+
+        when(firstHeader.getCommand()).thenReturn("handlerFirst");
+        when(secondHeader.getCommand()).thenReturn("handlerSecond");
 
         requestHandlerFactory.init();
     }
