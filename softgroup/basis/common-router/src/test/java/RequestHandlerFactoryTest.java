@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mockito;
+import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 
@@ -27,43 +27,43 @@ public class RequestHandlerFactoryTest {
     @InjectMocks
     RequestHandlerFactory requestHandlerFactory;
 
+    @Mock
     private AbstractRequestHandler handlerFirst;
+    @Mock
     private AbstractRequestHandler handlerSecond;
+    @Mock
     private Request firstRequest;
+    @Mock
     private Request secondRequest;
+    @Mock
+    private ActionHeader firstHeader;
+    @Mock
+    private ActionHeader secondHeader;
 
     @Spy
     private List<AbstractRequestHandler> handlerList = new ArrayList<>();
 
     @Before
     public void init() {
-        handlerFirst = Mockito.mock(AbstractRequestHandler.class);
-        handlerSecond = Mockito.mock(AbstractRequestHandler.class);
-
         when(handlerFirst.getName()).thenReturn("handlerFirst");
         when(handlerSecond.getName()).thenReturn("handlerSecond");
-        ActionHeader firstHeader = Mockito.mock(ActionHeader.class);
-        ActionHeader secondHeader = Mockito.mock(ActionHeader.class);
 
         handlerList.add(handlerFirst);
         handlerList.add(handlerSecond);
 
-        firstRequest = Mockito.mock(Request.class);
-        secondRequest = Mockito.mock(Request.class);
 
         when(firstRequest.getHeader()).thenReturn(firstHeader);
         when(secondRequest.getHeader()).thenReturn(secondHeader);
 
         when(firstHeader.getCommand()).thenReturn("handlerFirst");
-        when(firstHeader.getCommand()).thenReturn("handlerSecond");
+        when(secondHeader.getCommand()).thenReturn("handlerSecond");
 
         requestHandlerFactory.init();
     }
 
     @Test
     public void testGetHandler() {
-//        assertThat(requestHandlerFactory.getHandler(null), nullValue());
-//        assertThat(requestHandlerFactory.getHandler(firstRequest), is(handlerFirst));
+        assertThat(requestHandlerFactory.getHandler(firstRequest), is(handlerFirst));
         assertThat(requestHandlerFactory.getHandler(secondRequest), is(handlerSecond));
     }
 
