@@ -1,4 +1,4 @@
-package com.softgroup.frontend.security;
+package com.softgroup.rest.frontend.security;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
