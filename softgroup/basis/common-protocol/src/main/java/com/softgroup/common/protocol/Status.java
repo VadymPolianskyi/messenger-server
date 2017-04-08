@@ -22,4 +22,8 @@ public enum Status {
     public int getNumVal() {
         return numVal;
     }
+    
+    public String getMessage() {
+        return message;
+    }
 }
