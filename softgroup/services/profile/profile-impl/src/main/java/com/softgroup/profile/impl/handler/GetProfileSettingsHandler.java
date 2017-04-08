@@ -2,11 +2,11 @@ package com.softgroup.profile.impl.handler;
 
 import com.softgroup.common.dao.api.entities.ProfileSettingsEntity;
 import com.softgroup.common.dao.impl.service.ProfileSettingsService;
-import com.softgroup.common.jwt.impl.service.TokenService;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseStatus;
 import com.softgroup.common.router.api.AbstractRequestHandler;
+import com.softgroup.model.maper.Mapper;
 import com.softgroup.profile.api.message.GetProfileSettingsRequest;
 import com.softgroup.profile.api.message.GetProfileSettingsResponse;
 import com.softgroup.profile.api.router.ProfileRequestHandler;
@@ -23,11 +23,12 @@ public class GetProfileSettingsHandler
         extends AbstractRequestHandler<GetProfileSettingsRequest,
             GetProfileSettingsResponse> implements ProfileRequestHandler {
 
-    @Autowired
-    TokenService tokenService;
 
     @Autowired
     ProfileSettingsService profileSettingsService;
+
+    @Autowired
+    private Mapper mapper;
 
     public String getName() {
         return "get_profile_settings";
@@ -39,16 +40,22 @@ public class GetProfileSettingsHandler
         GetProfileSettingsResponse getProfileSettingsResponse = new GetProfileSettingsResponse();
 
         String profileId = request.getRoutingData().getProfileId();
-        ProfileSettingsEntity settingsEntity = profileSettingsService.findByProfileId(profileId);
-        getProfileSettingsResponse.setSettings(settingsEntity);
 
+        ProfileSettingsEntity settingsEntity = profileSettingsService.findByProfileId(profileId);
+
+        ResponseStatus status = new ResponseStatus();
+        if (settingsEntity == null) {
+            status.setCode(404);
+            status.setMessage("NOT FOUND");
+        } else {
+            getProfileSettingsResponse.setProfileSettings(mapper.mapProfileSettings(settingsEntity));
+            status.setCode(200);
+            status.setMessage("OK");
+        }
         Response<GetProfileSettingsResponse> response = new Response<GetProfileSettingsResponse>();
         response.setHeader(request.getHeader());
         response.setData(getProfileSettingsResponse);
 
-        ResponseStatus status = new ResponseStatus();
-        status.setCode(200);
-        status.setMessage("OK");
         response.setStatus(status);
         return response;
     }

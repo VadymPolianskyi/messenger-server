@@ -4,6 +4,7 @@ package com.softgroup.profile.api.message;
 import com.softgroup.common.dao.api.entities.ContactEntity;
 import com.softgroup.common.dao.api.entities.ProfileEntity;
 import com.softgroup.common.protocol.ResponseData;
+import com.softgroup.model.maper.ContactDTO;
 
 import java.util.List;
 
@@ -13,13 +14,13 @@ import java.util.List;
  * Time: 10:09
  */
 public class GetContactProfilesResponse implements ResponseData {
-    private List<ContactEntity> contactEntities;
+    private List<ContactDTO> contactDTOS;
 
-    public List<ContactEntity> getContactEntities() {
-        return contactEntities;
+    public List<ContactDTO> getContactDTOS() {
+        return contactDTOS;
     }
 
-    public void setContactEntities(List<ContactEntity> contactEntities) {
-        this.contactEntities = contactEntities;
+    public void setContactDTOS(List<ContactDTO> contactDTOS) {
+        this.contactDTOS = contactDTOS;
     }
 }

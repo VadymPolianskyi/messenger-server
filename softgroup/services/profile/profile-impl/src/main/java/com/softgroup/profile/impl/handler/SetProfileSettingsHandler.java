@@ -7,6 +7,7 @@ import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseStatus;
 import com.softgroup.common.router.api.AbstractRequestHandler;
+import com.softgroup.model.maper.ProfileSettingsDTO;
 import com.softgroup.profile.api.message.SetProfileSettingsRequest;
 import com.softgroup.profile.api.message.SetProfileSettingsResponse;
 import com.softgroup.profile.api.router.ProfileRequestHandler;
@@ -38,22 +39,26 @@ public class SetProfileSettingsHandler
         SetProfileSettingsResponse setProfileSettingsResponse = new SetProfileSettingsResponse();
 
         String profileId = request.getRoutingData().getProfileId();
-        ProfileSettingsEntity settingsEntity = requestData.getProfileSettingsEntity();
-        settingsEntity.setProfileId(profileId);
+        ProfileSettingsDTO profileSettingsDTO = requestData.getProfileSettings();
+        profileSettingsDTO.setProfileId(profileId);
+
         Response<SetProfileSettingsResponse> response = new Response<SetProfileSettingsResponse>();
         response.setHeader(request.getHeader());
         response.setData(setProfileSettingsResponse);
         ResponseStatus status = new ResponseStatus();
 
-        try {
-            profileSettingsService.insert(settingsEntity);
-            status.setCode(200);
-            status.setMessage("OK");
-        } catch (Exception e) {
-            status.setCode(500);
-            status.setMessage("ERROR");
-        }
+        profileSettingsService.insert(convertToEntity(profileSettingsDTO));
+
+        status.setCode(200);
+        status.setMessage("OK");
         response.setStatus(status);
         return response;
+    }
+
+    private ProfileSettingsEntity convertToEntity(ProfileSettingsDTO profileSettingsDTO) {
+        ProfileSettingsEntity profileSettingsEntity = new ProfileSettingsEntity();
+        profileSettingsEntity.setSettingsData(profileSettingsDTO.getSettingsData());
+        profileSettingsEntity.setProfileId(profileSettingsDTO.getProfileId());
+        return profileSettingsEntity;
     }
 }

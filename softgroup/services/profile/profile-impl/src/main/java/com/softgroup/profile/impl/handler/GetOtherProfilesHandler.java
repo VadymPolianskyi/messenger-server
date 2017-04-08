@@ -1,6 +1,5 @@
 package com.softgroup.profile.impl.handler;
 
-import com.softgroup.common.dao.api.entities.ProfileEntity;
 import com.softgroup.common.dao.impl.service.ProfileService;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
@@ -8,8 +7,6 @@ import com.softgroup.common.protocol.ResponseStatus;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.model.maper.Mapper;
 import com.softgroup.model.maper.ProfileDTO;
-import com.softgroup.profile.api.message.GetMyProfileRequest;
-import com.softgroup.profile.api.message.GetMyProfileResponse;
 import com.softgroup.profile.api.message.GetOtherProfilesRequest;
 import com.softgroup.profile.api.message.GetOtherProfilesResponse;
 import com.softgroup.profile.api.router.ProfileRequestHandler;
@@ -46,11 +43,8 @@ public class GetOtherProfilesHandler
 
 
         List<String> uuids = requestData.getUserID();
-        List<ProfileDTO> profileDTOS = new ArrayList<>();
+        List<ProfileDTO> profileDTOS = getProfileDTOs(uuids);
 
-        for (String uuid : uuids) {
-            profileDTOS.add(mapper.map(profileService.findProfileById(uuid)));
-        }
         getOtherProfilesResponse.setProfileDTOS(profileDTOS);
 
         Response<GetOtherProfilesResponse> response = new Response<GetOtherProfilesResponse>();
@@ -63,5 +57,15 @@ public class GetOtherProfilesHandler
 
         response.setStatus(status);
         return response;
+    }
+
+    private List<ProfileDTO> getProfileDTOs(List<String> uuids) {
+        List<ProfileDTO> profileDTOS = new ArrayList<>();
+
+        for (String uuid : uuids) {
+            profileDTOS.add(mapper.mapProfile(profileService.findProfileById(uuid)));
+        }
+
+        return profileDTOS;
     }
 }

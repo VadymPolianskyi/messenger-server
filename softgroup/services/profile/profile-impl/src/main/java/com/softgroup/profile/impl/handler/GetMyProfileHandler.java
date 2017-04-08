@@ -6,9 +6,9 @@ import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseStatus;
 import com.softgroup.common.router.api.AbstractRequestHandler;
+import com.softgroup.model.maper.Mapper;
 import com.softgroup.profile.api.message.GetMyProfileRequest;
 import com.softgroup.profile.api.message.GetMyProfileResponse;
-import com.softgroup.profile.api.message.SetMyProfileResponse;
 import com.softgroup.profile.api.router.ProfileRequestHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,6 +26,9 @@ public class GetMyProfileHandler
     @Autowired
     private ProfileService profileService;
 
+    @Autowired
+    private Mapper maper;
+
     public String getName() {
         return "get_my_profile";
     }
@@ -39,7 +42,7 @@ public class GetMyProfileHandler
 
         ProfileEntity profileEntity = profileService.findProfileById(profileId);
 
-        getMyProfileResponse.setProfileEntity(profileEntity);
+        getMyProfileResponse.setProfileDTO(maper.mapProfile(profileEntity));
 
         Response<GetMyProfileResponse> response = new Response<GetMyProfileResponse>();
         response.setHeader(request.getHeader());
