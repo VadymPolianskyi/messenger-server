@@ -15,11 +15,10 @@ public class ResponseFactory<T extends ResponseData> {
         return response;
     }
 
-    public Response<T> createResponse(Request request, Status status, String message) {
+    public Response<T> createResponse(Request request, Status status) {
         Response<T> response = new Response<T>();
         response.setHeader(request.getHeader());
-        response.setData(null);
-        response.setStatus(new ResponseStatus(status.getNumVal(), message));
+        response.setStatus(new ResponseStatus(status.getNumVal(), status.getMessage()));
 
         return response;
     }
