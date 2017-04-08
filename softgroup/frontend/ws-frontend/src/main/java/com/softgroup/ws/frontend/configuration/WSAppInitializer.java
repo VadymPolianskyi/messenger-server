@@ -14,7 +14,7 @@ public class WSAppInitializer extends AbstractAnnotationConfigDispatcherServletI
     }
 
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[]{WSApplicationConfiguration.class};
+        return new Class<?>[]{};
     }
 
     protected String[] getServletMappings() {

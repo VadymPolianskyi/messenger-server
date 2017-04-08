@@ -1,5 +1,6 @@
 package com.softgroup.ws.frontend;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -14,10 +15,8 @@ import org.springframework.web.socket.server.support.HttpSessionHandshakeInterce
 @Configuration
 @EnableWebSocket
 @ComponentScan(basePackages = {
-        "com.softgroup.ws.frontend"})
+        "com.softgroup.ws"})
 public class WebSocketConfig implements WebSocketConfigurer {
-
-
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
@@ -27,7 +26,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
 
     @Bean
-    public org.springframework.web.socket.WebSocketHandler handler() {
+    public WebSocketHandler handler() {
         return new WebSocketHandler();
     }
 }

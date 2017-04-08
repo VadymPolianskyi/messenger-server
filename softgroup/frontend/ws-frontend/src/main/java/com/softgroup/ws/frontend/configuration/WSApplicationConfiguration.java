@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
  * Date: 08.04.17
  * Time: 17:28
  */
-@Configuration
-@ComponentScan(basePackages = {"com.softgroup.ws.frontend"})
+//@Configuration
+//@ComponentScan(basePackages = {"com.softgroup.ws.frontend"})
 public class WSApplicationConfiguration {
 }
