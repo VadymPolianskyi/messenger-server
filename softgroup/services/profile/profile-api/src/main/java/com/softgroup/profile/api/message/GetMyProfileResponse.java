@@ -1,21 +1,22 @@
 package com.softgroup.profile.api.message;
 
 
-import com.softgroup.common.dao.api.entities.ProfileEntity;
 import com.softgroup.common.protocol.ResponseData;
+import com.softgroup.model.maper.ProfileDTO;
+
 /**
  * Author: vadym
  * Date: 25.02.17
  * Time: 10:11
  */
 public class GetMyProfileResponse implements ResponseData {
-    private ProfileEntity profileEntity;
+    private ProfileDTO profileDTO;
 
-    public ProfileEntity getProfileEntity() {
-        return profileEntity;
+    public ProfileDTO getProfileDTO() {
+        return profileDTO;
     }
 
-    public void setProfileEntity(ProfileEntity profileEntities) {
-        this.profileEntity = profileEntity;
+    public void setProfileDTO(ProfileDTO profileDTO) {
+        this.profileDTO = profileDTO;
     }
 }

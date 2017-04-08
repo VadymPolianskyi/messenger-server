@@ -1,9 +1,7 @@
 package com.softgroup.profile.api.message;
 
-import com.softgroup.common.dao.api.entities.ProfileSettingsEntity;
 import com.softgroup.common.protocol.ResponseData;
-
-import java.util.List;
+import com.softgroup.model.maper.ProfileSettingsDTO;
 
 /**
  * Author: vadym
@@ -11,13 +9,13 @@ import java.util.List;
  * Time: 10:18
  */
 public class GetProfileSettingsResponse implements ResponseData {
-    public ProfileSettingsEntity getSettings() {
-        return settings;
+    private ProfileSettingsDTO profileSettings;
+
+    public ProfileSettingsDTO getProfileSettings() {
+        return profileSettings;
     }
 
-    public void setSettings(ProfileSettingsEntity settings) {
-        this.settings = settings;
+    public void setProfileSettings(ProfileSettingsDTO profileSettings) {
+        this.profileSettings = profileSettings;
     }
-
-    private ProfileSettingsEntity settings;
 }

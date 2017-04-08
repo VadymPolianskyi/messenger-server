@@ -6,6 +6,7 @@ import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseStatus;
 import com.softgroup.common.router.api.AbstractRequestHandler;
+import com.softgroup.model.maper.ProfileDTO;
 import com.softgroup.profile.api.message.SetMyProfileRequest;
 import com.softgroup.profile.api.message.SetMyProfileResponse;
 import com.softgroup.profile.api.router.ProfileRequestHandler;
@@ -34,14 +35,14 @@ public class SetMyProfileHandler
         SetMyProfileRequest requestData = request.getData();
         SetMyProfileResponse setMyProfileResponse = new SetMyProfileResponse();
 
-        ProfileEntity profileEntity = requestData.getProfileEntities();
+        ProfileDTO profileDTO = requestData.getProfile();
         Response<SetMyProfileResponse> response = new Response<SetMyProfileResponse>();
         response.setHeader(request.getHeader());
         response.setData(setMyProfileResponse);
         ResponseStatus status = new ResponseStatus();
 
         try {
-            profileService.insertProfile(profileEntity);
+            profileService.insertProfile(convertToEntity(profileDTO));
             status.setCode(200);
             status.setMessage("OK");
         } catch (Exception e) {
@@ -50,5 +51,16 @@ public class SetMyProfileHandler
         }
         response.setStatus(status);
         return response;
+    }
+
+    private ProfileEntity convertToEntity(ProfileDTO profileDTO) {
+        ProfileEntity profileEntity = new ProfileEntity();
+        profileEntity.setName(profileDTO.getName());
+        profileEntity.setPhoneNumber(profileDTO.getName());
+        profileEntity.setUpdateDateTime(profileDTO.getUpdateDateTime());
+        profileEntity.setCreateDateTime(profileDTO.getCreateDateTime());
+        profileEntity.setAvatarUri(profileDTO.getAvatarUri());
+        profileEntity.setStatus(profileDTO.getStatus());
+        return profileEntity;
     }
 }
