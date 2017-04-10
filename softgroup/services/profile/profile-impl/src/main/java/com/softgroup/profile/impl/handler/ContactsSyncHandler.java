@@ -57,7 +57,8 @@ public class ContactsSyncHandler
     private void addContacts(List<ContactDTO> addContacts, String profileId) {
         for (ContactDTO addContact : addContacts) {
             ContactEntity contactEntity =
-                    contactService.findByNameAndProfileId(addContact.getName(), profileId);
+                    contactService.findByNameAndProfileIdAndPhoneNumber
+                            (addContact.getName(), profileId, addContact.getPhoneNumber());
             if (contactEntity == null) {
                 ContactEntity currentContact = new ContactEntity();
                 currentContact.setName(addContact.getName());
@@ -71,7 +72,8 @@ public class ContactsSyncHandler
     private void removeContacts(List<ContactDTO> removeContacts, String profileId) {
         for (ContactDTO removeContact : removeContacts) {
             ContactEntity contactEntity =
-                    contactService.findByNameAndProfileId(removeContact.getName(), profileId);
+                    contactService.findByNameAndProfileIdAndPhoneNumber
+                                (removeContact.getName(), profileId, removeContact.getPhoneNumber());
             if (contactEntity != null) {
                 contactService.remove(contactEntity);
             }
