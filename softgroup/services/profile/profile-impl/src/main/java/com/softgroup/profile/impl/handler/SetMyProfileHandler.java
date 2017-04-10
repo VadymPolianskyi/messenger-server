@@ -6,6 +6,7 @@ import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseStatus;
 import com.softgroup.common.router.api.AbstractRequestHandler;
+import com.softgroup.model.maper.Mapper;
 import com.softgroup.model.maper.ProfileDTO;
 import com.softgroup.profile.api.message.SetMyProfileRequest;
 import com.softgroup.profile.api.message.SetMyProfileResponse;
@@ -26,6 +27,9 @@ public class SetMyProfileHandler
     @Autowired
     private ProfileService profileService;
 
+    @Autowired
+    private Mapper mapper;
+
     public String getName() {
         return "set_my_profile";
     }
@@ -42,25 +46,20 @@ public class SetMyProfileHandler
         ResponseStatus status = new ResponseStatus();
 
         try {
-            profileService.insertProfile(convertToEntity(profileDTO));
+            ProfileEntity profileEntity = (ProfileEntity) mapper.map(profileDTO, ProfileEntity.class);
+            profileEntity.setId(request.getRoutingData().getProfileId());
+            profileService.insertProfile(profileEntity);
             status.setCode(200);
             status.setMessage("OK");
+            response.setStatus(status);
+            return response;
         } catch (Exception e) {
             status.setCode(500);
             status.setMessage("ERROR");
+            response.setStatus(status);
+            return response;
         }
-        response.setStatus(status);
-        return response;
     }
 
-    private ProfileEntity convertToEntity(ProfileDTO profileDTO) {
-        ProfileEntity profileEntity = new ProfileEntity();
-        profileEntity.setName(profileDTO.getName());
-        profileEntity.setPhoneNumber(profileDTO.getName());
-        profileEntity.setUpdateDateTime(profileDTO.getUpdateDateTime());
-        profileEntity.setCreateDateTime(profileDTO.getCreateDateTime());
-        profileEntity.setAvatarUri(profileDTO.getAvatarUri());
-        profileEntity.setStatus(profileDTO.getStatus());
-        return profileEntity;
-    }
+
 }

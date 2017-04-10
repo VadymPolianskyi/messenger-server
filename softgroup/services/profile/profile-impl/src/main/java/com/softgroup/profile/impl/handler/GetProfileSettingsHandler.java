@@ -7,6 +7,7 @@ import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseStatus;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.model.maper.Mapper;
+import com.softgroup.model.maper.ProfileSettingsDTO;
 import com.softgroup.profile.api.message.GetProfileSettingsRequest;
 import com.softgroup.profile.api.message.GetProfileSettingsResponse;
 import com.softgroup.profile.api.router.ProfileRequestHandler;
@@ -43,20 +44,23 @@ public class GetProfileSettingsHandler
 
         ProfileSettingsEntity settingsEntity = profileSettingsService.findByProfileId(profileId);
 
-        ResponseStatus status = new ResponseStatus();
-        if (settingsEntity == null) {
-            status.setCode(404);
-            status.setMessage("NOT FOUND");
-        } else {
-            getProfileSettingsResponse.setProfileSettings(mapper.mapProfileSettings(settingsEntity));
-            status.setCode(200);
-            status.setMessage("OK");
-        }
         Response<GetProfileSettingsResponse> response = new Response<GetProfileSettingsResponse>();
         response.setHeader(request.getHeader());
         response.setData(getProfileSettingsResponse);
 
-        response.setStatus(status);
-        return response;
+        ResponseStatus status = new ResponseStatus();
+        if (settingsEntity == null) {
+            status.setCode(404);
+            status.setMessage("NOT FOUND");
+            response.setStatus(status);
+            return response;
+        } else {
+            getProfileSettingsResponse.setProfileSettings(
+                    (ProfileSettingsDTO) mapper.map(settingsEntity, ProfileSettingsDTO.class));
+            status.setCode(200);
+            status.setMessage("OK");
+            response.setStatus(status);
+            return response;
+        }
     }
 }

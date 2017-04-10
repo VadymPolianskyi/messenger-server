@@ -1,5 +1,6 @@
 package com.softgroup.profile.impl.handler;
 
+import com.softgroup.common.dao.api.entities.ProfileEntity;
 import com.softgroup.common.dao.impl.service.ProfileService;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
@@ -61,11 +62,11 @@ public class GetOtherProfilesHandler
 
     private List<ProfileDTO> getProfileDTOs(List<String> uuids) {
         List<ProfileDTO> profileDTOS = new ArrayList<>();
+        List<ProfileEntity> profileEntities = profileService.findByArrayOfIds(uuids)
 
-        for (String uuid : uuids) {
-            profileDTOS.add(mapper.mapProfile(profileService.findProfileById(uuid)));
+        for (ProfileEntity profileEntity : profileEntities) {
+            profileDTOS.add((ProfileDTO) mapper.map(profileEntity, ProfileDTO.class));
         }
-
         return profileDTOS;
     }
 }
