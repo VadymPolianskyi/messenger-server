@@ -1,13 +1,16 @@
 package com.softgroup.profile.impl.handler;
 
 import com.softgroup.common.dao.api.entities.ContactEntity;
+import com.softgroup.common.dao.api.entities.ProfileEntity;
 import com.softgroup.common.dao.impl.service.ContactService;
+import com.softgroup.common.dao.impl.service.ProfileService;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseStatus;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.model.maper.ContactDTO;
 import com.softgroup.model.maper.Mapper;
+import com.softgroup.model.maper.ProfileDTO;
 import com.softgroup.profile.api.message.GetContactProfilesRequest;
 import com.softgroup.profile.api.message.GetContactProfilesResponse;
 import com.softgroup.profile.api.router.ProfileRequestHandler;
@@ -28,6 +31,9 @@ public class GetContactProfilesHandler
             GetContactProfilesResponse> implements ProfileRequestHandler {
 
     @Autowired
+    private ProfileService profileService;
+
+    @Autowired
     private ContactService contactService;
 
     @Autowired
@@ -44,8 +50,8 @@ public class GetContactProfilesHandler
         GetContactProfilesResponse getContactProfilesResponse = new GetContactProfilesResponse();
 
         String profileId = request.getRoutingData().getProfileId();
-        List<ContactDTO>  contactDTOS = getContactDTOs(profileId);
-        getContactProfilesResponse.setContactDTOS(contactDTOS);
+        List<ProfileDTO>  profileDTOS = getProfileDTO(profileId);
+        getContactProfilesResponse.setProfileDTOS(profileDTOS);
 
         Response<GetContactProfilesResponse> response = new Response<GetContactProfilesResponse>();
         response.setHeader(request.getHeader());
@@ -58,14 +64,15 @@ public class GetContactProfilesHandler
         return response;
     }
 
-    private List<ContactDTO> getContactDTOs(String profileId) {
-        List<ContactDTO>  contactDTOS = new ArrayList<>();
-        List<ContactEntity> contactEntities = contactService.findByProfileId(profileId);
+    private List<ProfileDTO> getProfileDTO(String profileId) {
+        List<ProfileDTO>  profileDTOS = new ArrayList<>();
+        List<ContactEntity> contactEntitiesToID = contactService.findByProfileId(profileId);
 
-        for (ContactEntity contactEntity : contactEntities) {
-            contactDTOS.add(mapper.mapContact(contactEntity));
+        for (ContactEntity contactEntity : contactEntitiesToID) {
+            ProfileEntity profileEntity = profileService.findProfileById(contactEntity.getProfileId());
+            profileDTOS.add((ProfileDTO) mapper.map(profileEntity, ProfileDTO.class));
         }
 
-        return contactDTOS;
+        return profileDTOS;
     }
 }
