@@ -1,4 +1,4 @@
-package com.softgroup.frontend.security;
+package com.softgroup.rest.frontend.security;
 
 import com.softgroup.common.dao.impl.service.DeviceService;
 import com.softgroup.common.jwt.api.exception.SessionTokenException;

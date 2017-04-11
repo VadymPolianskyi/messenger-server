@@ -1,4 +1,4 @@
-package com.softgroup.frontend.configuration;
+package com.softgroup.rest.frontend.configuration;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 /**
