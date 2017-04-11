@@ -1,4 +1,4 @@
-package com.softgroup.frontend.configuration;
+package com.softgroup.rest.frontend.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -19,7 +19,7 @@ import java.util.List;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {
-        "com.softgroup.frontend"})
+        "com.softgroup.rest.frontend"})
 public class WebConfiguration extends WebMvcConfigurerAdapter{
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {

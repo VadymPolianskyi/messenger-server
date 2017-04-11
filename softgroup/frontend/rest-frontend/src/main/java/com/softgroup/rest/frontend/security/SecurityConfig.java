@@ -1,4 +1,4 @@
-package com.softgroup.frontend.security;
+package com.softgroup.rest.frontend.security;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +13,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  */
 @Configuration
 @EnableWebSecurity
-@ComponentScan("com.softgroup.frontend.security")
+@ComponentScan("com.softgroup.rest.frontend.security")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
