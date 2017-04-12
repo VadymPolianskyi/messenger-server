@@ -5,33 +5,23 @@ import com.softgroup.common.dao.impl.repositories.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * Author: vadym
  * Date: 07.03.17
  * Time: 16:40
  */
 @Component
-public class ProfileService {
+public class ProfileService extends BaseService<ProfileEntity, ProfileRepository> {
     @Autowired
     ProfileRepository profileRepository;
 
-    public ProfileEntity insertProfile(ProfileEntity profileEntity) {
-        return profileRepository.save(profileEntity);
-    }
-
-
-    public void deleteProfile(ProfileEntity profileEntity) {
-        profileRepository.delete(profileEntity);
-    }
-
-
-
-    public ProfileEntity findByPhoneNumber(String phoneNumber) {
-        return profileRepository.findByPhoneNumber(phoneNumber);
-    }
-
     public ProfileEntity findProfileById(String id) {
-        return  profileRepository.findById(id);
+        return  getRepository().findById(id);
     }
 
+    public List<ProfileEntity> findByArrayOfIds(List<String> uuids) {
+        return getRepository().findByArrayOfIds(uuids);
+    }
 }

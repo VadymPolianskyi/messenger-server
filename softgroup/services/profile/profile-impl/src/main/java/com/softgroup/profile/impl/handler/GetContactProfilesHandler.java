@@ -7,6 +7,7 @@ import com.softgroup.common.dao.impl.service.ProfileService;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseStatus;
+import com.softgroup.common.protocol.Status;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.model.maper.Mapper;
 import com.softgroup.profile.api.dto.ProfileDTO;
@@ -52,15 +53,11 @@ public class GetContactProfilesHandler
         List<ProfileDTO>  profileDTOS = getProfileDTO(profileId);
         getContactProfilesResponse.setProfileDTOS(profileDTOS);
 
-        Response<GetContactProfilesResponse> response = new Response<GetContactProfilesResponse>();
-        response.setHeader(request.getHeader());
-        response.setData(getContactProfilesResponse);
-
-        ResponseStatus status = new ResponseStatus();
-        status.setCode(200);
-        status.setMessage("OK");
-        response.setStatus(status);
-        return response;
+        if (profileDTOS.size() == 0) {
+            return responseFactory.createResponse(request, Status.NOT_FOUND);
+        } else {
+            return responseFactory.createResponse(request, getContactProfilesResponse);
+        }
     }
 
     private List<ProfileDTO> getProfileDTO(String profileId) {

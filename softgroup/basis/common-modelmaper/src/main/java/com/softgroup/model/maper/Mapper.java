@@ -1,5 +1,6 @@
 package com.softgroup.model.maper;
 
+import com.softgroup.common.dao.api.entities.BaseEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -8,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Date: 28.02.17
  * Time: 18:55
  */
-public class Mapper<T extends  BaseEntity, R> {
+public class Mapper<T extends BaseEntity, R> {
 
     @Autowired
     ModelMapper modelMapper;

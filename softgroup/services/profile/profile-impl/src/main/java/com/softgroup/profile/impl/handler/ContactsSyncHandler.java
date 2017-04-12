@@ -41,15 +41,7 @@ public class ContactsSyncHandler
         addContacts(requestData.getAddedContacts(), profileId);
         removeContacts(requestData.getRemovedContacts(), profileId);
 
-        Response<ContactsSyncResponse> response = new Response<ContactsSyncResponse>();
-        response.setHeader(request.getHeader());
-        response.setData(contactsSyncResponse);
-
-        ResponseStatus status = new ResponseStatus();
-        status.setCode(200);
-        status.setMessage("OK");
-        response.setStatus(status);
-        return response;
+        return responseFactory.createResponse(request, contactsSyncResponse);
     }
 
     private void addContacts(List<ContactDTO> addContacts, String profileId) {
@@ -60,8 +52,8 @@ public class ContactsSyncHandler
             if (contactEntity == null) {
                 ContactEntity currentContact = new ContactEntity();
                 currentContact.setName(addContact.getName());
-                currentContact.setData(addContact.getPhoneNumber());
-                contactService.insert(currentContact);
+                currentContact.setPhoneNumber(addContact.getPhoneNumber());
+                contactService.save(currentContact);
             }
         }
 
@@ -73,7 +65,7 @@ public class ContactsSyncHandler
                     contactService.findByNameAndProfileIdAndPhoneNumber
                                 (removeContact.getName(), profileId, removeContact.getPhoneNumber());
             if (contactEntity != null) {
-                contactService.remove(contactEntity);
+                contactService.delete(contactEntity.getId());
             }
         }
     }

@@ -2,6 +2,8 @@ package com.softgroup.common.dao.impl.repositories;
 
 import com.softgroup.common.dao.api.entities.ProfileEntity;
 
+import java.util.List;
+
 
 /**
  * Author: vadym
@@ -10,9 +12,7 @@ import com.softgroup.common.dao.api.entities.ProfileEntity;
  */
 public interface ProfileRepository extends BaseRepository<ProfileEntity> {
 
-
-
-    ProfileEntity findByPhoneNumber(String phoneNumber);
+    List<ProfileEntity> findByArrayOfIds(List<String> profileIds);
 
     ProfileEntity findById(String id);
 }

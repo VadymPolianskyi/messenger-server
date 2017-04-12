@@ -23,6 +23,17 @@ public class ContactEntity extends BaseEntity implements Serializable {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    @Column(name = "profile_id")
+    private String profileId;
+
+    public String getProfileId() {
+        return profileId;
+    }
+
+    public void setProfileId(String profileId) {
+        this.profileId = profileId;
+    }
+
     public String getName() {
         return name;
     }
@@ -47,13 +58,15 @@ public class ContactEntity extends BaseEntity implements Serializable {
         ContactEntity that = (ContactEntity) o;
 
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        return phoneNumber != null ? phoneNumber.equals(that.phoneNumber) : that.phoneNumber == null;
+        if (phoneNumber != null ? !phoneNumber.equals(that.phoneNumber) : that.phoneNumber != null) return false;
+        return profileId != null ? profileId.equals(that.profileId) : that.profileId == null;
     }
 
     @Override
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
+        result = 31 * result + (profileId != null ? profileId.hashCode() : 0);
         return result;
     }
 }

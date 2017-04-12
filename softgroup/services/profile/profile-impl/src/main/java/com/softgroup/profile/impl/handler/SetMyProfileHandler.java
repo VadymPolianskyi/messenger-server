@@ -5,6 +5,7 @@ import com.softgroup.common.dao.impl.service.ProfileService;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseStatus;
+import com.softgroup.common.protocol.Status;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.model.maper.Mapper;
 import com.softgroup.profile.api.dto.ProfileDTO;
@@ -40,24 +41,14 @@ public class SetMyProfileHandler
         SetMyProfileResponse setMyProfileResponse = new SetMyProfileResponse();
 
         ProfileDTO profileDTO = requestData.getProfile();
-        Response<SetMyProfileResponse> response = new Response<SetMyProfileResponse>();
-        response.setHeader(request.getHeader());
-        response.setData(setMyProfileResponse);
-        ResponseStatus status = new ResponseStatus();
+        ProfileEntity profileEntity = (ProfileEntity) mapper.mapRevert(profileDTO, ProfileEntity.class);
 
         try {
-            ProfileEntity profileEntity = (ProfileEntity) mapper.mapRevert(profileDTO, ProfileEntity.class);
             profileEntity.setId(request.getRoutingData().getProfileId());
-            profileService.save(profileEntity);
-            status.setCode(200);
-            status.setMessage("OK");
-            response.setStatus(status);
-            return response;
+            profileService.update(profileEntity);
+            return responseFactory.createResponse(request, setMyProfileResponse);
         } catch (Exception e) {
-            status.setCode(500);
-            status.setMessage("ERROR");
-            response.setStatus(status);
-            return response;
+            return responseFactory.createResponse(request, Status.BAD_REQUEST);
         }
     }
 
