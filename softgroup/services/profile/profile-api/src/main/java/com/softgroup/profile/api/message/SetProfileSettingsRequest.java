@@ -1,7 +1,7 @@
 package com.softgroup.profile.api.message;
 
-import com.softgroup.common.dao.api.entities.ProfileSettingsEntity;
 import com.softgroup.common.protocol.RequestData;
+import com.softgroup.profile.api.dto.ProfileSettingsDTO;
 
 /**
  * Author: vadym
@@ -9,13 +9,13 @@ import com.softgroup.common.protocol.RequestData;
  * Time: 10:20
  */
 public class SetProfileSettingsRequest implements RequestData {
-    private ProfileSettingsEntity profileSettingsEntity;
+    private ProfileSettingsDTO profileSettings;
 
-    public ProfileSettingsEntity getProfileSettingsEntity() {
-        return profileSettingsEntity;
+    public ProfileSettingsDTO getProfileSettings() {
+        return profileSettings;
     }
 
-    public void setProfileSettingsEntity(ProfileSettingsEntity profileSettingsEntity) {
-        this.profileSettingsEntity = profileSettingsEntity;
+    public void setProfileSettings(ProfileSettingsDTO profileSettings) {
+        this.profileSettings = profileSettings;
     }
 }

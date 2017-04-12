@@ -1,6 +1,5 @@
 package com.softgroup.model.maper;
 
-import com.softgroup.common.dao.api.entities.ProfileEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,11 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Date: 28.02.17
  * Time: 18:55
  */
-public class Mapper {
+public class Mapper<T extends  BaseEntity, R> {
 
     @Autowired
     ModelMapper modelMapper;
-    public ProfileDTO map(ProfileEntity profileEntity) {
-        return modelMapper.map(profileEntity, ProfileDTO.class);
+
+    public R map(T base, Class<R> classToMapping) {
+        return modelMapper.map(base,classToMapping);
+    }
+
+    public T mapRevert(R base, Class<T> classToMapping) {
+        return modelMapper.map(base,classToMapping);
     }
 }
