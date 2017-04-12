@@ -7,7 +7,7 @@ import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseStatus;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.model.maper.Mapper;
-import com.softgroup.model.maper.ProfileDTO;
+import com.softgroup.profile.api.dto.ProfileDTO;
 import com.softgroup.profile.api.message.SetMyProfileRequest;
 import com.softgroup.profile.api.message.SetMyProfileResponse;
 import com.softgroup.profile.api.router.ProfileRequestHandler;
@@ -28,7 +28,7 @@ public class SetMyProfileHandler
     private ProfileService profileService;
 
     @Autowired
-    private Mapper mapper;
+    private Mapper<ProfileEntity, ProfileDTO> mapper;
 
     public String getName() {
         return "set_my_profile";
@@ -46,9 +46,9 @@ public class SetMyProfileHandler
         ResponseStatus status = new ResponseStatus();
 
         try {
-            ProfileEntity profileEntity = (ProfileEntity) mapper.map(profileDTO, ProfileEntity.class);
+            ProfileEntity profileEntity = (ProfileEntity) mapper.mapRevert(profileDTO, ProfileEntity.class);
             profileEntity.setId(request.getRoutingData().getProfileId());
-            profileService.insertProfile(profileEntity);
+            profileService.save(profileEntity);
             status.setCode(200);
             status.setMessage("OK");
             response.setStatus(status);
