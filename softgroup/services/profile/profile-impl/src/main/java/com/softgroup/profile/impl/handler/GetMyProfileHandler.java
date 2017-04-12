@@ -7,7 +7,7 @@ import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseStatus;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.model.maper.Mapper;
-import com.softgroup.model.maper.ProfileDTO;
+import com.softgroup.profile.api.dto.ProfileDTO;
 import com.softgroup.profile.api.message.GetMyProfileRequest;
 import com.softgroup.profile.api.message.GetMyProfileResponse;
 import com.softgroup.profile.api.router.ProfileRequestHandler;
@@ -28,7 +28,7 @@ public class GetMyProfileHandler
     private ProfileService profileService;
 
     @Autowired
-    private Mapper maper;
+    private Mapper<ProfileEntity, ProfileDTO> maper;
 
     public String getName() {
         return "get_my_profile";

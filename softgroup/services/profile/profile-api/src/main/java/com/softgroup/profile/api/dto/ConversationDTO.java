@@ -1,4 +1,4 @@
-package com.softgroup.model.maper;
+package com.softgroup.profile.api.dto;
 
 import com.softgroup.common.dao.api.entities.types.ConversationType;
 

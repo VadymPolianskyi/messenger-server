@@ -8,9 +8,8 @@ import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseStatus;
 import com.softgroup.common.router.api.AbstractRequestHandler;
-import com.softgroup.model.maper.ContactDTO;
 import com.softgroup.model.maper.Mapper;
-import com.softgroup.model.maper.ProfileDTO;
+import com.softgroup.profile.api.dto.ProfileDTO;
 import com.softgroup.profile.api.message.GetContactProfilesRequest;
 import com.softgroup.profile.api.message.GetContactProfilesResponse;
 import com.softgroup.profile.api.router.ProfileRequestHandler;
@@ -37,7 +36,7 @@ public class GetContactProfilesHandler
     private ContactService contactService;
 
     @Autowired
-    private Mapper mapper;
+    private Mapper<ProfileEntity, ProfileDTO> mapper;
 
     public String getName() {
         return "get_contact_profiles";

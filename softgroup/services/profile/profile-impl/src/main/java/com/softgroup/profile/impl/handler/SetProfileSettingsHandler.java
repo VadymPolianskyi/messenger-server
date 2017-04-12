@@ -7,7 +7,7 @@ import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseStatus;
 import com.softgroup.common.router.api.AbstractRequestHandler;
-import com.softgroup.model.maper.ProfileSettingsDTO;
+import com.softgroup.profile.api.dto.ProfileSettingsDTO;
 import com.softgroup.profile.api.message.SetProfileSettingsRequest;
 import com.softgroup.profile.api.message.SetProfileSettingsResponse;
 import com.softgroup.profile.api.router.ProfileRequestHandler;
@@ -22,12 +22,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class SetProfileSettingsHandler
         extends AbstractRequestHandler<SetProfileSettingsRequest,
-                SetProfileSettingsResponse> implements ProfileRequestHandler {
-    @Autowired
-    TokenService tokenService;
+                SetProfileSettingsResponse> implements ProfileRequestHandler
 
     @Autowired
-    ProfileSettingsService profileSettingsService;
+    private ProfileSettingsService profileSettingsService;
 
     public String getName() {
         return "set_profile_settings";
@@ -47,7 +45,7 @@ public class SetProfileSettingsHandler
         response.setData(setProfileSettingsResponse);
         ResponseStatus status = new ResponseStatus();
 
-        profileSettingsService.insert(convertToEntity(profileSettingsDTO));
+        profileSettingsService.save(convertToEntity(profileSettingsDTO));
 
         status.setCode(200);
         status.setMessage("OK");

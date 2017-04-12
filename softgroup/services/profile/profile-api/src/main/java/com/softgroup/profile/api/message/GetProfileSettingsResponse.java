@@ -1,7 +1,7 @@
 package com.softgroup.profile.api.message;
 
 import com.softgroup.common.protocol.ResponseData;
-import com.softgroup.model.maper.ProfileSettingsDTO;
+import com.softgroup.profile.api.dto.ProfileSettingsDTO;
 
 /**
  * Author: vadym

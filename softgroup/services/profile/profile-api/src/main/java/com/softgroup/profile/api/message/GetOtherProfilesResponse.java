@@ -1,9 +1,8 @@
 package com.softgroup.profile.api.message;
 
 
-import com.softgroup.common.dao.api.entities.ProfileEntity;
 import com.softgroup.common.protocol.ResponseData;
-import com.softgroup.model.maper.ProfileDTO;
+import com.softgroup.profile.api.dto.ProfileDTO;
 
 import java.util.List;
 
