@@ -1,5 +1,6 @@
 package com.softgroup.messenger.api.message;
 
+import com.softgroup.common.dao.api.entities.types.ConversationType;
 import com.softgroup.common.protocol.RequestData;
 
 /**
@@ -9,13 +10,13 @@ import com.softgroup.common.protocol.RequestData;
  */
 public class GetConversationsRequest implements RequestData {
 
-    private String type;
+    private ConversationType type;
 
-    public String getType() {
+    public ConversationType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(ConversationType type) {
         this.type = type;
     }
 }
