@@ -3,8 +3,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
     <modules>
-        <module>ws-frontend</module>
 		<module>rest-frontend</module>
+		<module>ws-frontend</module>
 	</modules>
     <parent>
 		<groupId>com.softgroup</groupId>

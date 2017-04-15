@@ -5,7 +5,10 @@ import com.softgroup.common.cache.CacheConfig;
 import com.softgroup.common.dao.impl.configuration.DaoConfig;
 import com.softgroup.common.datamapper.configuration.DataMapperAppCfg;
 import com.softgroup.common.jwt.impl.service.TokenConfig;
+import com.softgroup.common.protocol.configuration.ProtocolConfig;
 import com.softgroup.common.router.RouterConfig;
+import com.softgroup.messenger.impl.MessengerConfig;
+import com.softgroup.profile.impl.ProfileConfig;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
@@ -24,9 +27,12 @@ import org.springframework.context.annotation.Import;
 @Import({DataMapperAppCfg.class,
         RouterConfig.class,
         AuthorizationConfig.class,
+        ProfileConfig.class,
+        MessengerConfig.class,
         TokenConfig.class,
         DaoConfig.class,
-        CacheConfig.class
+        CacheConfig.class,
+        ProtocolConfig.class
 })
 public class RestApplicationConfiguration {
 }
