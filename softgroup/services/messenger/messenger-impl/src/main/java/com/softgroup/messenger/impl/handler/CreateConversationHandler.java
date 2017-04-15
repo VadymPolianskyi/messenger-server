@@ -1,12 +1,25 @@
 package com.softgroup.messenger.impl.handler;
 
+import com.softgroup.common.dao.api.entities.ConversationEntity;
+import com.softgroup.common.dao.api.entities.ConversationMemberEntity;
+import com.softgroup.common.dao.api.entities.ConversationSettingsEntity;
+import com.softgroup.common.dao.api.entities.types.ConversationType;
+import com.softgroup.common.dao.impl.service.ConversationMemberService;
+import com.softgroup.common.dao.impl.service.ConversationService;
+import com.softgroup.common.dao.impl.service.ConversationSettingsService;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
+import com.softgroup.common.protocol.Status;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.messenger.api.message.CreateConversationRequest;
 import com.softgroup.messenger.api.message.CreateConversationResponse;
 import com.softgroup.messenger.api.router.MessengerRequestHandler;
+import com.softgroup.model.maper.Mapper;
+import com.softgroup.profile.api.dto.ConversationDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * Author: vadym
@@ -16,6 +29,19 @@ import org.springframework.stereotype.Component;
 public class CreateConversationHandler
         extends AbstractRequestHandler<CreateConversationRequest,
             CreateConversationResponse> implements MessengerRequestHandler {
+
+     @Autowired
+     private ConversationService conversationService;
+
+     @Autowired
+     private ConversationMemberService conversationMemberService;
+
+     @Autowired
+     private ConversationSettingsService conversationSettingsService;
+
+     @Autowired
+     private Mapper<ConversationEntity, ConversationDTO> mapper;
+
     @Override
     public String getName() {
         return "create_conversation";
@@ -23,6 +49,47 @@ public class CreateConversationHandler
 
 
     public Response<CreateConversationResponse> doHandle(Request<CreateConversationRequest> request) {
-        return null;
+        CreateConversationRequest requestData = request.getData();
+        CreateConversationResponse createConversationResponse = new CreateConversationResponse();
+
+        String profileId = request.getRoutingData().getProfileId();
+        ConversationDTO conversationDTO = new ConversationDTO();
+
+        if (conversationDTO == null) {
+            return responseFactory.createResponse(request, Status.BAD_REQUEST);
+        } else {
+            createConversationResponse.setConversationDTO(conversationDTO);
+            return responseFactory.createResponse(request, createConversationResponse);
+        }
+    }
+
+    private ConversationDTO createConversation(ConversationType type,
+                                               List<String> membersIDs, String authorId) {
+
+        Long currentTime = System.currentTimeMillis();
+        ConversationEntity conversationEntity = new ConversationEntity();
+        conversationEntity.setCreationDate(currentTime);
+        if (membersIDs.size() > 2) {
+            conversationEntity.setType(ConversationType.CONVERSATION);
+        } else  {
+            conversationEntity.setType(ConversationType.DIALOG);
+        }
+        conversationEntity = conversationService.add(conversationEntity);
+        String conversationId = conversationEntity.getId();
+
+
+        for (String membersID : membersIDs) {
+            ConversationMemberEntity conversationMemberEntity = new ConversationMemberEntity();
+            conversationMemberEntity.setProfileId(membersID);
+            conversationMemberEntity.setJoinDate(currentTime);
+            conversationMemberEntity.setConversationId(conversationId);
+            conversationMemberService.add(conversationMemberEntity);
+        }
+
+        ConversationSettingsEntity conversationSettingsEntity = new ConversationSettingsEntity();
+        conversationSettingsEntity.setConversationId(conversationId);
+        conversationSettingsEntity.setAdminId(authorId);
+        conversationSettingsService.add(conversationSettingsEntity);
+        return mapper.map(conversationEntity, ConversationDTO.class);
     }
 }

@@ -27,7 +27,6 @@ public class ConversationMemberEntity extends BaseEntity implements Serializable
     @Column(name = "join_date")
     private Long joinDate;
 
-    //    deleted(0)/not deleted(1)
     @Column(name = "status")
     private ConversationMemberStatus status;
 

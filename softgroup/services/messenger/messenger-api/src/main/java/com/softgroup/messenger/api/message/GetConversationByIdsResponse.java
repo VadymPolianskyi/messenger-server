@@ -1,8 +1,8 @@
 package com.softgroup.messenger.api.message;
 
 
-import com.softgroup.common.dao.api.entities.ConversationEntity;
 import com.softgroup.common.protocol.ResponseData;
+import com.softgroup.profile.api.dto.ConversationDTO;
 
 import java.util.List;
 
@@ -12,13 +12,13 @@ import java.util.List;
  * Time: 17:14
  */
 public class GetConversationByIdsResponse implements ResponseData {
-    private List<ConversationEntity> conversationEntities;
+    private List<ConversationDTO> conversationDTOS;
 
-    public List<ConversationEntity> getConversationEntities() {
-        return conversationEntities;
+    public List<ConversationDTO> getConversationDTOS() {
+        return conversationDTOS;
     }
 
-    public void setConversationEntities(List<ConversationEntity> conversationEntities) {
-        this.conversationEntities = conversationEntities;
+    public void setConversationDTOS(List<ConversationDTO> conversationDTOS) {
+        this.conversationDTOS = conversationDTOS;
     }
 }
