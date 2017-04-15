@@ -15,7 +15,7 @@ public abstract class AbstractRequestHandler<T extends RequestData, R extends Re
     private DataMapper mapper;
 
     @Autowired
-    protected ResponseFactory<R> responseFactory;
+    private ResponseFactory<R> responseFactory;
 
     static Logger log = LoggerFactory.getLogger(AbstractRequestHandler.class);
 
