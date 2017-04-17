@@ -18,4 +18,8 @@ public class ConversationService extends
     public List<ConversationEntity> findConversationsByIds(List<String> conversationIds) {
         return getRepository().findAll(conversationIds);
     }
+        
+    public List<ConversationEntity> findByTypeAndIdIn(ConversationType type, List<String> conversationIds) {
+        return getRepository().findByTypeAndIdIn(type, conversationIds);
+    }
 }
