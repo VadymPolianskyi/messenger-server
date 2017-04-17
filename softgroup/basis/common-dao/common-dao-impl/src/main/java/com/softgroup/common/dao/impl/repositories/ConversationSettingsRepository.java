@@ -14,4 +14,5 @@ public interface ConversationSettingsRepository
     void deleteByConversationId(String conversationId);
     ConversationSettingsEntity findByConversationId(String conversationId);
     List<ConversationSettingsEntity> findByConversationIdIn(List<String> conversationIds);
+    ConversationSettingsEntity findByAdminId(String adminId);
 }
