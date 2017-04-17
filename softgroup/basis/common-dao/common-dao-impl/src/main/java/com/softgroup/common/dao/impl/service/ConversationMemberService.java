@@ -24,4 +24,12 @@ public class ConversationMemberService
     public List<ConversationMemberEntity> findByConversationIdIn(List<String> conversationIds) {
         return getRepository().findByConversationIdIn(conversationIds);
     }
+        
+    public List<ConversationMemberEntity> findByProfileId(String profileId) {
+        return new ArrayList<>();
+    }
+
+    public ConversationMemberEntity findByConversationIdAndProfileId(String conversationId, String profileId) {
+        return getRepository().findByConversationIdAndProfileId(conversationId, profileId);
+    }
 }
