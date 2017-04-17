@@ -25,4 +25,8 @@ public class ConversationSettingsService
     public List<ConversationSettingsEntity> findByConversationIdIn(List<String> conversationIds) {
         return getRepository().findByConversationIdIn(conversationIds);
     }
+        
+    public ConversationSettingsEntity findByAdminId(String profileId) {
+        return getRepository().findByAdminId(profileId);
+    }
 }
