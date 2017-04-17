@@ -8,4 +8,5 @@ import com.softgroup.common.dao.api.entities.MessageStatusEntity;
  * Time: 16:56
  */
 public interface MessageStatusRepository extends BaseRepository<MessageStatusEntity> {
+    MessageStatusEntity findByMessageId(String messageId);
 }

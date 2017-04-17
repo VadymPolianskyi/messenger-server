@@ -6,5 +6,6 @@ package com.softgroup.common.dao.api.entities.types;
  * Time: 8:32
  */
 public enum MessageStatus {
+    READ, UNREAD
 
 }

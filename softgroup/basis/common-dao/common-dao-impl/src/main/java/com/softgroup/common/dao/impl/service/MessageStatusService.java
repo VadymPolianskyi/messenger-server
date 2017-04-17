@@ -9,4 +9,7 @@ import com.softgroup.common.dao.impl.repositories.MessageStatusRepository;
  * Time: 16:58
  */
 public class MessageStatusService extends BaseService<MessageStatusEntity, MessageStatusRepository> {
+    public MessageStatusEntity findByMessageId(String messageId) {
+        return getRepository().findByMessageId(messageId);
+    }
 }

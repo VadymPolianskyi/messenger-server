@@ -1,8 +1,8 @@
 package com.softgroup.messenger.api.message;
 
 
-import com.softgroup.common.dao.api.entities.ConversationEntity;
 import com.softgroup.common.protocol.RequestData;
+import com.softgroup.messenger.api.dto.ConversationSettingsDTO;
 
 /**
  * Author: vadym
@@ -11,13 +11,13 @@ import com.softgroup.common.protocol.RequestData;
  */
 public class UpdateConversationSettingsRequest implements RequestData {
 
-    private ConversationEntity conversationEntitySettings;
+    private ConversationSettingsDTO conversationSettingsDTO;
 
-    public ConversationEntity getConversationEntitySettings() {
-        return conversationEntitySettings;
+    public ConversationSettingsDTO getConversationSettingsDTO() {
+        return conversationSettingsDTO;
     }
 
-    public void setConversationEntitySettings(ConversationEntity conversationEntitySettings) {
-        this.conversationEntitySettings = conversationEntitySettings;
+    public void setConversationSettingsDTO(ConversationSettingsDTO conversationSettingsDTO) {
+        this.conversationSettingsDTO = conversationSettingsDTO;
     }
 }
