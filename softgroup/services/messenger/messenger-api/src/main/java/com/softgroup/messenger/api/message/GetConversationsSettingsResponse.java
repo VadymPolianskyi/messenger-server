@@ -1,8 +1,8 @@
 package com.softgroup.messenger.api.message;
 
 
-import com.softgroup.common.dao.api.entities.ConversationEntity;
 import com.softgroup.common.protocol.ResponseData;
+import com.softgroup.messenger.api.dto.ConversationSettingsDTO;
 
 import java.util.List;
 
@@ -12,13 +12,13 @@ import java.util.List;
  * Time: 19:12
  */
 public class GetConversationsSettingsResponse implements ResponseData {
-    private List<ConversationEntity> conversationsSettings;
+    private List<ConversationSettingsDTO> conversationSettingsDTOS;
 
-    public List<ConversationEntity> getConversationsSettings() {
-        return conversationsSettings;
+    public List<ConversationSettingsDTO> getConversationSettingsDTOS() {
+        return conversationSettingsDTOS;
     }
 
-    public void setConversationsSettings(List<ConversationEntity> conversationsSettings) {
-        this.conversationsSettings = conversationsSettings;
+    public void setConversationSettingsDTOS(List<ConversationSettingsDTO> conversationSettingsDTOS) {
+        this.conversationSettingsDTOS = conversationSettingsDTOS;
     }
 }

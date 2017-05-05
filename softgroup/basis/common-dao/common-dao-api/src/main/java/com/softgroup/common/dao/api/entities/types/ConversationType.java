@@ -6,4 +6,5 @@ package com.softgroup.common.dao.api.entities.types;
  * Time: 8:24
  */
 public enum ConversationType {
+    DIALOG, CONVERSATION
 }
