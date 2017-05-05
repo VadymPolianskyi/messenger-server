@@ -17,7 +17,7 @@ public abstract class BaseService
     @Autowired
     private R repository;
 
-    public T add(T entity){
+    public T save(T entity){
         return repository.save(entity);
     }
 

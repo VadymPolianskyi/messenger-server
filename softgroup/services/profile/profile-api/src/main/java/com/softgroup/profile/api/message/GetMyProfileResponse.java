@@ -1,10 +1,8 @@
 package com.softgroup.profile.api.message;
 
 
-import com.softgroup.common.dao.api.entities.ProfileEntity;
 import com.softgroup.common.protocol.ResponseData;
-
-import java.util.List;
+import com.softgroup.profile.api.dto.ProfileDTO;
 
 /**
  * Author: vadym
@@ -12,13 +10,13 @@ import java.util.List;
  * Time: 10:11
  */
 public class GetMyProfileResponse implements ResponseData {
-    public List<ProfileEntity> getProfileEntities() {
-        return profileEntities;
+    private ProfileDTO profileDTO;
+
+    public ProfileDTO getProfileDTO() {
+        return profileDTO;
     }
 
-    public void setProfileEntities(List<ProfileEntity> profileEntities) {
-        this.profileEntities = profileEntities;
+    public void setProfileDTO(ProfileDTO profileDTO) {
+        this.profileDTO = profileDTO;
     }
-
-    private List<ProfileEntity> profileEntities;
 }

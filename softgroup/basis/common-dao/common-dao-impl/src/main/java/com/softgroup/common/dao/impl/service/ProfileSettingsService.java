@@ -25,4 +25,8 @@ public class ProfileSettingsService
         }
 
     }
+
+    public ProfileSettingsEntity findByProfileId(String profileId) {
+        return getRepository().findByProfileId(profileId);
+    }
 }

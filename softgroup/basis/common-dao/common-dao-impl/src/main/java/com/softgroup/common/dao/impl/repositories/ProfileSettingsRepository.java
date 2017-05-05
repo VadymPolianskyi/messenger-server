@@ -12,4 +12,5 @@ import java.util.List;
  */
 public interface ProfileSettingsRepository extends BaseRepository<ProfileSettingsEntity> {
     List<ProfileSettingsEntity> findAll();
+    ProfileSettingsEntity findByProfileId(String profileId);
 }
