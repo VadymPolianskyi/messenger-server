@@ -46,12 +46,15 @@ public class RouterHandlerFactoryTest {
     @Before
     public void init() {
         firstRequest = new Request();
-        firstRequest.setHeader(new ActionHeader());
-        firstRequest.getHeader().setType("firstRouter");
+        firstHeader = new ActionHeader();
+        firstHeader.setType("firstRouter");
+        firstRequest.setHeader(firstHeader);
 
         secondRequest = new Request();
-        secondRequest.setHeader(new ActionHeader());
-        secondRequest.getHeader().setType("secondRouter");
+        secondHeader = new ActionHeader();
+        secondHeader.setType("secondRouter");
+        secondRequest.setHeader(secondHeader);
+
 
         when(firstRouter.getName()).thenReturn("firstRouter");
         when(secondRouter.getName()).thenReturn("secondRouter");
@@ -64,9 +67,13 @@ public class RouterHandlerFactoryTest {
 
     @Test
     public void testGetHandler() {
-        assertThat(routerHandlerFactory.getHandler(null), nullValue());
         assertThat(routerHandlerFactory.getHandler(firstRequest), is(firstRouter));
         assertThat(routerHandlerFactory.getHandler(secondRequest), is(secondRouter));
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testNullable() {
+        assertThat(routerHandlerFactory.getHandler(null), nullValue());
     }
 
 
