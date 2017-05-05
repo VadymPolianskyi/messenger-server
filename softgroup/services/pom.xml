@@ -16,7 +16,8 @@
 		<module>authorization</module>
 		<module>messenger</module>
 		<module>profile</module>
-	</modules>
+        <module>last-time-online</module>
+    </modules>
 
 	<properties>
 		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
