@@ -2,9 +2,9 @@ package com.softgroup.common.router.api;
 
 
 import com.softgroup.common.datamapper.DataMapper;
+import com.softgroup.common.loger.Loggable;
 import com.softgroup.common.protocol.*;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.ParameterizedType;
@@ -17,7 +17,8 @@ public abstract class AbstractRequestHandler<T extends RequestData, R extends Re
     @Autowired
     protected ResponseFactory<R> responseFactory;
 
-    static Logger log = LoggerFactory.getLogger(AbstractRequestHandler.class);
+    @Loggable
+    static Logger log;
 
     public abstract Response<R> doHandle(Request<T> request);
 

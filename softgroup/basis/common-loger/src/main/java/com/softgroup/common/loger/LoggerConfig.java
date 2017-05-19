@@ -10,5 +10,5 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ComponentScan(basePackages = "com.softgroup.common.loger")
-public class LoggerConfigur {
+public class LoggerConfig {
 }

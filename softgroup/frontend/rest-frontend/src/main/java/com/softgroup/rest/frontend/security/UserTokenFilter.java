@@ -3,6 +3,7 @@ package com.softgroup.rest.frontend.security;
 import com.softgroup.common.dao.impl.service.DeviceService;
 import com.softgroup.common.jwt.api.exception.SessionTokenException;
 import com.softgroup.common.jwt.impl.service.TokenService;
+import com.softgroup.common.loger.Loggable;
 import com.softgroup.common.protocol.RoutingData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,9 @@ import java.io.IOException;
  * Created by vadym_polyanski on 20.03.17.
  */
 public class UserTokenFilter extends UsernamePasswordAuthenticationFilter {
-    static Logger log = LoggerFactory.getLogger(UserTokenFilter.class);
+
+    @Loggable
+    static Logger log;
 
     @Autowired
     TokenAuthentication tokenAuthentication;

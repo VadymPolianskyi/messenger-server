@@ -27,6 +27,11 @@
 			<groupId>com.softgroup</groupId>
 			<artifactId>common-protocol</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.softgroup</groupId>
+			<artifactId>common-loger</artifactId>
+			<version>0.0.1</version>
+		</dependency>
 
 	</dependencies>
 </project>
