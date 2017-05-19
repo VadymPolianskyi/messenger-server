@@ -65,7 +65,7 @@ public class SendMessageHandler
     private MessageDTO sendMessage(MessageDTO messageDTO) {
         MessageEntity messageEntity = mapper.mapRevert(messageDTO, MessageEntity.class);
         messageEntity.setServerRecDate(System.currentTimeMillis());
-        messageEntity = messageService.add(messageEntity);
+        messageEntity = messageService.save(messageEntity);
 
         MessageStatusEntity messageStatusEntity = new MessageStatusEntity();
         messageStatusEntity.setMessageId(messageEntity.getId());
@@ -73,7 +73,7 @@ public class SendMessageHandler
         messageStatusEntity.setConversationId(messageEntity.getConversationId());
         messageStatusEntity.setStatus(MessageStatus.UNREAD);
 
-        messageStatusService.add(messageStatusEntity);
+        messageStatusService.save(messageStatusEntity);
 
         return mapper.map(messageEntity, MessageDTO.class);
     }
