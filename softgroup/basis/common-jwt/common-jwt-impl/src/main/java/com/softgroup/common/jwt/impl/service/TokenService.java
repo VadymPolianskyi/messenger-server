@@ -29,43 +29,18 @@ public class TokenService implements UniversalTokenService {
 
     static Logger log = LoggerFactory.getLogger(TokenService.class);
 
-    @Override
-    public void validateDeviceToken(String token) throws DeviceTokenException {
-        try{
-            Jwts.parser()
-                    .require("type", DEVICE_TOKEN.toString())
-                    .setSigningKey(KEY)
-                    .parseClaimsJws(token);
-        } catch (JwtException jwtException){
-            throw new DeviceTokenException(jwtException.getMessage());
-        }
-//        validateToken(, token);
-    }
+
 
     @Override
     public String generateDeviceToken(String profileID, String deviceID) throws DeviceTokenException {
-
         return  Jwts.builder()
                 .claim("profileID", profileID)
                 .claim("deviceID", deviceID)
                 .claim("type", DEVICE_TOKEN)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + TEN_MINUTES_UNIX_TMS))
+                .setExpiration(new Date(System.currentTimeMillis() + YEAR_UNIX_TMS))
                 .signWith(SignatureAlgorithm.HS256, KEY)
                 .compact();
-    }
-
-    @Override
-    public void validateSessionToken(String token) throws SessionTokenException {
-        try{
-            Jwts.parser()
-                    .require("type", SESSION_TOKEN.toString())
-                    .setSigningKey(KEY)
-                    .parseClaimsJws(token);
-        } catch (JwtException jwtException){
-            throw new DeviceTokenException(jwtException.getMessage());
-        }
-//       validateToken(, token);
     }
 
     @Override
@@ -75,9 +50,36 @@ public class TokenService implements UniversalTokenService {
                 .claim("deviceID", deviceID)
                 .claim("type", SESSION_TOKEN)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + YEAR_UNIX_TMS))
+                .setExpiration(new Date(System.currentTimeMillis() + TEN_MINUTES_UNIX_TMS))
                 .signWith(SignatureAlgorithm.HS256, KEY)
                 .compact();
+    }
+
+    @Override
+    public void validateDeviceToken(String token) throws DeviceTokenException {
+        try{
+            validateToken(DEVICE_TOKEN, token);
+        } catch (JwtException jwtException){
+            throw new DeviceTokenException(jwtException.getMessage());
+        }
+
+    }
+
+    @Override
+    public void validateSessionToken(String token) throws SessionTokenException {
+        try{
+            validateToken(SESSION_TOKEN, token);
+        } catch (JwtException jwtException){
+            throw new DeviceTokenException(jwtException.getMessage());
+        }
+
+    }
+
+    private void validateToken(TokenType tokenType, String token) throws JwtException{
+        Jwts.parser()
+                .require("type", tokenType.toString())
+                .setSigningKey(KEY)
+                .parseClaimsJws(token);
     }
 
     @Override
@@ -125,9 +127,5 @@ public class TokenService implements UniversalTokenService {
                 .parseClaimsJws(token)
                 .getBody()
                 .get(key);
-    }
-
-    private void validateToken(TokenType tokenType, String token) {
-
     }
 }

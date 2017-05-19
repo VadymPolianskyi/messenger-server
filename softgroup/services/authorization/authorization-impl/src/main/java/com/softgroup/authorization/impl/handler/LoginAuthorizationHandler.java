@@ -23,10 +23,10 @@ public class LoginAuthorizationHandler extends
                                 implements AuthorizationRequestHandler {
 
     @Autowired
-    TokenService tokenService;
+    private TokenService tokenService;
 
     @Autowired
-    DeviceService deviceService;
+    private DeviceService deviceService;
 
     @Override
     public String getName() {
@@ -36,20 +36,20 @@ public class LoginAuthorizationHandler extends
     @Override
     public Response<LoginResponse> doHandle(Request<LoginRequest> request) {
             LoginRequest requestData = request.getData();
-        String deviceToken = requestData.getDeviceToken();
+        String sessionToken = requestData.getDeviceToken();
 
-        String profileID = tokenService.getProfileID(deviceToken);
-        String deviceID = tokenService.getDeviceID(deviceToken);
+        String profileID = tokenService.getProfileID(sessionToken);
+        String deviceID = tokenService.getDeviceID(sessionToken);
 
-        String sessionToken = tokenService.generateSessionToken(profileID, deviceID);
+        String deviceToken = tokenService.generateDeviceToken(profileID, deviceID);
 
-        Long currentTime = tokenService.getTimeOfCreation(sessionToken);
+        Long currentTime = tokenService.getTimeOfCreation(deviceToken);
         deviceService.setTimeOfUpdatingOfToken(currentTime, deviceID);
 
         LoginResponse loginResponse = new LoginResponse();
-        loginResponse.setToken(sessionToken);
+        loginResponse.setToken(deviceToken);
 
-        Response<LoginResponse> response = new Response<LoginResponse>();
+        Response<LoginResponse> response = new Response<>();
         response.setHeader(request.getHeader());
         response.setData(loginResponse);
 
