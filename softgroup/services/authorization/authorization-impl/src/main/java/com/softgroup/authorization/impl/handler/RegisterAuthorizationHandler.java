@@ -23,13 +23,13 @@ import org.springframework.stereotype.Component;
 public class RegisterAuthorizationHandler extends AbstractRequestHandler<RegisterRequest, RegisterResponse> implements AuthorizationRequestHandler {
 
     @Autowired
-    ProfileService profileService;
+    private ProfileService profileService;
 
     @Autowired
-    KeysGenerator keysGenerator;
+    private KeysGenerator keysGenerator;
 
     @Autowired
-    AuthorizationDetailsCacheService authorizationDetailsCacheService;
+    private AuthorizationDetailsCacheService authorizationDetailsCacheService;
 
     @Override
     public String getName() {
@@ -59,7 +59,7 @@ public class RegisterAuthorizationHandler extends AbstractRequestHandler<Registe
         registerResponse.setAuthCode(authCode);
         registerResponse.setRegistrationTimeoutSec(10);
 
-        Response<RegisterResponse> response = new Response<RegisterResponse>();
+        Response<RegisterResponse> response = new Response<>();
         response.setHeader(request.getHeader());
         response.setData(registerResponse);
 

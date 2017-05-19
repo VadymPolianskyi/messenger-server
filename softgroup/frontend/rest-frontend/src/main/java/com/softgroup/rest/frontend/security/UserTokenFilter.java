@@ -39,10 +39,10 @@ public class UserTokenFilter extends UsernamePasswordAuthenticationFilter {
             throws IOException, ServletException {
         log.info("SecurityFilter is working with request");
         HttpServletRequest request = (HttpServletRequest) req;
-        String token = request.getHeader("x-token");
+        String deviceToken = request.getHeader("x-token");
 
         try {
-            tokenService.validateSessionToken(token);
+            tokenService.validateDeviceToken(deviceToken);
             request.getSession().setAttribute("routing_data", createRoutingData(
                     request.getHeader("x-token")));
             SecurityContextHolder.getContext().setAuthentication(tokenAuthentication);

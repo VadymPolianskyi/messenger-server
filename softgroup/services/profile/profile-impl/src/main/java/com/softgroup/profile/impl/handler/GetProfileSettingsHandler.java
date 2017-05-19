@@ -47,8 +47,7 @@ public class GetProfileSettingsHandler
         if (settingsEntity == null) {
             return responseFactory.createResponse(request, Status.NOT_FOUND);
         } else {
-            getProfileSettingsResponse.setProfileSettings(
-                    (ProfileSettingsDTO) mapper.map(settingsEntity, ProfileSettingsDTO.class));
+            getProfileSettingsResponse.setProfileSettings(mapper.map(settingsEntity, ProfileSettingsDTO.class));
             return responseFactory.createResponse(request, getProfileSettingsResponse);
         }
     }

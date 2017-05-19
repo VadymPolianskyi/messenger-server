@@ -4,7 +4,6 @@ import com.softgroup.common.dao.api.entities.ProfileEntity;
 import com.softgroup.common.dao.impl.service.ProfileService;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
-import com.softgroup.common.protocol.ResponseStatus;
 import com.softgroup.common.protocol.Status;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.model.maper.Mapper;
@@ -48,7 +47,7 @@ public class GetMyProfileHandler
         if (profileEntity == null) {
             return responseFactory.createResponse(request, Status.BAD_REQUEST);
         } else {
-            getMyProfileResponse.setProfileDTO((ProfileDTO) maper.map(profileEntity, ProfileDTO.class));
+            getMyProfileResponse.setProfileDTO(maper.map(profileEntity, ProfileDTO.class));
             return responseFactory.createResponse(request, getMyProfileResponse);
 
         }

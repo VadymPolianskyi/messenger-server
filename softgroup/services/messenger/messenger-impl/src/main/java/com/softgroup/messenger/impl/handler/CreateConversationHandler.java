@@ -53,7 +53,10 @@ public class CreateConversationHandler
         CreateConversationResponse createConversationResponse = new CreateConversationResponse();
 
         String profileId = request.getRoutingData().getProfileId();
-        ConversationDTO conversationDTO = new ConversationDTO();
+        ConversationDTO conversationDTO = createConversation(requestData.getType(),
+                requestData.getMembersIDs(),request.getRoutingData().getProfileId());
+
+        //todo: create correct catching of bad request
 
         if (conversationDTO == null) {
             return responseFactory.createResponse(request, Status.BAD_REQUEST);
@@ -74,7 +77,7 @@ public class CreateConversationHandler
         } else  {
             conversationEntity.setType(ConversationType.DIALOG);
         }
-        conversationEntity = conversationService.add(conversationEntity);
+        conversationEntity = conversationService.save(conversationEntity);
         String conversationId = conversationEntity.getId();
 
 
@@ -83,13 +86,13 @@ public class CreateConversationHandler
             conversationMemberEntity.setProfileId(membersID);
             conversationMemberEntity.setJoinDate(currentTime);
             conversationMemberEntity.setConversationId(conversationId);
-            conversationMemberService.add(conversationMemberEntity);
+            conversationMemberService.save(conversationMemberEntity);
         }
 
         ConversationSettingsEntity conversationSettingsEntity = new ConversationSettingsEntity();
         conversationSettingsEntity.setConversationId(conversationId);
         conversationSettingsEntity.setAdminId(authorId);
-        conversationSettingsService.add(conversationSettingsEntity);
+        conversationSettingsService.save(conversationSettingsEntity);
         return mapper.map(conversationEntity, ConversationDTO.class);
     }
 }

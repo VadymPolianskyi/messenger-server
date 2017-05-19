@@ -4,7 +4,6 @@ import com.softgroup.common.dao.api.entities.ProfileEntity;
 import com.softgroup.common.dao.impl.service.ProfileService;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
-import com.softgroup.common.protocol.ResponseStatus;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.model.maper.Mapper;
 import com.softgroup.profile.api.dto.ProfileDTO;
@@ -56,7 +55,7 @@ public class GetOtherProfilesHandler
         List<ProfileEntity> profileEntities = profileService.findByArrayOfIds(uuids);
 
         for (ProfileEntity profileEntity : profileEntities) {
-            profileDTOS.add((ProfileDTO) mapper.map(profileEntity, ProfileDTO.class));
+            profileDTOS.add(mapper.map(profileEntity, ProfileDTO.class));
         }
         return profileDTOS;
     }

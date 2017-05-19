@@ -17,8 +17,6 @@ import com.softgroup.model.maper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 /**
  * Author: vadym
  * Date: 25.02.17
@@ -65,7 +63,7 @@ public class SendMessageHandler
     private MessageDTO sendMessage(MessageDTO messageDTO) {
         MessageEntity messageEntity = mapper.mapRevert(messageDTO, MessageEntity.class);
         messageEntity.setServerRecDate(System.currentTimeMillis());
-        messageEntity = messageService.add(messageEntity);
+        messageEntity = messageService.save(messageEntity);
 
         MessageStatusEntity messageStatusEntity = new MessageStatusEntity();
         messageStatusEntity.setMessageId(messageEntity.getId());
@@ -73,7 +71,7 @@ public class SendMessageHandler
         messageStatusEntity.setConversationId(messageEntity.getConversationId());
         messageStatusEntity.setStatus(MessageStatus.UNREAD);
 
-        messageStatusService.add(messageStatusEntity);
+        messageStatusService.save(messageStatusEntity);
 
         return mapper.map(messageEntity, MessageDTO.class);
     }

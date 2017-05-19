@@ -30,16 +30,16 @@ public class SMSAuthorizationHandler extends
                                             AuthorizationRequestHandler {
 
     @Autowired
-    TokenService tokenService;
+    private TokenService tokenService;
 
     @Autowired
-    ProfileService profileService;
+    private ProfileService profileService;
 
     @Autowired
-    DeviceService deviceService;
+    private DeviceService deviceService;
 
     @Autowired
-    AuthorizationDetailsCacheService authorizationDetailsCacheService;
+    private AuthorizationDetailsCacheService authorizationDetailsCacheService;
 
     @Override
     public String getName() {
@@ -66,7 +66,7 @@ public class SMSAuthorizationHandler extends
 
         }
 
-        Response<SMSResponse> response = new Response<SMSResponse>();
+        Response<SMSResponse> response = new Response<>();
         response.setHeader(request.getHeader());
         response.setData(smsResponse);
         response.setStatus(status);
@@ -104,7 +104,7 @@ public class SMSAuthorizationHandler extends
             profileEntity.setPhoneNumber(authorizationDetails.getPhoneNumber());
             Long time = System.currentTimeMillis() / 1000L;
             profileEntity.setCreateDateTime(time);
-            profileEntity = profileService.insertProfile(profileEntity);
+            profileEntity = profileService.save(profileEntity);
 
 
             deviceEntity.setLocale_code(authorizationDetails.getLocaleCode());
@@ -113,7 +113,7 @@ public class SMSAuthorizationHandler extends
             deviceEntity.setProfileId(profileEntity.getId());
             deviceService.insertDevice(deviceEntity);
             smsResponse.setDeviceToken(tokenService.
-                    generateDeviceToken(profileEntity.getId(), deviceEntity.getId()));
+                    generateSessionToken(profileEntity.getId(), deviceEntity.getId()));
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
