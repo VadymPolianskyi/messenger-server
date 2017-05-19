@@ -5,6 +5,7 @@ import com.softgroup.common.cache.CacheConfig;
 import com.softgroup.common.dao.impl.configuration.DaoConfig;
 import com.softgroup.common.datamapper.configuration.DataMapperAppCfg;
 import com.softgroup.common.jwt.impl.service.TokenConfig;
+import com.softgroup.common.loger.LoggerConfig;
 import com.softgroup.common.protocol.configuration.ProtocolConfig;
 import com.softgroup.common.router.RouterConfig;
 import com.softgroup.messenger.impl.MessengerConfig;
@@ -32,7 +33,8 @@ import org.springframework.context.annotation.Import;
         TokenConfig.class,
         DaoConfig.class,
         CacheConfig.class,
-        ProtocolConfig.class
+        ProtocolConfig.class,
+        LoggerConfig.class
 })
 public class RestApplicationConfiguration {
 }

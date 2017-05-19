@@ -1,5 +1,6 @@
 package com.softgroup.common.router.api.factory;
 
+import com.softgroup.common.loger.Loggable;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.router.api.AbstractRouterHandler;
 import org.slf4j.Logger;
@@ -14,7 +15,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class RouterHandlerFactory<T extends AbstractRouterHandler> extends HandlerFactory<T> {
 
-    static Logger log = LoggerFactory.getLogger(RequestHandlerFactory.class);
+    @Loggable
+    static Logger log;
 
     protected String getRouteKey(Request<?> msg) {
         log.info("RouterFactory is working");
