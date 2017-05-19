@@ -4,7 +4,6 @@ import com.softgroup.common.dao.api.entities.ContactEntity;
 import com.softgroup.common.dao.impl.service.ContactService;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
-import com.softgroup.common.protocol.ResponseStatus;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.profile.api.dto.ContactDTO;
 import com.softgroup.profile.api.message.ContactsSyncRequest;

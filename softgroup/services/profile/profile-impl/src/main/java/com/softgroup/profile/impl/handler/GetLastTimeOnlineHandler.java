@@ -5,7 +5,6 @@ import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.Status;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.last.time.online.service.LastTimeOnlineService;
-import com.softgroup.model.maper.ProfileDTO;
 import com.softgroup.profile.api.ProfileStatusDTO;
 import com.softgroup.profile.api.message.GetLastTimeOnlineRequest;
 import com.softgroup.profile.api.message.GetLastTimeOnlineResponse;
