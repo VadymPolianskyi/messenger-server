@@ -1,6 +1,7 @@
 package com.softgroup.messenger.api.message;
 
 import com.softgroup.common.protocol.RequestData;
+import com.softgroup.messenger.api.dto.MessageDTO;
 
 /**
  * Author: vadym
@@ -8,14 +9,13 @@ import com.softgroup.common.protocol.RequestData;
  * Time: 19:19
  */
 public class SendMessageRequest implements RequestData {
-    private String message;
+    private MessageDTO message;
 
-
-    public String getMessage() {
+    public MessageDTO getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(MessageDTO message) {
         this.message = message;
     }
 }

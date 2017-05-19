@@ -1,6 +1,7 @@
 package com.softgroup.messenger.api.message;
 
 import com.softgroup.common.protocol.ResponseData;
+import com.softgroup.messenger.api.dto.MessageDTO;
 
 /**
  * Author: vadym
@@ -8,13 +9,13 @@ import com.softgroup.common.protocol.ResponseData;
  * Time: 19:19
  */
 public class SendMessageResponse implements ResponseData {
-    private String message;
+    private MessageDTO message;
 
-    public String getMessage() {
+    public MessageDTO getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(MessageDTO message) {
         this.message = message;
     }
 }

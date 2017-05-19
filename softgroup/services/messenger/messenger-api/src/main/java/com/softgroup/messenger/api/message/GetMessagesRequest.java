@@ -1,8 +1,8 @@
 package com.softgroup.messenger.api.message;
 
 
-import com.softgroup.common.dao.api.entities.MessageEntity;
 import com.softgroup.common.protocol.RequestData;
+import com.softgroup.messenger.api.dto.MessageDTO;
 
 /**
  * Author: vadym
@@ -12,13 +12,13 @@ import com.softgroup.common.protocol.RequestData;
 public class GetMessagesRequest implements RequestData {
 
     private String conversationID;
-    private MessageEntity cursor;
+    private MessageDTO cursor;
 
-    public MessageEntity getCursor() {
+    public MessageDTO getCursor() {
         return cursor;
     }
 
-    public void setCursor(MessageEntity cursor) {
+    public void setCursor(MessageDTO cursor) {
         this.cursor = cursor;
     }
 

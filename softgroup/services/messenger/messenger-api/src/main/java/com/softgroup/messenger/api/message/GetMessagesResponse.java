@@ -1,9 +1,7 @@
 package com.softgroup.messenger.api.message;
 
-
-import com.softgroup.common.dao.api.entities.ConversationEntity;
-import com.softgroup.common.dao.api.entities.MessageEntity;
 import com.softgroup.common.protocol.ResponseData;
+import com.softgroup.messenger.api.dto.MessageDTO;
 
 import java.util.List;
 
@@ -14,16 +12,8 @@ import java.util.List;
  */
 public class GetMessagesResponse implements ResponseData {
     private int totalUnread;
-    private List<MessageEntity> cursors;
-    private List<MessageEntity> messageEntities;
-
-    public List<MessageEntity> getMessageEntities() {
-        return messageEntities;
-    }
-
-    public void setMessageEntities(List<MessageEntity> messageEntities) {
-        this.messageEntities = messageEntities;
-    }
+    private MessageDTO cursor;
+    private List<MessageDTO> messageEntities;
 
     public int getTotalUnread() {
         return totalUnread;
@@ -33,21 +23,19 @@ public class GetMessagesResponse implements ResponseData {
         this.totalUnread = totalUnread;
     }
 
-    public List<MessageEntity> getCursors() {
-        return cursors;
+    public MessageDTO getCursor() {
+        return cursor;
     }
 
-    public void setCursors(List<MessageEntity> cursors) {
-        this.cursors = cursors;
+    public void setCursor(MessageDTO cursor) {
+        this.cursor = cursor;
     }
 
-    private List<ConversationEntity> conversationEntities;
-
-    public List<ConversationEntity> getConversationEntities() {
-        return conversationEntities;
+    public List<MessageDTO> getMessageEntities() {
+        return messageEntities;
     }
 
-    public void setConversationEntities(List<ConversationEntity> conversationEntities) {
-        this.conversationEntities = conversationEntities;
+    public void setMessageEntities(List<MessageDTO> messageEntities) {
+        this.messageEntities = messageEntities;
     }
 }
