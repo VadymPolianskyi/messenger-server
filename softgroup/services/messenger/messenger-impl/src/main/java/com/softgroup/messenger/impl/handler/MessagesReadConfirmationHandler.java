@@ -1,15 +1,10 @@
 package com.softgroup.messenger.impl.handler;
 
-import com.softgroup.common.dao.api.entities.ConversationMemberEntity;
-import com.softgroup.common.dao.api.entities.MessageEntity;
 import com.softgroup.common.dao.api.entities.MessageStatusEntity;
 import com.softgroup.common.dao.api.entities.types.MessageStatus;
-import com.softgroup.common.dao.impl.service.ConversationMemberService;
-import com.softgroup.common.dao.impl.service.MessageService;
 import com.softgroup.common.dao.impl.service.MessageStatusService;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
-import com.softgroup.common.protocol.Status;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.messenger.api.message.MessagesReadConfirmationRequest;
 import com.softgroup.messenger.api.message.MessagesReadConfirmationResponse;

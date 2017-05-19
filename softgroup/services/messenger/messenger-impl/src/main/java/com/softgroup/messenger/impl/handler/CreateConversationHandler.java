@@ -53,7 +53,10 @@ public class CreateConversationHandler
         CreateConversationResponse createConversationResponse = new CreateConversationResponse();
 
         String profileId = request.getRoutingData().getProfileId();
-        ConversationDTO conversationDTO = new ConversationDTO();
+        ConversationDTO conversationDTO = createConversation(requestData.getType(),
+                requestData.getMembersIDs(),request.getRoutingData().getProfileId());
+
+        //todo: create correct catching of bad request
 
         if (conversationDTO == null) {
             return responseFactory.createResponse(request, Status.BAD_REQUEST);

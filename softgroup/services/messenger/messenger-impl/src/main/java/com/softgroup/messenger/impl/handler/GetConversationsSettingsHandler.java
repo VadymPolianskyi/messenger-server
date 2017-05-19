@@ -7,8 +7,6 @@ import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.Status;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.messenger.api.dto.ConversationSettingsDTO;
-import com.softgroup.messenger.api.message.GetConversationsDetailsRequest;
-import com.softgroup.messenger.api.message.GetConversationsDetailsResponse;
 import com.softgroup.messenger.api.message.GetConversationsSettingsRequest;
 import com.softgroup.messenger.api.message.GetConversationsSettingsResponse;
 import com.softgroup.messenger.api.router.MessengerRequestHandler;

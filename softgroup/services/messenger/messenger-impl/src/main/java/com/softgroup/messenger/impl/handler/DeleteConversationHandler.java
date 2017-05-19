@@ -5,14 +5,10 @@ import com.softgroup.common.dao.impl.service.ConversationService;
 import com.softgroup.common.dao.impl.service.ConversationSettingsService;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
-import com.softgroup.common.protocol.Status;
 import com.softgroup.common.router.api.AbstractRequestHandler;
-import com.softgroup.messenger.api.message.CreateConversationRequest;
-import com.softgroup.messenger.api.message.CreateConversationResponse;
 import com.softgroup.messenger.api.message.DeleteConversationRequest;
 import com.softgroup.messenger.api.message.DeleteConversationResponse;
 import com.softgroup.messenger.api.router.MessengerRequestHandler;
-import com.softgroup.profile.api.dto.ConversationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -9,8 +9,6 @@ import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.messenger.api.dto.ConversationMemberDTO;
 import com.softgroup.messenger.api.message.GetConversationsDetailsRequest;
 import com.softgroup.messenger.api.message.GetConversationsDetailsResponse;
-import com.softgroup.messenger.api.message.GetConversationsSettingsRequest;
-import com.softgroup.messenger.api.message.GetConversationsSettingsResponse;
 import com.softgroup.messenger.api.router.MessengerRequestHandler;
 import com.softgroup.model.maper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;

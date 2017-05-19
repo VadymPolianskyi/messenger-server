@@ -17,8 +17,6 @@ import com.softgroup.model.maper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 /**
  * Author: vadym
  * Date: 25.02.17
