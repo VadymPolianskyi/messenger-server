@@ -33,20 +33,14 @@ public class DeviceServiceTest {
         profileEntity.setCreateDateTime(4765387542L);
         profileEntity.setName("dimas");
         profileEntity.setPhoneNumber("047653765");
-        profileEntity = profileService.insertProfile(profileEntity);
+        profileEntity = profileService.save(profileEntity);
 
         DeviceEntity deviceEntity = new DeviceEntity();
         deviceEntity.setUpdateDateTime(892482L);
         deviceEntity.setDeviceId("48924ifo3902");
         deviceEntity.setLocale_code("UA");
         deviceEntity.setProfileId(profileEntity.getId());
-        deviceEntity = deviceService.insertDevice(deviceEntity);
+        deviceEntity = deviceService.save(deviceEntity);
         this.id = deviceEntity.getId();
-    }
-
-
-    @Test
-    public void updateTokenTime() {
-        deviceService.setTimeOfUpdatingOfToken(384294535L, id);
     }
 }

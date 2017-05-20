@@ -14,4 +14,5 @@ public interface ConversationMemberRepository extends BaseRepository<Conversatio
     void deleteByConversationId(String conversationId);
     List<ConversationMemberEntity> findByConversationIdIn(List<String> conversationIds);
     ConversationMemberEntity findByConversationIdAndProfileId(String conversationId, String profileId);
+    List<ConversationMemberEntity> findByProfileId(String profileId);
 }

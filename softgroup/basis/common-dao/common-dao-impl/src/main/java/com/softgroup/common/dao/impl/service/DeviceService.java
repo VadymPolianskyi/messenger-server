@@ -19,7 +19,4 @@ public class DeviceService
     public DeviceEntity findDeviceEntityById(String id) {
         return getRepository().findById(id);
     }
-    public void setTimeOfUpdatingOfToken (Long time, String id) {
-        getRepository().setTimeOfUpdatingOfToken(time,id);
-    }
 }

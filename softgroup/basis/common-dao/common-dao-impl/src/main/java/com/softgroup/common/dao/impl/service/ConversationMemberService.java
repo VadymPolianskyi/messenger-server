@@ -26,7 +26,7 @@ public class ConversationMemberService
     }
         
     public List<ConversationMemberEntity> findByProfileId(String profileId) {
-        return new ArrayList<>();
+        return getRepository().findByProfileId(profileId);
     }
 
     public ConversationMemberEntity findByConversationIdAndProfileId(String conversationId, String profileId) {

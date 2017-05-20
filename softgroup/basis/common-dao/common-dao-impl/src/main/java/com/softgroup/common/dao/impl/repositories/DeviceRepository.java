@@ -12,9 +12,4 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public interface DeviceRepository extends BaseRepository<DeviceEntity>  {
     DeviceEntity findById(String id);
-
-    @Transactional
-    @Modifying
-    @Query("update DeviceEntity dev set dev.updateDateTime = ?1 where dev.id = ?2")
-    void setTimeOfUpdatingOfToken(Long time, String id);
 }

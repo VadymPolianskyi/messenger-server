@@ -2,7 +2,6 @@ package com.softgroup.common.dao.impl.service;
 
 import com.softgroup.common.dao.api.entities.ProfileEntity;
 import com.softgroup.common.dao.impl.repositories.ProfileRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,8 +13,6 @@ import java.util.List;
  */
 @Component
 public class ProfileService extends BaseService<ProfileEntity, ProfileRepository> {
-    @Autowired
-    ProfileRepository profileRepository;
 
     public ProfileEntity findProfileById(String id) {
         return  getRepository().findById(id);

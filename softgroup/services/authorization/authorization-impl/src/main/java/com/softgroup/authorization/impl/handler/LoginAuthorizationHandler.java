@@ -3,6 +3,7 @@ package com.softgroup.authorization.impl.handler;
 import com.softgroup.authorization.api.message.LoginRequest;
 import com.softgroup.authorization.api.message.LoginResponse;
 import com.softgroup.authorization.api.router.AuthorizationRequestHandler;
+import com.softgroup.common.dao.api.entities.DeviceEntity;
 import com.softgroup.common.dao.impl.service.DeviceService;
 import com.softgroup.common.jwt.impl.service.TokenService;
 import com.softgroup.common.protocol.Request;
@@ -42,9 +43,11 @@ public class LoginAuthorizationHandler extends
         String deviceID = tokenService.getDeviceID(sessionToken);
 
         String deviceToken = tokenService.generateDeviceToken(profileID, deviceID);
+        Long tokenCreationTime = tokenService.getTimeOfCreation(deviceToken);
 
-        Long currentTime = tokenService.getTimeOfCreation(deviceToken);
-        deviceService.setTimeOfUpdatingOfToken(currentTime, deviceID);
+        DeviceEntity deviceEntity = deviceService.findDeviceEntityById(tokenService.getDeviceID(deviceToken));
+        deviceEntity.setUpdateDateTime(tokenCreationTime);
+        deviceService.update(deviceEntity);
 
         LoginResponse loginResponse = new LoginResponse();
         loginResponse.setToken(deviceToken);

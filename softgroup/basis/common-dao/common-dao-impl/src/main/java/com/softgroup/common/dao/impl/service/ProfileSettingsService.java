@@ -15,17 +15,6 @@ import java.util.List;
 public class ProfileSettingsService
         extends BaseService<ProfileSettingsEntity, ProfileSettingsRepository>{
 
-    public void deleteSetting(String id) {
-        getRepository().delete(id);
-    }
-
-    public void deleteSettings(List<ProfileSettingsEntity> settingsEntities) {
-        for (ProfileSettingsEntity settingsEntity : settingsEntities) {
-            getRepository().delete(settingsEntity.getId());
-        }
-
-    }
-
     public ProfileSettingsEntity findByProfileId(String profileId) {
         return getRepository().findByProfileId(profileId);
     }
