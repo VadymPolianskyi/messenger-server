@@ -89,4 +89,9 @@ public class LoginAuthorizationTest {
         request = null;
         Response<LoginResponse> response = loginAuthorizationHandler.doHandle(request);
     }
+
+    @Test
+    public void testName() {
+        assertThat(loginAuthorizationHandler.getName(), is("login"));
+    }
 }
