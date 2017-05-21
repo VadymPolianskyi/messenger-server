@@ -15,10 +15,10 @@ import java.util.List;
  */
 public abstract class HandlerFactory<T extends Handler> {
     @Autowired
-    List<T> handlerList;
+    protected List<T> handlerList;
 
 
-    HashMap<String, T> handlerMap = new HashMap<>();
+    protected HashMap<String, T> handlerMap = new HashMap<>();
 
     @PostConstruct
     public void init() {

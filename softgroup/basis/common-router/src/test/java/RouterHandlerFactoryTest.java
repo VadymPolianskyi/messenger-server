@@ -1,17 +1,19 @@
+import com.softgroup.common.loger.LoggerConfig;
 import com.softgroup.common.protocol.ActionHeader;
 import com.softgroup.common.protocol.Request;
-import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.common.router.api.AbstractRouterHandler;
-import com.softgroup.common.router.api.factory.RequestHandlerFactory;
 import com.softgroup.common.router.api.factory.RouterHandlerFactory;
+import com.softgroup.common.router.impl.FirstRouterHandler;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +29,10 @@ import static org.mockito.Mockito.when;
  * Time: 18:01
  */
 @RunWith(MockitoJUnitRunner.class)
+@ContextConfiguration(classes={LoggerConfig.class})
 public class RouterHandlerFactoryTest {
     @InjectMocks
-    RouterHandlerFactory routerHandlerFactory;
+    private RouterHandlerFactory routerHandlerFactory;
 
     @Mock
     private AbstractRouterHandler firstRouter;
@@ -42,6 +45,8 @@ public class RouterHandlerFactoryTest {
 
     @Spy
     private List<AbstractRouterHandler> routerHandlers = new ArrayList<>();
+    @Spy
+    private Logger log = LoggerFactory.getLogger(FirstRouterHandler.class);
 
     @Before
     public void init() {
