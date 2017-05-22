@@ -1,9 +1,7 @@
 package com.softgroup.common.dao.impl.test;
 
 import com.softgroup.common.dao.api.entities.ProfileEntity;
-import com.softgroup.common.dao.api.entities.ProfileSettingsEntity;
 import com.softgroup.common.dao.impl.configuration.CommonDaoAppCfg;
-import com.softgroup.common.dao.impl.repositories.ProfileSettingsRepository;
 import com.softgroup.common.dao.impl.service.ProfileService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,14 +30,8 @@ public class ProfileServiceTest {
         profileEntity.setName("dimas");
         profileEntity.setPhoneNumber("047653765");
 
-        profileEntity = profileService.insertProfile(profileEntity);
-//        profileEntity1 = profileService.insertProfile(profileEntity1);
+        profileEntity = profileService.save(profileEntity);
 
-
-
-
-
-//        profileEntity = profileService.insertProfile(profileEntity);
         ProfileEntity profile = profileService.findProfileById("id56477");
 
     }
@@ -54,8 +46,8 @@ public class ProfileServiceTest {
         profileEntity.setName("vadym");
         profileEntity.setPhoneNumber("0953538");
 
-        profileService.insertProfile(profileEntity);
-        profileService.deleteProfile(profileEntity);
+        profileService.save(profileEntity);
+        profileService.delete(profileEntity.getId());
 
     }
 }

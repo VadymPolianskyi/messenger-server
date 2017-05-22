@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 public class RequestHandlerFactory <T extends AbstractRequestHandler> extends HandlerFactory<T> {
 
     @Loggable
-    static Logger log;
+    private Logger log;
 
     protected String getRouteKey(Request<?> msg) {
         log.info("HandlerFactory is working");

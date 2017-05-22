@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 public class RouterHandlerFactory<T extends AbstractRouterHandler> extends HandlerFactory<T> {
 
     @Loggable
-    static Logger log;
+    private Logger log;
 
     protected String getRouteKey(Request<?> msg) {
         log.info("RouterFactory is working");

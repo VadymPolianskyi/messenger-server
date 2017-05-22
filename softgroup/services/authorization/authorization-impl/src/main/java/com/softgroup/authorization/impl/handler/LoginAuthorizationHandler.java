@@ -9,6 +9,7 @@ import com.softgroup.common.jwt.impl.service.TokenService;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseStatus;
+import com.softgroup.common.protocol.Status;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -36,8 +37,14 @@ public class LoginAuthorizationHandler extends
 
     @Override
     public Response<LoginResponse> doHandle(Request<LoginRequest> request) {
-            LoginRequest requestData = request.getData();
-        String sessionToken = requestData.getDeviceToken();
+        LoginRequest requestData = request.getData();
+        LoginResponse loginResponse = new LoginResponse();
+
+        String sessionToken = requestData.getSessionToken();
+
+        if (sessionToken == null) {
+            return responseFactory.createResponse(request, Status.BAD_REQUEST);
+        }
 
         String profileID = tokenService.getProfileID(sessionToken);
         String deviceID = tokenService.getDeviceID(sessionToken);
@@ -49,18 +56,10 @@ public class LoginAuthorizationHandler extends
         deviceEntity.setUpdateDateTime(tokenCreationTime);
         deviceService.update(deviceEntity);
 
-        LoginResponse loginResponse = new LoginResponse();
         loginResponse.setToken(deviceToken);
 
-        Response<LoginResponse> response = new Response<>();
-        response.setHeader(request.getHeader());
-        response.setData(loginResponse);
+        return responseFactory.createResponse(request, loginResponse);
 
-        ResponseStatus status = new ResponseStatus();
-        status.setCode(200);
-        status.setMessage("OK");
 
-        response.setStatus(status);
-        return response;
     }
 }
