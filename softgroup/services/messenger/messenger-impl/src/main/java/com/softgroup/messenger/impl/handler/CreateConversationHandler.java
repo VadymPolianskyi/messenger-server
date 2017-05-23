@@ -52,18 +52,18 @@ public class CreateConversationHandler
         CreateConversationRequest requestData = request.getData();
         CreateConversationResponse createConversationResponse = new CreateConversationResponse();
 
+        ConversationType type = requestData.getType();
+        List<String> membersIDs = requestData.getMembersIDs();
         String profileId = request.getRoutingData().getProfileId();
-        ConversationDTO conversationDTO = createConversation(requestData.getType(),
-                requestData.getMembersIDs(),request.getRoutingData().getProfileId());
 
-        //todo: create correct catching of bad request
-
-        if (conversationDTO == null) {
+        if (type == null && membersIDs == null && membersIDs.size() < 2) {
             return responseFactory.createResponse(request, Status.BAD_REQUEST);
-        } else {
-            createConversationResponse.setConversationDTO(conversationDTO);
-            return responseFactory.createResponse(request, createConversationResponse);
         }
+
+        ConversationDTO conversationDTO = createConversation(type, membersIDs, profileId);
+
+        createConversationResponse.setConversationDTO(conversationDTO);
+        return responseFactory.createResponse(request, createConversationResponse);
     }
 
     private ConversationDTO createConversation(ConversationType type,
@@ -72,12 +72,9 @@ public class CreateConversationHandler
         Long currentTime = System.currentTimeMillis();
         ConversationEntity conversationEntity = new ConversationEntity();
         conversationEntity.setCreationDate(currentTime);
-        if (membersIDs.size() > 2) {
-            conversationEntity.setType(ConversationType.CONVERSATION);
-        } else  {
-            conversationEntity.setType(ConversationType.DIALOG);
-        }
+        conversationEntity.setType(type);
         conversationEntity = conversationService.save(conversationEntity);
+
         String conversationId = conversationEntity.getId();
 
 

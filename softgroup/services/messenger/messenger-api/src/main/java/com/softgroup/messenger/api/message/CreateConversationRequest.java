@@ -12,6 +12,8 @@ import java.util.List;
  */
 public class CreateConversationRequest implements RequestData {
 
+    private static final long serialVersionUID = 3221684326125153963L;
+
     private ConversationType type;
     private List<String> membersIDs;
 

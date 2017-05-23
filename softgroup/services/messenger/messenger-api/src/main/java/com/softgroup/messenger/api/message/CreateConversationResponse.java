@@ -11,6 +11,9 @@ import com.softgroup.profile.api.dto.ConversationDTO;
  * Time: 19:13
  */
 public class CreateConversationResponse implements ResponseData {
+
+    private static final long serialVersionUID = 9040535248829292573L;
+
     private ConversationDTO conversationDTO;
 
     public ConversationDTO getConversationDTO() {
