@@ -13,6 +13,7 @@ import com.softgroup.common.jwt.impl.service.TokenService;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseStatus;
+import com.softgroup.common.protocol.Status;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -53,24 +54,13 @@ public class SMSAuthorizationHandler extends
         String authCode = requestData.getAuthCode();
         String registrationRequestUuid = requestData.getRegistrationRequestUuid();
 
-        SMSResponse smsResponse = new SMSResponse();
-        ResponseStatus status = new ResponseStatus();
         if (checkAuthorizationDetails(registrationRequestUuid, authCode)) {
-
-            smsResponse = addToDB(registrationRequestUuid);
-            status.setCode(200);
-            status.setMessage("OK");
+            SMSResponse smsResponse = addToDB(registrationRequestUuid);
+            return responseFactory.createResponse(request, smsResponse);
         } else {
-            status.setCode(404);
-            status.setMessage("Not Found");
+            return responseFactory.createResponse(request, Status.NOT_FOUND);
 
         }
-
-        Response<SMSResponse> response = new Response<>();
-        response.setHeader(request.getHeader());
-        response.setData(smsResponse);
-        response.setStatus(status);
-        return response;
     }
 
     private boolean checkAuthorizationDetails(String registrationRequestUuid,
@@ -79,30 +69,30 @@ public class SMSAuthorizationHandler extends
             AuthorizationDetails details = authorizationDetailsCacheService
                     .getFromCache(registrationRequestUuid);
 
-            String regReqUuid = details.getRegistrationRequestUuid();
-            String authC = details.getAuthCode();
+            String foundRegistrationRequestUuid = details.getRegistrationRequestUuid();
+            String foundAuthCode = details.getAuthCode();
 
-            return registrationRequestUuid.equals(regReqUuid) && authCode.equals(authC);
+            return registrationRequestUuid.equals(foundRegistrationRequestUuid) &&
+                    authCode.equals(foundAuthCode);
         } catch (ExecutionException e) {
-            e.printStackTrace();
+            return false;
         }
-        return false;
     }
 
 
     private SMSResponse addToDB(String key) {
         SMSResponse smsResponse = new SMSResponse();
-        ProfileEntity profileEntity;
-        DeviceEntity deviceEntity;
         try {
-            profileEntity = new ProfileEntity();
-            deviceEntity = new DeviceEntity();
+            ProfileEntity profileEntity = new ProfileEntity();
+            DeviceEntity deviceEntity = new DeviceEntity();
 
             AuthorizationDetails authorizationDetails =
                     authorizationDetailsCacheService.getFromCache(key);
+            Long time = System.currentTimeMillis() / 1000L;
+
+
             profileEntity.setName(authorizationDetails.getName());
             profileEntity.setPhoneNumber(authorizationDetails.getPhoneNumber());
-            Long time = System.currentTimeMillis() / 1000L;
             profileEntity.setCreateDateTime(time);
             profileEntity = profileService.save(profileEntity);
 
@@ -111,13 +101,14 @@ public class SMSAuthorizationHandler extends
             deviceEntity.setDeviceId(authorizationDetails.getDeviceId());
             deviceEntity.setUpdateDateTime(time);
             deviceEntity.setProfileId(profileEntity.getId());
-            deviceService.insertDevice(deviceEntity);
-            smsResponse.setDeviceToken(tokenService.
+            deviceEntity = deviceService.save(deviceEntity);
+
+            smsResponse.setSessionToken(tokenService.
                     generateSessionToken(profileEntity.getId(), deviceEntity.getId()));
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-
         return smsResponse;
     }
 }
+
