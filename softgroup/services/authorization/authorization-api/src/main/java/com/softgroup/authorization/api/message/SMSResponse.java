@@ -8,13 +8,16 @@ import com.softgroup.common.protocol.ResponseData;
  * Time: 12:22
  */
 public class SMSResponse implements ResponseData {
-    private String deviceToken;
 
-    public String getDeviceToken() {
-        return deviceToken;
+    private static final long serialVersionUID = -6713161050836121166L;
+
+    private String sessionToken;
+
+    public String getSessionToken() {
+        return sessionToken;
     }
 
-    public void setDeviceToken(String deviceToken) {
-        this.deviceToken = deviceToken;
+    public void setSessionToken(String sessionToken) {
+        this.sessionToken = sessionToken;
     }
 }

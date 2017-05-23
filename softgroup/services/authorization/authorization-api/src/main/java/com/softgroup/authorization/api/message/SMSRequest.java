@@ -9,6 +9,8 @@ import com.softgroup.common.protocol.RequestData;
  */
 public class SMSRequest implements RequestData {
 
+    private static final long serialVersionUID = 1087803774582829692L;
+
     private String authCode;
     private String registrationRequestUuid;
 
