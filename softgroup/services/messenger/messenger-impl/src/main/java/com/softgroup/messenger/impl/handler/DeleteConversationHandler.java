@@ -5,6 +5,7 @@ import com.softgroup.common.dao.impl.service.ConversationService;
 import com.softgroup.common.dao.impl.service.ConversationSettingsService;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
+import com.softgroup.common.protocol.Status;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import com.softgroup.messenger.api.message.DeleteConversationRequest;
 import com.softgroup.messenger.api.message.DeleteConversationResponse;
@@ -33,7 +34,7 @@ public class DeleteConversationHandler
 
     @Override
     public String getName() {
-        return "delete_convesation_handler";
+        return "delete_convesation";
     }
 
     @Override
@@ -41,8 +42,13 @@ public class DeleteConversationHandler
         DeleteConversationRequest requestData = request.getData();
         DeleteConversationResponse deleteConversationResponse = new DeleteConversationResponse();
 
-        deleteConversation(requestData.getConversationID());
+        String conversationID = requestData.getConversationID();
 
+        if (conversationID == null) {
+            return responseFactory.createResponse(request, Status.BAD_REQUEST);
+        }
+
+        deleteConversation(conversationID);
         return responseFactory.createResponse(request, deleteConversationResponse);
     }
 

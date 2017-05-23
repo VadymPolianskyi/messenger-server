@@ -8,4 +8,7 @@ import com.softgroup.common.protocol.ResponseData;
  * Time: 19:18
  */
 public class DeleteConversationResponse implements ResponseData {
+
+    private static final long serialVersionUID = 8300857560588835107L;
+
 }
