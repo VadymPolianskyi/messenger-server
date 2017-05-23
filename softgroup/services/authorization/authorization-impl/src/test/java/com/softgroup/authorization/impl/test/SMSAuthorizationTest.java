@@ -12,9 +12,6 @@ import com.softgroup.common.protocol.Status;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.softgroup.authorization.api.message.LoginRequest;
-import com.softgroup.authorization.api.message.LoginResponse;
-import com.softgroup.authorization.impl.handler.LoginAuthorizationHandler;
 import com.softgroup.common.dao.api.entities.DeviceEntity;
 import com.softgroup.common.dao.impl.service.DeviceService;
 import com.softgroup.common.jwt.impl.service.TokenService;
@@ -26,14 +23,12 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.concurrent.ExecutionException;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.*;
-import static org.hamcrest.core.IsNull.notNullValue;
 
 import static org.mockito.Mockito.when;
 /**
@@ -60,9 +55,8 @@ public class SMSAuthorizationTest {
 
     @Mock
     private Request<SMSRequest> request;
-    @Mock
-    private Response<SMSRequest> responseOk;
 
+    private Response<SMSRequest> responseOk;
     private Response<SMSRequest> responseNotFound;
 
     @Before
