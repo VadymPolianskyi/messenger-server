@@ -10,6 +10,7 @@ import com.softgroup.common.dao.impl.service.ProfileService;
 import com.softgroup.common.protocol.Request;
 import com.softgroup.common.protocol.Response;
 import com.softgroup.common.protocol.ResponseStatus;
+import com.softgroup.common.protocol.Status;
 import com.softgroup.common.router.api.AbstractRequestHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,9 +22,6 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class RegisterAuthorizationHandler extends AbstractRequestHandler<RegisterRequest, RegisterResponse> implements AuthorizationRequestHandler {
-
-    @Autowired
-    private ProfileService profileService;
 
     @Autowired
     private KeysGenerator keysGenerator;
@@ -39,15 +37,18 @@ public class RegisterAuthorizationHandler extends AbstractRequestHandler<Registe
 
     @Override
     public Response<RegisterResponse> doHandle(Request<RegisterRequest> request) {
-
         RegisterRequest requestData = request.getData();
-
         RegisterResponse registerResponse = new RegisterResponse();
 
         String phoneNumber = requestData.getPhoneNumber();
         String localeCode = requestData.getLocaleCode();
         String deviceId = requestData.getDeviceId();
         String name = requestData.getName();
+
+        if (phoneNumber == null && localeCode == null && deviceId == null && name ==null) {
+            return responseFactory.createResponse(request, Status.BAD_REQUEST);
+        }
+
         String registrationRequestUuid = keysGenerator.generateKey();
         String authCode = keysGenerator.generateKey();
 
@@ -59,16 +60,6 @@ public class RegisterAuthorizationHandler extends AbstractRequestHandler<Registe
         registerResponse.setAuthCode(authCode);
         registerResponse.setRegistrationTimeoutSec(10);
 
-        Response<RegisterResponse> response = new Response<>();
-        response.setHeader(request.getHeader());
-        response.setData(registerResponse);
-
-        ResponseStatus status = new ResponseStatus();
-        status.setCode(200);
-        status.setMessage("OK");
-
-        response.setStatus(status);
-
-        return response;
+        return responseFactory.createResponse(request, registerResponse);
     }
 }
