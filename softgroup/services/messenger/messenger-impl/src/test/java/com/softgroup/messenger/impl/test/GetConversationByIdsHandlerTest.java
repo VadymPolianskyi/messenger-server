@@ -47,8 +47,6 @@ public class GetConversationByIdsHandlerTest {
     private Response<GetConversationByIdsResponse> responseOk;
     private Response<GetConversationByIdsResponse> responseNotFound;
 
-    private final String CONVERSATION_ID = "conversationId";
-
     @Before
     public void init() {
         GetConversationByIdsRequest getConversationByIdsRequest = new GetConversationByIdsRequest();
@@ -56,9 +54,6 @@ public class GetConversationByIdsHandlerTest {
 
         when(request.getData()).thenReturn(getConversationByIdsRequest);
 
-        ConversationEntity returnEntity = new ConversationEntity();
-        returnEntity.setId("1");
-        doNothing().when(conversationService).delete(CONVERSATION_ID);
         doReturn(Arrays.asList(new ConversationEntity(), new ConversationEntity()))
                 .when(conversationService).findConversationsByIds(any(List.class));
 
