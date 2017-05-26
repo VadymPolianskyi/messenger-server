@@ -8,6 +8,9 @@ import com.softgroup.common.protocol.RequestData;
  * Time: 19:05
  */
 public class GetConversationDetailsRequest implements RequestData {
+
+    private static final long serialVersionUID = -6114327572566979376L;
+
     private String conversationID;
 
     public String getConversationID() {

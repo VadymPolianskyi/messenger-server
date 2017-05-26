@@ -42,14 +42,15 @@ public class GetConversationDetailsHandler
                 new GetConversationDetailsResponse();
 
         String conversationId = requestData.getConversationID();
-        ConversationMemberEntity conversationMemberEntity =
-                conversationMemberService.findByConversationId(conversationId);
 
-        ConversationMemberDTO conversationMemberDTO =
-                mapper.map(conversationMemberEntity, ConversationMemberDTO.class);
-        if (conversationMemberDTO == null) {
+        if (conversationId == null) {
             return responseFactory.createResponse(request, Status.NOT_FOUND);
         } else {
+            ConversationMemberEntity conversationMemberEntity =
+                    conversationMemberService.findByConversationId(conversationId);
+
+            ConversationMemberDTO conversationMemberDTO =
+                    mapper.map(conversationMemberEntity, ConversationMemberDTO.class);
             getConversationDetailsResponse.setConversationMemberDTO(conversationMemberDTO);
             return responseFactory.createResponse(request, getConversationDetailsResponse);
         }

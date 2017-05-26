@@ -10,6 +10,9 @@ import com.softgroup.messenger.api.dto.ConversationMemberDTO;
  * Time: 19:05
  */
 public class GetConversationDetailsResponse implements ResponseData {
+
+    private static final long serialVersionUID = 6342099854740397327L;
+
     private ConversationMemberDTO conversationMemberDTO;
 
     public ConversationMemberDTO getConversationMemberDTO() {
