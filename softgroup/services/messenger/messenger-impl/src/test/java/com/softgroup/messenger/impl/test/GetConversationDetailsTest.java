@@ -1,6 +1,5 @@
 package com.softgroup.messenger.impl.test;
 
-import com.softgroup.common.dao.api.entities.ConversationEntity;
 import com.softgroup.common.dao.api.entities.ConversationMemberEntity;
 import com.softgroup.common.dao.impl.service.ConversationMemberService;
 import com.softgroup.common.protocol.Request;
@@ -13,7 +12,6 @@ import com.softgroup.messenger.api.message.GetConversationDetailsRequest;
 import com.softgroup.messenger.api.message.GetConversationDetailsResponse;
 import com.softgroup.messenger.impl.handler.GetConversationDetailsHandler;
 import com.softgroup.model.maper.Mapper;
-import com.softgroup.profile.api.dto.ConversationDTO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,7 +24,6 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 
