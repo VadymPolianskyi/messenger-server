@@ -10,6 +10,9 @@ import java.util.List;
  * Time: 17:12
  */
 public class GetConversationByIdsRequest implements RequestData {
+
+    private static final long serialVersionUID = -911582271182859862L;
+
     public List<String> getConversationIDs() {
         return conversationIDs;
     }

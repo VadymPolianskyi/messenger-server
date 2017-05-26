@@ -46,11 +46,11 @@ public class GetConversationByIdsHandler
                                             new GetConversationByIdsResponse();
 
         List<String> conversationIds = requestData.getConversationIDs();
-        List<ConversationDTO> conversationDTOS = getConversationDTO(conversationIds);
 
-        if (conversationDTOS.size() < conversationIds.size()) {
+        if (conversationIds == null) {
             return responseFactory.createResponse(request, Status.NOT_FOUND);
         } else {
+            List<ConversationDTO> conversationDTOS = getConversationDTO(conversationIds);
             getConversationByIdsResponse.setConversationDTOS(conversationDTOS);
             return responseFactory.createResponse(request, getConversationByIdsResponse);
         }

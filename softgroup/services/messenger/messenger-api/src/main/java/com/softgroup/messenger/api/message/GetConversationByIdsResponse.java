@@ -12,6 +12,9 @@ import java.util.List;
  * Time: 17:14
  */
 public class GetConversationByIdsResponse implements ResponseData {
+
+    private static final long serialVersionUID = 6616281149836777804L;
+
     private List<ConversationDTO> conversationDTOS;
 
     public List<ConversationDTO> getConversationDTOS() {
